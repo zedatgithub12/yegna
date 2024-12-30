@@ -4,9 +4,11 @@
   "type": "module",
   "private": true,
   "description": "Shared tailwind config for Coop Super App",
+  "exports": {
+    "./tailwind-config": "./tailwind-config.ts",
+    "./base-styles": "./base-style.ts"
+  },
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {

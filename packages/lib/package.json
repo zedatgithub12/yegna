@@ -1,0 +1,46 @@
+{
+  "name": "@coop-super-app/lib",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Shared libraries for Coop Super App",
+  "exports": {
+    ".": {
+      "components": "./src/components.ts",
+      "import": "./src/index.ts"
+    },
+    "./forms/input": "./src/forms/input.tsx",
+    "./forms/otp": "./src/forms/otp.tsx",
+    "./forms/password": "./src/forms/password.tsx",
+    "./forms/select": "./src/forms/select.tsx",
+    "./forms/multi-select": "./src/forms/multi-select.tsx",
+    "./forms/text-area": "./src/forms/text-area.tsx",
+    "./hooks/use-drawer": "./src/hooks/use-drawer.ts",
+    "./hooks/use-modal": "./src/hooks/use-modal.ts",
+    "./view/drawer-view": "./src/views/drawer-view.tsx",
+    "./view/modal-view": "./src/views/modal-view.tsx"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@coop-super-app/ui": "workspace:*",
+    "formik": "^2.4.6",
+    "jotai": "^2.11.0",
+    "lodash": "^4.17.21",
+    "next": "15.1.3",
+    "rc-pagination": "^5.0.0",
+    "react-icons": "^5.4.0"
+  },
+  "devDependencies": {
+    "@coop-super-app/eslint-config": "workspace:*",
+    "@coop-super-app/typescript-config": "workspace:*",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@types/lodash": "^4.17.13",
+    "@types/node": "^20.11.24",
+    "@types/react": "18.3.0",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.5.4"
+  }
+}
