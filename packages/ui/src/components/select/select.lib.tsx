@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type SelectOption } from './select';
 
 export function isString(value: any): value is string {

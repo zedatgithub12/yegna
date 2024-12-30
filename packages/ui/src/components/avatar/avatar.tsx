@@ -87,8 +87,8 @@ export function Avatar({
 }: AvatarProps) {
   const [isError, setError] = React.useState(false);
 
-  let signature = initials || getInitials(name);
-  let avatarSize = customSize ?? classes.size[size];
+  const signature = initials || getInitials(name);
+  const avatarSize = customSize ?? classes.size[size];
 
   if (src && !isError) {
     return (

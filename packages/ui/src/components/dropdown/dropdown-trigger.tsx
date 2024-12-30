@@ -7,7 +7,7 @@ export const DropdownTrigger = React.forwardRef<
   HTMLButtonElement,
   MenuButtonProps
 >(({ as, className, children, ...props }, ref) => {
-  let Component = as;
+  const Component = as;
   return (
     <MenuButton
       as={as}

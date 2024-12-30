@@ -1,1 +1,1 @@
-export { Table, type TableProps, type TableVariantProps } from "./table";
+export { RcTable as Table, type TableProps } from "./table";

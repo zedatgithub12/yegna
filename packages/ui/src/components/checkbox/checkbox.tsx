@@ -110,7 +110,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       iconClassName,
       labelClassName,
       inputClassName,
-      errorClassName,
+      // errorClassName,
       helperClassName,
       indeterminate,
       className,

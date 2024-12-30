@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import cn from "../../lib/class-names";
 import { MenuItem } from "@headlessui/react";
@@ -40,7 +41,7 @@ export const DropdownItem = React.forwardRef<
     ref: React.ForwardedRef<any>
   ) => {
     const { rounded } = useDropdown();
-    let Component = as;
+    const Component = as;
 
     return (
       <MenuItem disabled={disabled}>

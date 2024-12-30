@@ -1,109 +1,59 @@
 import React from "react";
-import cn from "src/lib/class-names";
-import { tableStyles } from "../../lib/table-style";
-import { makeClassName } from "../../lib/make-class-name";
+import Table from "rc-table";
+import cn from "../../lib/class-names";
 
-export type TableVariantProps = keyof typeof tableStyles.variants;
-export interface TableProps extends React.ComponentPropsWithRef<"table"> {
-  variant?: TableVariantProps;
+export type ExtractProps<T> = T extends React.ComponentType<infer P> ? P : T;
+
+const tableStyles = {
+  table:
+    "[&_.rc-table-content]:overflow-x-auto [&_table]:w-full [&_.rc-table-row:hover]:bg-muted/10",
+  thead:
+    "[&_thead]:text-left [&_thead]:rtl:text-right [&_th.rc-table-cell]:uppercase [&_th.rc-table-cell]:text-xs [&_th.rc-table-cell]:font-medium [&_th.rc-table-cell]:tracking-wide",
+  tCell:
+    "[&_.rc-table-cell]:px-3 [&_th.rc-table-cell]:py-3 [&_td.rc-table-cell]:py-4",
+  variants: {
+    classic:
+      "[&_thead]:bg-muted/50 [&_.rc-table-container]:border-x [&_.rc-table-container]:border-muted [&_td.rc-table-cell]:border-b [&_td.rc-table-cell]:border-muted [&_thead]:border-y [&_thead]:border-muted",
+    modern:
+      "[&_thead]:bg-muted/50 [&_td.rc-table-cell]:border-b [&_td.rc-table-cell]:border-muted",
+    minimal: "[&_thead]:bg-muted/50",
+    elegant:
+      "[&_thead]:border-y [&_thead]:border-muted [&_td.rc-table-cell]:border-b [&_td.rc-table-cell]:border-muted",
+  },
+  striped: "[&_.rc-table-row:nth-child(2n)_.rc-table-cell]:bg-muted/40",
+};
+
+type RCTableProps = ExtractProps<typeof Table>;
+
+export interface TableProps
+  extends Omit<RCTableProps, "className" | "emptyText"> {
+  emptyText?: React.ReactElement;
+  variant?: keyof typeof tableStyles.variants;
+  striped?: boolean;
+  className?: string;
 }
 
-const Table = React.forwardRef<HTMLTableElement, TableProps>(
-  ({ className, variant = "modern", ...props }, ref) => (
-    <table
-      ref={ref}
+export  function RcTable({
+  striped,
+  variant = "classic",
+  emptyText,
+  className,
+  ...props
+}: TableProps) {
+  return (
+    <Table
       className={cn(
-        makeClassName(`table-root`),
+        tableStyles.table,
+        tableStyles.thead,
+        tableStyles.tCell,
         tableStyles.variants[variant],
+        striped && tableStyles.striped,
         className
       )}
+      emptyText={emptyText ?? <p>No results!</p>}
       {...props}
     />
-  )
-);
+  );
+}
 
-const TableHeader = React.forwardRef<
-  HTMLTableSectionElement,
-  React.ComponentPropsWithRef<"thead">
->(({ className, ...props }, ref) => (
-  <thead
-    ref={ref}
-    className={cn(makeClassName(`table-header`), className)}
-    {...props}
-  />
-));
-
-const TableBody = React.forwardRef<
-  HTMLTableSectionElement,
-  React.ComponentPropsWithRef<"tbody">
->(({ className, ...props }, ref) => (
-  <tbody
-    ref={ref}
-    className={cn(makeClassName(`table-body`), className)}
-    {...props}
-  />
-));
-
-const TableFooter = React.forwardRef<
-  HTMLTableSectionElement,
-  React.ComponentPropsWithRef<"tfoot">
->(({ className, ...props }, ref) => (
-  <tfoot
-    ref={ref}
-    className={cn(makeClassName(`table-footer`), className)}
-    {...props}
-  />
-));
-
-const TableRow = React.forwardRef<
-  HTMLTableRowElement,
-  React.ComponentPropsWithRef<"tr">
->(({ className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={cn(makeClassName(`table-row`), className)}
-    {...props}
-  />
-));
-
-const TableHead = React.forwardRef<
-  HTMLTableCellElement,
-  React.ComponentPropsWithRef<"th">
->(({ className, ...props }, ref) => (
-  <th
-    ref={ref}
-    className={cn(makeClassName(`table-head`), className)}
-    {...props}
-  />
-));
-
-const TableCell = React.forwardRef<
-  HTMLTableCellElement,
-  React.ComponentPropsWithRef<"td">
->(({ className, ...props }, ref) => (
-  <td
-    ref={ref}
-    className={cn(makeClassName(`table-cell`), className)}
-    {...props}
-  />
-));
-
-TableHeader.displayName = "TableHeader";
-TableBody.displayName = "TableBody";
-TableFooter.displayName = "TableFooter";
-TableRow.displayName = "TableRow";
-TableHead.displayName = "TableHead";
-TableCell.displayName = "TableCell";
-
-const TableWithComponents = Object.assign(Table, {
-  Header: TableHeader,
-  Body: TableBody,
-  Footer: TableFooter,
-  Row: TableRow,
-  Head: TableHead,
-  Cell: TableCell,
-});
-
-TableWithComponents.displayName = "Table";
-
-export { TableWithComponents as Table };
+RcTable.displayName = "Table";

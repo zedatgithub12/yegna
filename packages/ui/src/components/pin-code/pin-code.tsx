@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useRef } from "react";
 import cn from "../../lib/class-names";
 import { makeClassName } from "../../lib/make-class-name";
@@ -78,7 +79,7 @@ export function PinCode({
   error,
   className,
   inputClassName,
-  errorClassName,
+  // errorClassName,
   ...props
 }: PinCodeProps) {
   const inputRefs = useRef<HTMLInputElement[]>([]);
@@ -119,10 +120,10 @@ export function PinCode({
     setPinValue();
   }
   function handleKeyDown(event: React.KeyboardEvent, index: number) {
-    const currentValue = inputRefs.current[index]!?.value;
+    const currentValue = inputRefs.current[index]?.value;
 
     if (event.key === "ArrowRight" && index < length - 1) {
-      inputRefs.current[index + 1]!?.focus();
+      inputRefs.current[index + 1]?.focus();
     }
 
     if (event.key === "ArrowLeft" && index > 0) {

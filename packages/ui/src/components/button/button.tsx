@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment } from "react";
+import React from "react";
 import cn from "../../lib/class-names";
 import { makeClassName } from "../../lib/make-class-name";
 import { buttonVariantStyles } from "../../lib/button-variant";
@@ -37,6 +37,8 @@ export type ButtonProps = {
   disabled?: boolean;
   /** Add custom classes for extra style */
   className?: string;
+  //** in react 19 ae can pass ref as a prop */
+  ref?: React.Ref<HTMLButtonElement>;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.HTMLAttributes<HTMLSpanElement>;
 
@@ -45,62 +47,58 @@ export type ButtonProps = {
  * And the rest of the props of Button are the same as the original html button.
  * You can use props like `id`, `title`, `onClick`, `onFocus`, `onBlur`, `children` etc.
  */
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      children,
-      className,
-      isLoading,
-      as = "button",
-      type = "button",
-      variant = "solid",
-      size = "md",
-      rounded = "md",
-      color = "primary",
-      disabled,
-      ...buttonProps
-    },
-    ref
-  ) => {
-    const Component = as;
-    const variantStyle = buttonStyles.variant[variant];
-    return (
-      <Component
-        ref={ref}
-        disabled={disabled}
-        className={cn(
-          makeClassName(`button`),
-          buttonStyles.base,
-          buttonStyles.size[size],
-          buttonStyles.rounded[rounded],
-          variantStyle.base,
-          variantStyle.color[color],
-          isLoading && "pointer-events-none relative",
-          disabled && buttonStyles.disabled,
-          className
-        )}
-        {...(as && as !== "span" && { type })}
-        {...buttonProps}
-      >
-        {isLoading ? (
-          <>
-            {/* trick to have exact button width when button is loading */}
-            <span className="invisible opacity-0">{children}</span>
-            <span
-              className={cn(
-                makeClassName(`button-loader`),
-                "absolute inset-0 flex h-full w-full items-center justify-center"
-              )}
-            >
-              <ButtonLoader />
-            </span>
-          </>
-        ) : (
-          <>{children}</>
-        )}
-      </Component>
-    );
-  }
-);
+export const Button = ({
+  children,
+  className,
+  isLoading,
+  as = "button",
+  type = "button",
+  variant = "solid",
+  size = "md",
+  rounded = "md",
+  color = "primary",
+  disabled,
+  ref,
+  ...buttonProps
+}: ButtonProps) => {
+  const Component = as;
+  const variantStyle = buttonStyles.variant[variant];
+  return (
+    <Component
+      ref={ref}
+      disabled={disabled}
+      className={cn(
+        makeClassName(`button`),
+        buttonStyles.base,
+        buttonStyles.size[size],
+        buttonStyles.rounded[rounded],
+        variantStyle.base,
+        variantStyle.color[color],
+        isLoading && "pointer-events-none relative",
+        disabled && buttonStyles.disabled,
+        className
+      )}
+      {...(as && as !== "span" && { type })}
+      {...buttonProps}
+    >
+      {isLoading ? (
+        <>
+          {/* trick to have exact button width when button is loading */}
+          <span className="invisible opacity-0">{children}</span>
+          <span
+            className={cn(
+              makeClassName(`button-loader`),
+              "absolute inset-0 flex h-full w-full items-center justify-center"
+            )}
+          >
+            <ButtonLoader />
+          </span>
+        </>
+      ) : (
+        <>{children}</>
+      )}
+    </Component>
+  );
+};
 
 Button.displayName = "Button";

@@ -139,7 +139,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       labelClassName,
       switchClassName,
       switchKnobClassName,
-      errorClassName,
+      // errorClassName,
       helperClassName,
       ...props
     },

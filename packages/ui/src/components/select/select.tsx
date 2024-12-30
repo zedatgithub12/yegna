@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from "react";
 import {
   Listbox,
@@ -264,7 +266,7 @@ export function Select<OptionType extends SelectOption>({
   optionClassName,
   suffixClassName,
   prefixClassName,
-  errorClassName,
+  // errorClassName,
   helperClassName,
   searchClassName,
   dropdownClassName,
@@ -290,6 +292,7 @@ export function Select<OptionType extends SelectOption>({
         : options.filter((item) =>
             item[searchByKey].toLowerCase().includes(searchQuery.toLowerCase())
           ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [searchQuery, options]
   );
 

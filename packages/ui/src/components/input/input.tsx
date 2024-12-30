@@ -133,7 +133,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       helperText,
       labelClassName,
       inputClassName,
-      errorClassName,
+      // errorClassName,
       helperClassName,
       prefixClassName,
       suffixClassName,

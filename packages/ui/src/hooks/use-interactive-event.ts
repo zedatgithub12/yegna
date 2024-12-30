@@ -1,4 +1,6 @@
-import React, { useState, useCallback } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import React, { useState, useCallback } from "react";
 
 type InputFocusEvent = React.FocusEvent<any>;
 type InputMouseEvent = React.MouseEvent<any, MouseEvent>;
@@ -25,7 +27,7 @@ export function useInteractiveEvent({
     (e: InputFocusEvent) => {
       if (readOnly === true) return false;
       setIsFocus((prevState) => !prevState);
-      onFocus && onFocus(e); // eslint-disable-line no-unused-expressions
+      onFocus && onFocus(e);
     },
     [readOnly, onFocus]
   );
@@ -34,7 +36,7 @@ export function useInteractiveEvent({
     (e: InputFocusEvent) => {
       if (readOnly === true) return false;
       setIsFocus(() => false);
-      onBlur && onBlur(e); // eslint-disable-line no-unused-expressions
+      onBlur && onBlur(e);
     },
     [readOnly, onBlur]
   );
@@ -43,8 +45,9 @@ export function useInteractiveEvent({
     (e: InputMouseEvent) => {
       if (readOnly === true) return false;
       setIsHover(() => true);
-      onMouseEnter && onMouseEnter(e); // eslint-disable-line no-unused-expressions
+      onMouseEnter && onMouseEnter(e);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [readOnly]
   );
 
@@ -52,8 +55,9 @@ export function useInteractiveEvent({
     (e: InputMouseEvent) => {
       if (readOnly === true) return false;
       setIsHover(() => false);
-      onMouseLeave && onMouseLeave(e); // eslint-disable-line no-unused-expressions
+      onMouseLeave && onMouseLeave(e);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [readOnly]
   );
 

@@ -123,7 +123,7 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
       helperText,
       labelClassName,
       inputClassName,
-      errorClassName,
+      // errorClassName,
       helperClassName,
       prefixClassName,
       isPasswordVisible,

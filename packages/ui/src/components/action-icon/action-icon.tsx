@@ -48,6 +48,8 @@ export type ActionIconProps = {
   color?: keyof (typeof actionIconStyles.variant)["solid"]["color"];
   /** Add custom actionIconStyles for extra style */
   className?: string;
+  //disabled state
+  disabled?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.HTMLAttributes<HTMLSpanElement>;
 

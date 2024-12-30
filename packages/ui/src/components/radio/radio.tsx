@@ -82,7 +82,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       className,
       labelClassName,
       inputClassName,
-      errorClassName,
+      // errorClassName,
       helperClassName,
       ...radioProps
     },

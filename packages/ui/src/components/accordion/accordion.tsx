@@ -19,7 +19,7 @@ export function Accordion({
   className,
   children,
 }: React.PropsWithChildren<AccordionProps>) {
-  let Component = as;
+  const Component = as;
 
   return (
     <AccordionProvider defaultOpen={defaultOpen} duration={duration}>

@@ -31,6 +31,7 @@ export type TextProps = {
   title?: string;
   fontWeight?: keyof typeof textStyles.fontWeight;
   className?: string;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 } & React.HTMLAttributes<any>;
 
 export function Text({

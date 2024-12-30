@@ -113,7 +113,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       labelClassName,
       textareaClassName,
       helperClassName,
-      errorClassName,
+      // errorClassName,
       helperText,
       onFocus,
       onBlur,

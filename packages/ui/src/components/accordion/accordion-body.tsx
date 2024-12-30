@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useImperativeHandle } from "react";
 import { useAccordion } from "./accordion-context";
 import { makeClassName } from "../../lib/make-class-name";
@@ -13,7 +14,7 @@ export const AccordionBody = React.forwardRef<
   any,
   React.PropsWithChildren<AccordionBodyProps>
 >(({ as = "div", className, children, ...props }, ref) => {
-  let Component = as;
+  const Component = as;
   const { targetEl, openTargetEl } = useAccordion();
   useImperativeHandle(ref, () => targetEl);
 

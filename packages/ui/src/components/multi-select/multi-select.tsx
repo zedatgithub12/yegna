@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment, useMemo, useState } from "react";
 import {
   Label,
@@ -265,7 +267,7 @@ export function MultiSelect<OptionType extends MultiSelectOption>({
   prefix = null,
   labelClassName,
   onSearchChange,
-  errorClassName,
+  // errorClassName,
   rounded = "md",
   inPortal = true,
   selectClassName,
@@ -316,6 +318,7 @@ export function MultiSelect<OptionType extends MultiSelectOption>({
           .toLowerCase()
           .includes(searchQuery.toLocaleLowerCase())
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [searchQuery, options]
   );
 

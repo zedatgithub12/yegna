@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useRef, useState } from 'react';
 
 type AccordionContextProps = {
