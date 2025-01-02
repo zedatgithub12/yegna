@@ -4,6 +4,16 @@ export default {
   content: ["./src/**/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: ["class", '[data-theme="dark"]'],
   theme: {
+    screens: {
+      xs: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1920px",
+      "4xl": "2560px", // only need to control product grid mode in ultra 4k device
+    },
     extend: {
       colors: {
         background: "rgb(var(--background) / <alpha-value>)",
@@ -55,6 +65,9 @@ export default {
           DEFAULT: "rgb(var(--green-default) / <alpha-value>)",
           dark: "rgb(var(--green-dark) / <alpha-value>)",
         },
+      },
+      fontFamily: {
+        outfit: ["var(--font-outfit)"],
       },
     },
   },

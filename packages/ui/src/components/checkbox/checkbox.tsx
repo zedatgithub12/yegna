@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import cn from "../../lib/class-names";
 import { CheckmarkIcon } from "../../icons/checkmark";
 import { FieldHelperText } from "../field-helper-text";
@@ -93,117 +93,115 @@ export interface CheckboxProps
   className?: string;
   /** This prop is used to determine whether the checkbox is in an indeterminate state */
   indeterminate?: boolean;
+  // in react 19 we can pass ref as prop
+  ref?: React.ForwardedRef<HTMLInputElement>;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  (
-    {
-      variant = "outline",
-      size = "md",
-      rounded = "md",
-      labelPlacement = "right",
-      labelWeight = "medium",
-      label,
-      disabled,
-      error,
-      helperText,
-      iconClassName,
-      labelClassName,
-      inputClassName,
-      // errorClassName,
-      helperClassName,
-      indeterminate,
-      className,
-      ...checkboxProps
-    },
-    ref
-  ) => (
-    <div
-      className={cn(makeClassName(`checkbox-root`), "flex flex-col", className)}
+export const Checkbox = ({
+  variant = "outline",
+  size = "md",
+  rounded = "md",
+  labelPlacement = "right",
+  labelWeight = "medium",
+  label,
+  disabled,
+  error,
+  helperText,
+  iconClassName,
+  labelClassName,
+  inputClassName,
+  // errorClassName,
+  helperClassName,
+  indeterminate,
+  className,
+  ref,
+  ...checkboxProps
+}: CheckboxProps) => (
+  <div
+    className={cn(makeClassName(`checkbox-root`), "flex flex-col", className)}
+  >
+    <label
+      className={cn(
+        makeClassName(`checkbox-container`),
+        "flex cursor-pointer flex-row items-center",
+        disabled && "cursor-not-allowed"
+      )}
     >
-      <label
-        className={cn(
-          makeClassName(`checkbox-container`),
-          "flex cursor-pointer flex-row items-center",
-          disabled && "cursor-not-allowed"
-        )}
-      >
-        <span className="relative leading-none">
-          <input
-            type="checkbox"
-            ref={ref}
-            disabled={disabled}
-            className={cn(
-              makeClassName(`checkbox-input`),
-              checkboxStyles.base,
-              checkboxStyles.disabled,
-              checkboxStyles.size[size],
-              checkboxStyles.rounded[rounded],
-              checkboxStyles.variant[variant],
-              inputClassName
-            )}
-            {...checkboxProps}
-          />
-
-          {indeterminate && (
-            <span
-              className={cn(
-                checkboxStyles.indeterminate.base,
-                checkboxStyles.rounded[rounded]
-              )}
-            >
-              <span
-                className={cn(
-                  checkboxStyles.indeterminate.icon,
-                  checkboxStyles.indeterminate.size[size]
-                )}
-              />
-            </span>
+      <span className="relative leading-none">
+        <input
+          type="checkbox"
+          ref={ref}
+          disabled={disabled}
+          className={cn(
+            makeClassName(`checkbox-input`),
+            checkboxStyles.base,
+            checkboxStyles.disabled,
+            checkboxStyles.size[size],
+            checkboxStyles.rounded[rounded],
+            checkboxStyles.variant[variant],
+            inputClassName
           )}
+          {...checkboxProps}
+        />
 
-          <CheckmarkIcon
-            className={cn(
-              makeClassName(`checkbox-icon`),
-              checkboxStyles.activeIcon,
-              checkboxStyles.size[size],
-              size === "sm" && "top-0.5",
-              iconClassName
-            )}
-          />
-        </span>
-
-        {label ? (
+        {indeterminate && (
           <span
             className={cn(
-              makeClassName(`checkbox-label`),
-              checkboxLabelStyles.size[size],
-              checkboxLabelStyles.weight[labelWeight],
-              checkboxLabelStyles.margin[labelPlacement][size],
-              disabled && "text-muted-foreground",
-              labelPlacement === "left" && "order-first",
-              "mb-0",
-              labelClassName
+              checkboxStyles.indeterminate.base,
+              checkboxStyles.rounded[rounded]
             )}
           >
-            {label}
+            <span
+              className={cn(
+                checkboxStyles.indeterminate.icon,
+                checkboxStyles.indeterminate.size[size]
+              )}
+            />
           </span>
-        ) : null}
-      </label>
+        )}
 
-      {!error && helperText ? (
-        <FieldHelperText
-          size={size}
+        <CheckmarkIcon
           className={cn(
-            makeClassName(`checkbox-helper-text`),
+            makeClassName(`checkbox-icon`),
+            checkboxStyles.activeIcon,
+            checkboxStyles.size[size],
+            size === "sm" && "top-0.5",
+            iconClassName
+          )}
+        />
+      </span>
+
+      {label ? (
+        <span
+          className={cn(
+            makeClassName(`checkbox-label`),
+            checkboxLabelStyles.size[size],
+            checkboxLabelStyles.weight[labelWeight],
+            checkboxLabelStyles.margin[labelPlacement][size],
             disabled && "text-muted-foreground",
-            helperClassName
+            labelPlacement === "left" && "order-first",
+            "mb-0",
+            labelClassName
           )}
         >
-          {helperText}
-        </FieldHelperText>
+          {label}
+        </span>
       ) : null}
-    </div>
-  )
+    </label>
+
+    {!error && helperText ? (
+      <FieldHelperText
+        size={size}
+        className={cn(
+          makeClassName(`checkbox-helper-text`),
+          disabled && "text-muted-foreground",
+          helperClassName
+        )}
+      >
+        {helperText}
+      </FieldHelperText>
+    ) : null}
+  </div>
 );
 
 Checkbox.displayName = "Checkbox";

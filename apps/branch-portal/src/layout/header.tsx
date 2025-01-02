@@ -1,0 +1,120 @@
+"use client";
+
+import Cover from "@public/images/Auth-Cover.png";
+import ProfileMenu from "./profile-menu";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import WhiteLogo from "@public/White_Logo.png";
+import Logo from "@/components/logo";
+import { hasNumber } from "@/utils/misc";
+import cn from "@coop-super-app/ui/cn";
+import { Text, Title } from "@coop-super-app/ui/typography";
+import { TiArrowBack } from "react-icons/ti";
+import TopNavigationMenus from "@/components/menus/top-navigation";
+export default function Header() {
+  const pathName = usePathname();
+  const router = useRouter();
+  const path = pathName
+    .replaceAll("/", " ")
+    .replaceAll("-", " ")
+    .split(" ")
+    .filter((item) => !hasNumber(item))
+    .join(" ");
+
+  return (
+    <div
+      className={cn(
+        "relative mb-3 flex w-full flex-col items-start rounded-lg bg-primary",
+        pathName === "/"
+          ? "mb-[350px] h-[260px] sm:mb-[380px] md:mb-64 lg:mb-20"
+          : pathName === "/configuration-settings"
+            ? "mb-[20px] h-[200px]"
+            : "bg-white"
+      )}
+    >
+      {(pathName === "/" || pathName === "/configuration-settings") && (
+        <Image
+          src={Cover}
+          priority
+          alt="Cover"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+
+      <div
+        className={cn(
+          "z-40 flex w-full items-center justify-between gap-3 border-b border-dashed border-[#f8f8f8] p-3 px-5 md:px-6",
+          pathName !== "/" &&
+            pathName !== "/configuration-settings" &&
+            "border-black/50"
+        )}
+        onClick={() => router.push("/")}
+      >
+        {pathName === "/" || pathName === "/configuration-settings" ? (
+          <Logo className="h-14 w-fit" image={WhiteLogo} />
+        ) : (
+          <Logo className="h-14 w-fit" />
+        )}
+        <ProfileMenu />
+      </div>
+      {pathName === "/" || pathName === "/configuration-settings" ? (
+        <div
+          className={
+            "z-40 flex w-full flex-col items-start gap-1 p-3 px-5 md:px-6"
+          }
+        >
+          {pathName === "/" ? (
+            <Title as="h4" className="text-md text-white lg:text-xl">
+              👋 Welcome to COOP Super App Branch Portal
+            </Title>
+          ) : (
+            <button
+              onClick={() => router.back()}
+              className="group z-40 flex w-full items-center gap-2 p-1"
+            >
+              <TiArrowBack className={cn("capitalize text-white")} size={22} />
+              <Title as="h4" className={cn("capitalize text-white")}>
+                {path}
+              </Title>
+            </button>
+          )}
+          <Text as="p" className={cn("max-w-2xl text-white/80")}>
+            Efficiently manage performance, transactions, and all essential
+            settings of the super app in one place.
+          </Text>
+        </div>
+      ) : (
+        <button
+          onClick={() => router.back()}
+          className="group z-40 flex w-full items-center gap-2 p-3"
+        >
+          <TiArrowBack
+            className={cn(
+              "capitalize text-white group-hover:text-primary",
+              pathName !== "/" &&
+                pathName !== "/configuration-settings" &&
+                "text-black"
+            )}
+            size={22}
+          />
+          <Title
+            as="h6"
+            className={cn(
+              "capitalize text-white group-hover:text-primary",
+              pathName !== "/" &&
+                pathName !== "/configuration-settings" &&
+                "text-black"
+            )}
+          >
+            {path}
+          </Title>
+        </button>
+      )}
+      {pathName === "/" && (
+        <div className="xl:absolute xl:left-0 xl:right-0 z-50 xl:-bottom-[30%] p-3 px-5 md:px-6 w-full">
+          <TopNavigationMenus />
+        </div>
+      )}
+    </div>
+  );
+}

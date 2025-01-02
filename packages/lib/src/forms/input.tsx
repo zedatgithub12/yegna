@@ -19,7 +19,7 @@ const FormikInput: React.FC<FormikInputProps> = ({
   inputClassName,
   color = "primary",
   disabled = false,
-  size,
+  size = "md",
   maxLength = 100,
   pattern,
   ...props
