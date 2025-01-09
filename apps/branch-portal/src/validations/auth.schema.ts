@@ -59,7 +59,16 @@ export const generatePasswordValidationSchema = (rules: PasswordData) => {
 
   return passwordValidation;
 };
+
+export const changePasswordSchema = Yup.object().shape({
+  oldPassword: Yup.string().required("Old Password is required"),
+  password: Yup.string().required("Password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Confirm Password is required"),
+});
 type LoginType = Yup.InferType<typeof loginSchema>;
 type OtpVerifyType = Yup.InferType<typeof otpVerifySchema>;
 type PasswordLoginType = Yup.InferType<typeof passwordLoginSchema>;
-export type { LoginType, OtpVerifyType, PasswordLoginType };
+type ChangePasswordType = Yup.InferType<typeof changePasswordSchema>;
+export type { LoginType, OtpVerifyType, PasswordLoginType,ChangePasswordType };

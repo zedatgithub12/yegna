@@ -23,14 +23,10 @@ export default function Header() {
 
   return (
     <div
-      className={cn(
-        "relative mb-3 flex w-full flex-col items-start rounded-lg bg-primary",
-        pathName === "/"
-          ? "mb-[350px] h-[260px] sm:mb-[380px] md:mb-64 lg:mb-20"
-          : pathName === "/configuration-settings"
-            ? "mb-[20px] h-[200px]"
-            : "bg-white"
-      )}
+    className={cn(
+      " relative w-full bg-primary  rounded-lg flex flex-col items-start",
+      pathName === "/" ? "h-[260px] mb-[400px] md:mb-64 lg:mb-20" : "bg-white"
+    )}
     >
       {(pathName === "/" || pathName === "/configuration-settings") && (
         <Image
@@ -70,7 +66,7 @@ export default function Header() {
           ) : (
             <button
               onClick={() => router.back()}
-              className="group z-40 flex w-full items-center gap-2 p-1"
+              className="group z-40 flex w-fit items-center gap-2 p-1"
             >
               <TiArrowBack className={cn("capitalize text-white")} size={22} />
               <Title as="h4" className={cn("capitalize text-white")}>

@@ -5,12 +5,12 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useModal } from "@coop-super-app/lib";
 import ChangePassword from "@/features/profile/change-password";
 import { Text, Title } from "@coop-super-app/ui/typography";
 import { Button } from "@coop-super-app/ui/button";
 import { Popover } from "@coop-super-app/ui/popover";
 import { Avatar } from "@coop-super-app/ui/avatar";
+import { useModal } from "@coop-super-app/lib/hooks/use-modal";
 
 function DropdownMenu() {
   const { openModal } = useModal();

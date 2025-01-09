@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import cn from "../../lib/class-names";
 import { FieldHelperText } from "../field-helper-text";
 import { FieldClearButton } from "../field-clear-button";
@@ -110,165 +110,163 @@ export interface InputProps
   errorClassName?: string;
   /** Add custom classes to the root of the component */
   className?: string;
+  //** in react 19 ae can pass ref as a prop */
+  ref?: React.Ref<HTMLInputElement>;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      type = "text",
-      variant = "outline",
-      size = "md",
-      rounded = "md",
-      disabled,
-      placeholder,
-      label,
-      labelWeight = "medium",
-      error,
-      clearable,
-      onClear,
-      prefix,
-      suffix,
-      readOnly,
-      helperText,
-      labelClassName,
-      inputClassName,
-      // errorClassName,
-      helperClassName,
-      prefixClassName,
-      suffixClassName,
-      onFocus,
-      onBlur,
-      ...inputProps
-    },
-    ref
-  ) => {
-    const {
-      isFocus,
-      isHover,
-      handleOnBlur,
-      handleOnFocus,
-      handleOnMouseEnter,
-      handleOnMouseLeave,
-    } = useInteractiveEvent({
-      readOnly,
-      onBlur,
-      onFocus,
-    });
+export const Input = ({
+  className,
+  type = "text",
+  variant = "outline",
+  size = "md",
+  rounded = "md",
+  disabled,
+  placeholder,
+  label,
+  labelWeight = "medium",
+  error,
+  clearable,
+  onClear,
+  prefix,
+  suffix,
+  readOnly,
+  helperText,
+  labelClassName,
+  inputClassName,
+  // errorClassName,
+  helperClassName,
+  prefixClassName,
+  suffixClassName,
+  onFocus,
+  onBlur,
+  ref,
+  ...inputProps
+}: InputProps) => {
+  const {
+    isFocus,
+    isHover,
+    handleOnBlur,
+    handleOnFocus,
+    handleOnMouseEnter,
+    handleOnMouseLeave,
+  } = useInteractiveEvent({
+    readOnly,
+    onBlur,
+    onFocus,
+  });
 
-    return (
-      <div
-        className={cn(makeClassName(`input-root`), "flex flex-col", className)}
-      >
-        <label className="block">
-          {label ? (
+  return (
+    <div
+      className={cn(makeClassName(`input-root`), "flex flex-col", className)}
+    >
+      <label className="block">
+        {label ? (
+          <span
+            className={cn(
+              makeClassName(`input-label`),
+              "block",
+              labelStyles.size[size],
+              labelStyles.weight[labelWeight],
+              disabled && "text-muted-foreground",
+              labelClassName
+            )}
+          >
+            {label}
+          </span>
+        ) : null}
+
+        <span
+          className={cn(
+            makeClassName(`input-container`),
+            inputStyles.base,
+            inputStyles.size[size],
+            inputStyles.rounded[rounded],
+            inputStyles.variant[variant],
+            isHover && "is-hover", // must have is-hover class based on mouse enter
+            isFocus && "is-focus", // must have is-focus class based on onFocus event
+            disabled && inputStyles.disabled,
+            error && inputStyles.error,
+            inputClassName
+          )}
+          data-focus={isFocus}
+          data-hover={isHover}
+          onMouseEnter={handleOnMouseEnter}
+          onMouseLeave={handleOnMouseLeave}
+        >
+          {prefix ? (
             <span
               className={cn(
-                makeClassName(`input-label`),
-                "block",
-                labelStyles.size[size],
-                labelStyles.weight[labelWeight],
-                disabled && "text-muted-foreground",
-                labelClassName
+                makeClassName(`input-prefix`),
+                "whitespace-nowrap leading-normal",
+                prefixClassName
               )}
             >
-              {label}
+              {prefix}
             </span>
           ) : null}
 
-          <span
+          <input
+            ref={ref}
+            type={type}
+            disabled={disabled}
+            onBlur={handleOnBlur}
+            onFocus={handleOnFocus}
+            readOnly={readOnly}
+            spellCheck="false"
+            // placeholder is a required prop for the clearable input component even if the user does not set any
+            placeholder={placeholder || ""}
             className={cn(
-              makeClassName(`input-container`),
-              inputStyles.base,
-              inputStyles.size[size],
-              inputStyles.rounded[rounded],
-              inputStyles.variant[variant],
-              isHover && "is-hover", // must have is-hover class based on mouse enter
-              isFocus && "is-focus", // must have is-focus class based on onFocus event
-              disabled && inputStyles.disabled,
-              error && inputStyles.error,
-              inputClassName
+              makeClassName(`input-field`),
+              inputFieldStyles.base,
+              inputFieldStyles.reset,
+              // it's important we are using placeholder-shown pseudo class to control input clear icon btn
+              !placeholder && "placeholder-shown:placeholder:opacity-0",
+              disabled && inputFieldStyles.disabled,
+              clearable && inputFieldStyles.clearable,
+              prefix && inputFieldStyles.prefix.size[size],
+              suffix && inputFieldStyles.suffix.size[size]
             )}
-            data-focus={isFocus}
-            data-hover={isHover}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          >
-            {prefix ? (
-              <span
-                className={cn(
-                  makeClassName(`input-prefix`),
-                  "whitespace-nowrap leading-normal",
-                  prefixClassName
-                )}
-              >
-                {prefix}
-              </span>
-            ) : null}
+            style={{ fontSize: "inherit" }}
+            {...inputProps}
+          />
 
-            <input
-              ref={ref}
-              type={type}
-              disabled={disabled}
-              onBlur={handleOnBlur}
-              onFocus={handleOnFocus}
-              readOnly={readOnly}
-              spellCheck="false"
-              // placeholder is a required prop for the clearable input component even if the user does not set any
-              placeholder={placeholder || ""}
-              className={cn(
-                makeClassName(`input-field`),
-                inputFieldStyles.base,
-                inputFieldStyles.reset,
-                // it's important we are using placeholder-shown pseudo class to control input clear icon btn
-                !placeholder && "placeholder-shown:placeholder:opacity-0",
-                disabled && inputFieldStyles.disabled,
-                clearable && inputFieldStyles.clearable,
-                prefix && inputFieldStyles.prefix.size[size],
-                suffix && inputFieldStyles.suffix.size[size]
-              )}
-              style={{ fontSize: "inherit" }}
-              {...inputProps}
+          {clearable ? (
+            <FieldClearButton
+              as="span"
+              size={size}
+              onClick={onClear}
+              hasSuffix={Boolean(suffix)}
             />
+          ) : null}
 
-            {clearable ? (
-              <FieldClearButton
-                as="span"
-                size={size}
-                onClick={onClear}
-                hasSuffix={Boolean(suffix)}
-              />
-            ) : null}
+          {suffix ? (
+            <span
+              className={cn(
+                makeClassName(`input-suffix`),
+                "whitespace-nowrap leading-normal",
+                suffixClassName
+              )}
+            >
+              {suffix}
+            </span>
+          ) : null}
+        </span>
+      </label>
 
-            {suffix ? (
-              <span
-                className={cn(
-                  makeClassName(`input-suffix`),
-                  "whitespace-nowrap leading-normal",
-                  suffixClassName
-                )}
-              >
-                {suffix}
-              </span>
-            ) : null}
-          </span>
-        </label>
-
-        {!error && helperText ? (
-          <FieldHelperText
-            size={size}
-            className={cn(
-              makeClassName(`input-helper-text`),
-              disabled && "text-muted-foreground",
-              helperClassName
-            )}
-          >
-            {helperText}
-          </FieldHelperText>
-        ) : null}
-      </div>
-    );
-  }
-);
+      {!error && helperText ? (
+        <FieldHelperText
+          size={size}
+          className={cn(
+            makeClassName(`input-helper-text`),
+            disabled && "text-muted-foreground",
+            helperClassName
+          )}
+        >
+          {helperText}
+        </FieldHelperText>
+      ) : null}
+    </div>
+  );
+};
 
 Input.displayName = "Input";

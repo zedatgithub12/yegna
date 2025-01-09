@@ -1,6 +1,6 @@
 import LoginPage from "@/features/auth/login";
-import { metaObject } from "@/lib/config/site-seo";
 import React from "react";
+import { metaObject } from "@/lib/config/site-seo";
 export const metadata = {
   ...metaObject("Sign In"),
 };

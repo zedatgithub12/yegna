@@ -21,6 +21,7 @@ export default {
         muted: "rgb(var(--muted) / <alpha-value>)",
         "muted-foreground": "rgb(var(--muted-foreground) / <alpha-value>)",
         gray: {
+          0: "rgb(var(--gray-0) / <alpha-value>)",
           50: "rgb(var(--gray-50) / <alpha-value>)",
           100: "rgb(var(--gray-100) / <alpha-value>)",
           200: "rgb(var(--gray-200) / <alpha-value>)",
@@ -68,6 +69,7 @@ export default {
       },
       fontFamily: {
         outfit: ["var(--font-outfit)"],
+        inter: ["var(--font-inter)"],
       },
     },
   },
