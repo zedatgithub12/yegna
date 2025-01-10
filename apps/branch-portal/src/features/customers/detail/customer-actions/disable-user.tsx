@@ -47,7 +47,7 @@ const DisableUser = ({ customerCode }: Props) => {
           <ModalButtons
             loading={postMutation.isPending}
             onSubmit={disableCustomerRequestHandler}
-            approveText="Unlink"
+            submitButtonText="Unlink"
           />
         </div>
       )}

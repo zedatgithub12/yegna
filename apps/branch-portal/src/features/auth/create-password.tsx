@@ -86,7 +86,7 @@ const CreatePasswordAndLogin = () => {
                   as="span"
                   className={cn(
                     "text-xs capitalize text-red-500 font-medium",
-                    values.password.length >= _bpsPassword?.minLength &&
+                    values.password.length >= (_bpsPassword?.minLength || 4) &&
                       " text-green-500"
                   )}
                 >
@@ -96,7 +96,7 @@ const CreatePasswordAndLogin = () => {
                   as="span"
                   className={cn(
                     "text-xs capitalize text-red-500 font-medium",
-                    values.password.length <= _bpsPassword?.maxLength &&
+                    values.password.length <= (_bpsPassword?.maxLength || 44) &&
                       " text-green-500"
                   )}
                 >

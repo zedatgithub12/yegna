@@ -5,14 +5,16 @@ import React from "react";
 type Props = {
   loading: boolean;
   backText?: string;
-  approveText: string;
-  onSubmit: () => void;
+  submitButtonText: string;
+  onSubmit?: () => void;
+  submitButtonType?: "submit" | "button";
 };
 const ModalButtons = ({
   loading,
   backText = "Cancel",
-  approveText,
+  submitButtonText,
   onSubmit,
+  submitButtonType = "button",
 }: Props) => {
   const { closeModal } = useModal();
   return (
@@ -30,8 +32,9 @@ const ModalButtons = ({
         color="primary"
         className="w-full"
         onClick={onSubmit}
+        type={submitButtonType}
       >
-        {approveText}
+        {submitButtonText}
       </Button>
     </div>
   );

@@ -33,7 +33,7 @@ export interface TableProps
   className?: string;
 }
 
-export  function RcTable({
+export function RcTable({
   striped,
   variant = "classic",
   emptyText,

@@ -24,6 +24,8 @@ const FormikSelect: React.FC<FormikSelectProps> = ({
   value,
   searchable,
   displayValue,
+  required,
+  labelClassName,
   ...props
 }) => {
   return (
@@ -34,7 +36,12 @@ const FormikSelect: React.FC<FormikSelectProps> = ({
         options={options}
         value={value}
         onChange={onChange}
-        label={label}
+        label={
+          <div className={cn("", labelClassName)}>
+            {label}
+            {required && <sup className="text-red-500">*</sup>}
+          </div>
+        }
         getOptionValue={(option: MultiSelectOption) => option.value}
         size={size}
         searchable={searchable}

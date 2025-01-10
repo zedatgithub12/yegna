@@ -22,6 +22,8 @@ const FormikInput: React.FC<FormikInputProps> = ({
   size = "md",
   maxLength = 100,
   pattern,
+  required,
+  labelClassName,
   ...props
 }) => {
   const [field] = useField(name);
@@ -49,7 +51,12 @@ const FormikInput: React.FC<FormikInputProps> = ({
         }}
         {...field}
         type={type}
-        label={label}
+        label={
+          <div className={cn("", labelClassName)}>
+            {label}
+            {required && <sup className="text-red-500">*</sup>}
+          </div>
+        }
         name={name}
         prefix={prefix}
         suffix={suffix}

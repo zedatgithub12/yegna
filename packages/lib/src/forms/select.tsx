@@ -1,4 +1,3 @@
-
 "use client";
 import cn from "@coop-super-app/ui/cn";
 import { Select, SelectOption } from "@coop-super-app/ui/select";
@@ -22,6 +21,8 @@ const FormikSelect: React.FC<FormikSelectProps> = ({
   value,
   searchable,
   displayValue,
+  labelClassName,
+  required,
   ...props
 }) => {
   return (
@@ -32,7 +33,12 @@ const FormikSelect: React.FC<FormikSelectProps> = ({
         options={options}
         value={value}
         onChange={onChange}
-        label={label}
+        label={
+          <div className={cn("", labelClassName)}>
+            {label}
+            {required && <sup className="text-red-500">*</sup>}
+          </div>
+        }
         getOptionValue={(option: SelectOption) => option.value}
         size={size}
         searchable={searchable}

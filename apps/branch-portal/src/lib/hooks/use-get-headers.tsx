@@ -9,13 +9,13 @@ export const useGetHeaders = ({ type = "Json" }: Props) => {
     return {
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
-      Authorization: `Bearer ${session?.user.accessToken}`,
+      Authorization: `Bearer ${session?.user.token}`,
     };
   } else {
     return {
       "Content-Type": "application/json",
       Accept: "application/json",
-      Authorization: `Bearer ${session?.user.accessToken}`,
+      Authorization: `Bearer ${session?.user.token}`,
     };
   }
 };

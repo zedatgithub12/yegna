@@ -16,6 +16,8 @@ const FormikTextArea: React.FC<FormikTextAreaProps> = ({
   textareaClassName,
   color,
   disabled = false,
+  labelClassName,
+  required,
   ...props
 }) => {
   const [field] = useField(name);
@@ -25,7 +27,12 @@ const FormikTextArea: React.FC<FormikTextAreaProps> = ({
         prefix={prefix}
         autoComplete="off"
         {...field}
-        label={label}
+        label={
+          <div className={cn("", labelClassName)}>
+            {label}
+            {required && <sup className="text-red-500">*</sup>}
+          </div>
+        }
         name={name}
         textareaClassName={cn(
           "text-sm bg-gray-50 dark:bg-gray-100 placeholder:!text-gray-950 [&>label>span]:font-medium border-gray-50  shadow-none",

@@ -48,7 +48,7 @@ const UnlinkDevice = ({ customerCode }: Props) => {
           <ModalButtons
             loading={postMutation.isPending}
             onSubmit={unlinkDeviceRequestHandler}
-            approveText="Unlink"
+            submitButtonText="Unlink"
           />
         </div>
       )}

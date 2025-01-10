@@ -11,7 +11,7 @@ import useDynamicMutation from "@/lib/api/usePostData";
 import ModalHeader from "@/components/modal-header";
 import PasswordIcon from "@/components/icons/password";
 import FormikPasswordInput from "@coop-super-app/lib/forms/password";
-import { Button } from "@coop-super-app/ui/button";
+import ModalButtons from "@/components/modal-buttons";
 
 export default function ChangePassword() {
   const { closeModal } = useModal();
@@ -70,26 +70,13 @@ export default function ChangePassword() {
               placeholder="Confirm Your Password"
               color="primary"
             />
+
             <div className="flex w-full items-center gap-3 pt-3">
-              <Button
-                className="!mt-2 w-full"
-                type="submit"
-                color="primary"
-                size="md"
-                variant="outline"
-                onClick={closeModal}
-              >
-                Cancel
-              </Button>
-              <Button
-                className="!mt-2 w-full"
-                type="submit"
-                color="primary"
-                size="md"
-                isLoading={postMutation.isPending}
-              >
-                <span>Change Password</span>{" "}
-              </Button>
+              <ModalButtons
+                loading={postMutation.isPending}
+                submitButtonText="Change Password"
+                submitButtonType="submit"
+              />
             </div>
           </Form>
         )}

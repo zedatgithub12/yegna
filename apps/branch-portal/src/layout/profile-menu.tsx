@@ -2,7 +2,6 @@
 
 import cn from "@coop-super-app/ui/cn";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ChangePassword from "@/features/profile/change-password";
@@ -28,19 +27,15 @@ function DropdownMenu() {
   return (
     <div className="w-[280px] text-left rtl:text-right">
       <div className="flex items-center gap-1 border-b border-gray-300 pb-5 pt-6">
-        <Avatar
-          name={session?.user?.user?.avatar ?? "User"}
-          // alt={session?.user?.user?.firstName ?? ""}
-          className={cn("")}
-        />
+        <Avatar name={session?.user?.name ?? "User"} className={cn("")} />
         <div className="overflow-hidden text-wrap">
           <Title as="h6" className="font-semibold capitalize">
-            {session?.user?.user?.firstName +
+            {/* {session?.user?.user?.firstName +
               " " +
-              session?.user?.user?.lastName}
+              session?.user?.user?.lastName} */}
           </Title>
           <Text className="!text-wrap text-gray-600">
-            {session?.user?.user?.email}
+            {/* {session?.user?.user?.email} */}
           </Text>
         </div>
       </div>
@@ -72,12 +67,7 @@ function DropdownMenu() {
   );
 }
 
-export default function ProfileMenu({
-  avatarClassName,
-}: {
-  buttonClassName?: string;
-  avatarClassName?: string;
-}) {
+export default function ProfileMenu({}: { buttonClassName?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   console.log(isOpen);
   const pathname = usePathname();
@@ -94,11 +84,7 @@ export default function ProfileMenu({
     >
       <Popover.Trigger>
         <div className="flex cursor-default items-start gap-1">
-          <Avatar
-            name={session?.user?.user?.avatar ?? "User"}
-            // alt={session?.user?.user?.firstName ?? ""}
-            className={cn("")}
-          />
+          <Avatar name={session?.user?.name ?? "User"} className={cn("")} />
           <div className="hidden flex-col items-start lg:flex">
             <Title
               as="h6"
@@ -107,9 +93,9 @@ export default function ProfileMenu({
                 pathname === "/" ? "text-white" : "text-black"
               )}
             >
-              {session?.user?.user?.firstName +
+              {/* {session?.user?.user?.firstName +
                 " " +
-                session?.user?.user?.lastName}
+                session?.user?.user?.lastName} */}
             </Title>
             <Text
               className={cn(
@@ -117,7 +103,7 @@ export default function ProfileMenu({
                 pathname === "/" ? "text-white" : "text-black"
               )}
             >
-              {session?.user?.user?.email}
+              {/* {session?.user?.user?.email} */}
             </Text>
           </div>
         </div>

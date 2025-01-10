@@ -6,7 +6,7 @@ const CustomerDetail = ({ id }: { id: string }) => {
   return (
     <div>
       <CustomerActions />
-      CustomerDetail
+      CustomerDetail {id}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { Text, Title } from "@coop-super-app/ui/typography";
 import Link from "next/link";
-import { routes } from "@/lib/config/routes";
 import { useModal } from "@coop-super-app/lib/hooks/use-modal";
 import PasswordIcon from "@/components/icons/password";
 import UnlinkDevice from "./unlink-device";

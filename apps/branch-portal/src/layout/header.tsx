@@ -23,12 +23,12 @@ export default function Header() {
 
   return (
     <div
-    className={cn(
-      " relative w-full bg-primary  rounded-lg flex flex-col items-start",
-      pathName === "/" ? "h-[260px] mb-[400px] md:mb-64 lg:mb-20" : "bg-white"
-    )}
+      className={cn(
+        " relative w-full bg-primary  rounded-lg flex flex-col items-start",
+        pathName === "/" ? "h-[260px] mb-[400px] md:mb-64 lg:mb-20" : "bg-white"
+      )}
     >
-      {(pathName === "/" || pathName === "/configuration-settings") && (
+      {pathName === "/" && (
         <Image
           src={Cover}
           priority
@@ -40,20 +40,17 @@ export default function Header() {
       <div
         className={cn(
           "z-40 flex w-full items-center justify-between gap-3 border-b border-dashed border-[#f8f8f8] p-3 px-5 md:px-6",
-          pathName !== "/" &&
-            pathName !== "/configuration-settings" &&
-            "border-black/50"
+          pathName !== "/" && "border-black/50"
         )}
-        onClick={() => router.push("/")}
       >
-        {pathName === "/" || pathName === "/configuration-settings" ? (
+        {pathName === "/" ? (
           <Logo className="h-14 w-fit" image={WhiteLogo} />
         ) : (
           <Logo className="h-14 w-fit" />
         )}
         <ProfileMenu />
       </div>
-      {pathName === "/" || pathName === "/configuration-settings" ? (
+      {pathName === "/" ? (
         <div
           className={
             "z-40 flex w-full flex-col items-start gap-1 p-3 px-5 md:px-6"
@@ -82,14 +79,12 @@ export default function Header() {
       ) : (
         <button
           onClick={() => router.back()}
-          className="group z-40 flex w-full items-center gap-2 p-3"
+          className="group z-40 flex w-fit items-center gap-2 p-3"
         >
           <TiArrowBack
             className={cn(
               "capitalize text-white group-hover:text-primary",
-              pathName !== "/" &&
-                pathName !== "/configuration-settings" &&
-                "text-black"
+              pathName !== "/" && "text-black"
             )}
             size={22}
           />
@@ -97,9 +92,7 @@ export default function Header() {
             as="h6"
             className={cn(
               "capitalize text-white group-hover:text-primary",
-              pathName !== "/" &&
-                pathName !== "/configuration-settings" &&
-                "text-black"
+              pathName !== "/" && "text-black"
             )}
           >
             {path}

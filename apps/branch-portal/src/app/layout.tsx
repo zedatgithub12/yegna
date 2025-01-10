@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/auth-options";
 import { inter, outfit } from "@/fonts/font";
 import { siteSeo } from "@/lib/config/site-seo";
+import NextProgress from "@/components/next-progress";
 
 export const metadata: Metadata = {
   title: siteSeo.title,
@@ -27,6 +28,7 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <AppProvider session={session}>
+          <NextProgress />
           <Toaster position="bottom-center" visibleToasts={1} />
           <GlobalDrawer />
           <GlobalModal />
