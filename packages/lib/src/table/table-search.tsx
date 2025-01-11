@@ -55,8 +55,8 @@ const TableSearch = ({
         }}
       />
       <div className="flex w-fit flex-wrap items-center justify-end gap-3">
-        <ActionIcon variant="flat" onClick={onRefresh}>
-          <IoMdRefresh size={20} className="text-primary" />
+        <ActionIcon variant="flat" onClick={onRefresh} className="group">
+          <IoMdRefresh size={20} className="text-primary group-hover:animate-spin duration-300" />
         </ActionIcon>
         {children}
       </div>

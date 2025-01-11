@@ -3,7 +3,7 @@
 import Cover from "@public/images/Auth-Cover.png";
 import ProfileMenu from "./profile-menu";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import WhiteLogo from "@public/White_Logo.png";
 import Logo from "@/components/logo";
 import { hasNumber } from "@/utils/misc";
@@ -11,6 +11,7 @@ import cn from "@coop-super-app/ui/cn";
 import { Text, Title } from "@coop-super-app/ui/typography";
 import { TiArrowBack } from "react-icons/ti";
 import TopNavigationMenus from "@/components/menus/top-navigation";
+import { useRouter } from 'nextjs-toploader/app';
 export default function Header() {
   const pathName = usePathname();
   const router = useRouter();

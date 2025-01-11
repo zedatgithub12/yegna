@@ -8,6 +8,8 @@ type Props = {
   submitButtonText: string;
   onSubmit?: () => void;
   submitButtonType?: "submit" | "button";
+  disableSubmitBtn?: boolean;
+  submitBtnColor?: "primary" | "secondary" | "danger" | undefined;
 };
 const ModalButtons = ({
   loading,
@@ -15,6 +17,8 @@ const ModalButtons = ({
   submitButtonText,
   onSubmit,
   submitButtonType = "button",
+  disableSubmitBtn = false,
+  submitBtnColor = "primary",
 }: Props) => {
   const { closeModal } = useModal();
   return (
@@ -28,11 +32,12 @@ const ModalButtons = ({
         {backText}
       </Button>
       <Button
-        isLoading={loading}
-        color="primary"
+        isLoading={loading && !disableSubmitBtn}
+        color={submitBtnColor}
         className="w-full"
         onClick={onSubmit}
         type={submitButtonType}
+        disabled={disableSubmitBtn}
       >
         {submitButtonText}
       </Button>

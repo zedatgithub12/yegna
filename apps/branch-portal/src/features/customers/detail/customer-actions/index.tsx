@@ -5,6 +5,11 @@ import { useModal } from "@coop-super-app/lib/hooks/use-modal";
 import PasswordIcon from "@/components/icons/password";
 import UnlinkDevice from "./unlink-device";
 import DisableUser from "./disable-user";
+import AttachPhoneNumber from "./attach-phone-number";
+import EnableUser from "./enable-user";
+import DetachPhoneNumber from "./detach-phone-number";
+import AddNewAccount from "./add-new-account";
+import UnlinkAccountNumber from "./unlink-account-number";
 const CustomerActions = () => {
   const { openModal } = useModal();
   const menus = [
@@ -27,7 +32,7 @@ const CustomerActions = () => {
       desc: "Link an additional account for the user to the mobile app.",
       onClick: () =>
         openModal({
-          view: <p>gg</p>,
+          view: <AddNewAccount />,
         }),
     },
     {
@@ -71,7 +76,7 @@ const CustomerActions = () => {
       desc: "Update the user's mobile app phone number.",
       onClick: () =>
         openModal({
-          view: <p>gg</p>,
+          view: <AttachPhoneNumber />,
         }),
     },
     {
@@ -82,7 +87,7 @@ const CustomerActions = () => {
       desc: "Update the user's mobile app phone number.",
       onClick: () =>
         openModal({
-          view: <p>gg</p>,
+          view: <DetachPhoneNumber />,
         }),
     },
     {
@@ -120,13 +125,13 @@ const CustomerActions = () => {
     },
     {
       id: 9,
-      name: "Unlink Accounts",
+      name: "Unlink Account Number",
       icon: <PasswordIcon className="h-7 w-7" />,
       color: "#CFD8DC",
       desc: "Unlink the customers bank account.",
       onClick: () =>
         openModal({
-          view: <p>gg</p>,
+          view: <UnlinkAccountNumber />,
         }),
     },
     {
@@ -167,7 +172,7 @@ const CustomerActions = () => {
       desc: "Manage which services customers can access.",
       onClick: () =>
         openModal({
-          view: <p>gg</p>,
+          view: <EnableUser />,
         }),
     },
     {
