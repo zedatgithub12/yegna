@@ -9,13 +9,13 @@ import { Form, Formik } from "formik";
 import React from "react";
 import cn from "@coop-super-app/ui/cn";
 import * as Yup from "yup";
-import Loader from "@/components/loader";
 import {
   hasCapitalLetter,
   hasNumber,
   hasSmallLetter,
   hasSpecialCharacter,
 } from "@/utils/misc";
+import Loader from "@coop-super-app/lib/table/loader";
 const CreatePasswordAndLogin = () => {
   const postMutation = useDynamicMutation();
   const passwordRuleData = useFetchData(

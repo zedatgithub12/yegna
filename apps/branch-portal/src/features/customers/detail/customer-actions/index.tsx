@@ -10,6 +10,8 @@ import EnableUser from "./enable-user";
 import DetachPhoneNumber from "./detach-phone-number";
 import AddNewAccount from "./add-new-account";
 import UnlinkAccountNumber from "./unlink-account-number";
+import SectionWrapper from "@/components/section-wrapper";
+import LinkAccount from "./link-account";
 const CustomerActions = () => {
   const { openModal } = useModal();
   const menus = [
@@ -21,7 +23,7 @@ const CustomerActions = () => {
       desc: "Link customers' bank accounts to the mobile app.",
       onClick: () =>
         openModal({
-          view: <p>gg</p>,
+          view: <LinkAccount />,
         }),
     },
     {
@@ -189,7 +191,7 @@ const CustomerActions = () => {
   ];
 
   return (
-    <div className="p-3 bg-white my-2">
+    <SectionWrapper>
       {" "}
       <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
         {menus?.map((menu) => {
@@ -246,7 +248,7 @@ const CustomerActions = () => {
           }
         })}
       </div>
-    </div>
+    </SectionWrapper>
   );
 };
 

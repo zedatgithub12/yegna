@@ -28,7 +28,7 @@ const OtpVerifyForm = <T,>({ onSuccess, body }: Props<T>) => {
         },
         onSuccess: (res) => {
           onSuccess(res);
-          toast.success("OTP has been sent to your email!");
+          toast.success("OTP has been sent to your phone!");
         },
       });
     } catch (err) {

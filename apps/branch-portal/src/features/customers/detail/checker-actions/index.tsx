@@ -2,6 +2,7 @@ import React from "react";
 import RequestActionViewCard from "./request-action-view-card";
 import RejectRequestConfirmation from "./rejection-confirmation";
 import ApproveRequestConfirmation from "./approve-confirmation";
+import SectionWrapper from "@/components/section-wrapper";
 
 const CheckerActions = () => {
   const action = {
@@ -9,18 +10,20 @@ const CheckerActions = () => {
       <RequestActionViewCard
         title="title"
         description="description"
-        rejectConfirmView={<RejectRequestConfirmation url=""/>}
-        approveConfirmView={<ApproveRequestConfirmation  url=""/>}
+        rejectConfirmView={<RejectRequestConfirmation url="" />}
+        approveConfirmView={<ApproveRequestConfirmation url="" />}
       />
     ),
   };
   return (
-    <div className="p-3 bg-white my-2">
+    <SectionWrapper>
       {" "}
       <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 ">
         {action["Text"]}
+        {action["Text"]}
+        
       </div>
-    </div>
+    </SectionWrapper>
   );
 };
 

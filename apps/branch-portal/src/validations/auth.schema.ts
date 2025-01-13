@@ -4,7 +4,10 @@ export const loginSchema = Yup.object().shape({
   username: Yup.string().required("Username is required").trim(),
 });
 export const otpVerifySchema = Yup.object().shape({
-  code: Yup.string().min(6).max(6).required("OTP code is required"),
+  code: Yup.string()
+    .min(6, "OTP code must be 6 digits")
+    .max(6, "OTP code must be 6 digits")
+    .required("OTP code is required"),
 });
 
 export const passwordLoginSchema = Yup.object().shape({
@@ -60,15 +63,7 @@ export const generatePasswordValidationSchema = (rules: PasswordData) => {
   return passwordValidation;
 };
 
-export const changePasswordSchema = Yup.object().shape({
-  oldPassword: Yup.string().required("Old Password is required"),
-  password: Yup.string().required("Password is required"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Passwords must match")
-    .required("Confirm Password is required"),
-});
 type LoginType = Yup.InferType<typeof loginSchema>;
 type OtpVerifyType = Yup.InferType<typeof otpVerifySchema>;
 type PasswordLoginType = Yup.InferType<typeof passwordLoginSchema>;
-type ChangePasswordType = Yup.InferType<typeof changePasswordSchema>;
-export type { LoginType, OtpVerifyType, PasswordLoginType,ChangePasswordType };
+export type { LoginType, OtpVerifyType, PasswordLoginType };

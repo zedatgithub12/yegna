@@ -72,7 +72,7 @@ const useDynamicMutation = () => {
         isString
           ? (error as any)?.response?.data?.message
           : "Something went wrong",
-        { className: "bg-red-dark text-white" }
+        { className: "bg-red-500 text-white" }
       );
     },
     retry: false,

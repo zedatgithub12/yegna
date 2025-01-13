@@ -33,12 +33,13 @@ export const authOptions: NextAuthOptions = {
       if (parsedUrl.origin === baseUrl) {
         return url;
       }
-
       return baseUrl;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: routes.signIn,
+    signOut: routes.signOut,
+    error: routes.error,
   },
 };

@@ -18,16 +18,12 @@
       "persistent": true
     },
     "@coop-super-app/branch-portal#build": {
-      "dependsOn": ["^build","^lint"],
+      "dependsOn": ["^build", "^lint"],
       "outputs": [".next/**"],
-      "env": [
-        "NEXTAUTH_SECRET",
-        "NEXT_PUBLIC_WEBSITE_URL",
-        "NEXT_PUBLIC_API_URL"
-      ]
+      "env": ["NEXTAUTH_SECRET", "NEXTAUTH_URL", "NEXT_PUBLIC_API_URL"]
     },
     "@coop-super-app/branch-portal#lint": {
-      "dependsOn": ["lib#lint","ui#lint"]
+      "dependsOn": ["lib#lint", "ui#lint"]
     }
   }
 }

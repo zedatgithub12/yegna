@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <div
       className={cn(
-        " relative w-full bg-primary  rounded-lg flex flex-col items-start",
+        " relative w-full bg-primary  rounded-lg flex flex-col items-start mb-1",
         pathName === "/" ? "h-[260px] mb-[400px] md:mb-64 lg:mb-20" : "bg-white"
       )}
     >
@@ -45,9 +45,9 @@ export default function Header() {
         )}
       >
         {pathName === "/" ? (
-          <Logo className="h-14 w-fit" image={WhiteLogo} />
+          <Logo className="h-12 w-fit" image={WhiteLogo} />
         ) : (
-          <Logo className="h-14 w-fit" />
+          <Logo className="h-12 w-fit" />
         )}
         <ProfileMenu />
       </div>

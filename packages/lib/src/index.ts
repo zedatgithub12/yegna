@@ -17,5 +17,6 @@ export * from "./views/modal-view";
 //table
 export * from "./table/table-pagination";
 export * from "./table/table";
+export * from "./table/loader";
 export * from "./table/header-cell";
 export * from './table/table-search'

@@ -18,7 +18,8 @@
     "./table/table-pagination": "./src/table/table-pagination.tsx",
     "./table/table": "./src/table/table.tsx",
     "./table/header-cell": "./src/table/header-cell.tsx",
-    "./table/table-search": "./src/table/table-search.tsx"
+    "./table/table-search": "./src/table/table-search.tsx",
+    "./table/loader": "./src/table/loader.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

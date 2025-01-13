@@ -5,7 +5,7 @@ import isEmpty from "lodash/isEmpty";
 import { Table, type TableProps } from "@coop-super-app/ui/table";
 import type { TablePaginationProps } from "./table-pagination";
 import cn from "@coop-super-app/ui/cn";
-import TableLoader from "./table-loader";
+import TableLoader from "./loader";
 
 const TablePagination = dynamic(() => import("./table-pagination"), {
   ssr: false,
