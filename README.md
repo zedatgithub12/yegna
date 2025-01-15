@@ -163,7 +163,7 @@ To contribute effectively:
 
 This project leverages **Vercel** & **on premise servers** for seamless deployment. Ensure that the `dev`, `staging`, and `main` branches are correctly linked to their respective environments.
 
-also we will add dedicated branches if required like QA and staging
+also we will add dedicated branches if required like QA etc...
 
 ---
 
