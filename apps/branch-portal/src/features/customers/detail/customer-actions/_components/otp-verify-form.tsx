@@ -3,12 +3,12 @@ import { Formik, Form } from "formik";
 import { toast } from "sonner";
 import { otpVerifySchema, OtpVerifyType } from "@/validations/auth.schema";
 import FormikCodeInput from "@coop-super-app/lib/forms/otp";
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import { AxiosRequestConfig } from "axios";
-import { formatTime } from "@/utils/format-date-time";
+import { formatTime } from "@coop-super-app/lib/utils/format-date-time";
 import { Text } from "@coop-super-app/ui/typography";
 import IconLoader from "@/components/icon-loader";
-import ModalButtons from "@/components/modal-buttons";
+import ModalFooter from "@coop-super-app/lib/view/modal-footer";
 
 export type OtpVerifyFormRef = {
   resetTime: () => void;
@@ -54,7 +54,7 @@ const OtpVerifyForm = <T,>({
   onResendOtp,
   successMessage,
 }: Props<T>) => {
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
   const [time, setTime] = React.useState(120);
   const initialValues: OtpVerifyType = {
     code: "",
@@ -124,7 +124,7 @@ const OtpVerifyForm = <T,>({
               </div>
             )}
           </div>
-          <ModalButtons
+          <ModalFooter
             loading={postMutation.isPending}
             submitButtonType="submit"
             submitButtonText={"Verify OTP"}

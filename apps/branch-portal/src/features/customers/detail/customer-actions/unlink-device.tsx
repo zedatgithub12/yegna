@@ -1,12 +1,12 @@
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import useCustomerStore from "@/store/customer.store";
 import { useModal } from "@coop-super-app/lib/hooks/use-modal";
 import React from "react";
 import { toast } from "sonner";
 import SearchCustomer from "./search-customer";
-import ModalHeader from "@/components/modal-header";
 import PasswordIcon from "@/components/icons/password";
-import ModalButtons from "@/components/modal-buttons";
+import ModalFooter from "@coop-super-app/lib/view/modal-footer";
+import ModalHeader from "@coop-super-app/lib/view/modal-header";
 
 type Props = {
   customerCode?: string;
@@ -14,7 +14,7 @@ type Props = {
 const UnlinkDevice = ({ customerCode }: Props) => {
   const { closeModal } = useModal();
   const { customerInfo } = useCustomerStore((state) => state);
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
 
   const unlinkDeviceRequestHandler = async () => {
     try {
@@ -45,7 +45,7 @@ const UnlinkDevice = ({ customerCode }: Props) => {
             desc="Unlinking will disconnect the device from the linked account.
             Are you sure you want to proceed?"
           />
-          <ModalButtons
+          <ModalFooter
             loading={postMutation.isPending}
             onSubmit={unlinkDeviceRequestHandler}
             submitButtonText="Unlink"

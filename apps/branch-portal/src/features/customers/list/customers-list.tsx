@@ -1,14 +1,13 @@
 "use client";
 import { queryKeys } from "@/lib/api/query-keys";
-import { useFetchData } from "@/lib/api/useFetchData";
+import { useFetchData } from "@/lib/api/use-fetch-data";
 import ControlledTable from "@coop-super-app/lib/table/table";
 import React from "react";
 import { getColumns } from "./customers-columns";
 import { Select } from "@coop-super-app/ui/select";
 import TableSearch from "@coop-super-app/lib/table/table-search";
 import { useQueryClient } from "@tanstack/react-query";
-import SectionWrapper from "@/components/section-wrapper";
-
+import SectionWrapper from "@coop-super-app/lib/view/section-wrapper";
 export const statusOptions = [
   { label: "PENDING", value: "PENDING" },
   { label: "AUTHORIZED", value: "AUTHORIZED" },

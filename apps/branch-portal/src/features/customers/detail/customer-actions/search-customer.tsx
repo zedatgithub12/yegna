@@ -1,6 +1,6 @@
 import PasswordIcon from "@/components/icons/password";
-import ModalHeader from "@/components/modal-header";
-import useDynamicMutation from "@/lib/api/usePostData";
+import ModalHeader from "@coop-super-app/lib/view/modal-header";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import useCustomerStore from "@/store/customer.store";
 import { Avatar } from "@coop-super-app/ui/avatar";
 import { Button } from "@coop-super-app/ui/button";
@@ -15,7 +15,7 @@ type Props = {
 const SearchCustomer = ({ description }: Props) => {
   const [inputValue, setInputValue] = React.useState("");
   const { customerInfo } = useCustomerStore((state) => state);
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
   //must be post request previous is get
   return (
     <div className="flex flex-col items-center justify-center space-y-5 p-5">

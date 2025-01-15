@@ -1,4 +1,4 @@
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import {
   passwordLoginSchema,
   PasswordLoginType,
@@ -11,8 +11,8 @@ import React from "react";
 type Props = {
   shouldFetchPasswordRule?: boolean;
 };
-const PasswordLogin = ({  }: Props) => {
-  const postMutation = useDynamicMutation();
+const PasswordLogin = ({}: Props) => {
+  const postMutation = useDynamicMutation({});
 
   const passwordLoginSubmitHandler = async (values: PasswordLoginType) => {
     try {

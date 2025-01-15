@@ -24,6 +24,14 @@
     },
     "@coop-super-app/branch-portal#lint": {
       "dependsOn": ["lib#lint", "ui#lint"]
+    },
+    "@coop-super-app/central-portal#build": {
+      "dependsOn": ["^build", "^lint"],
+      "outputs": [".next/**"],
+      "env": ["NEXTAUTH_SECRET", "NEXTAUTH_URL", "NEXT_PUBLIC_API_URL"]
+    },
+    "@coop-super-app/central-portal#lint": {
+      "dependsOn": ["lib#lint", "ui#lint"]
     }
   }
 }

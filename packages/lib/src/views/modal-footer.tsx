@@ -11,7 +11,7 @@ type Props = {
   disableSubmitBtn?: boolean;
   submitBtnColor?: "primary" | "secondary" | "danger" | undefined;
 };
-const ModalButtons = ({
+export default function ModalFooter({
   loading,
   backText = "Cancel",
   submitButtonText,
@@ -19,7 +19,7 @@ const ModalButtons = ({
   submitButtonType = "button",
   disableSubmitBtn = false,
   submitBtnColor = "primary",
-}: Props) => {
+}: Props) {
   const { closeModal } = useModal();
   return (
     <div className="flex flex-row md:flex-row items-center gap-3  w-full">
@@ -43,6 +43,4 @@ const ModalButtons = ({
       </Button>
     </div>
   );
-};
-
-export default ModalButtons;
+}

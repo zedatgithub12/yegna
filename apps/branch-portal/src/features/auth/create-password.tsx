@@ -1,6 +1,6 @@
 import { queryKeys } from "@/lib/api/query-keys";
-import { useFetchData } from "@/lib/api/useFetchData";
-import useDynamicMutation from "@/lib/api/usePostData";
+import { useFetchData } from "@/lib/api/use-fetch-data";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import { generatePasswordValidationSchema } from "@/validations/auth.schema";
 import FormikPasswordInput from "@coop-super-app/lib/forms/password";
 import { Button } from "@coop-super-app/ui/button";
@@ -14,10 +14,10 @@ import {
   hasNumber,
   hasSmallLetter,
   hasSpecialCharacter,
-} from "@/utils/misc";
+} from "@coop-super-app/lib/utils/misc";
 import Loader from "@coop-super-app/lib/table/loader";
 const CreatePasswordAndLogin = () => {
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
   const passwordRuleData = useFetchData(
     [queryKeys.getLoginPasswordRuleQuery],
     `users/getPasswordRules`

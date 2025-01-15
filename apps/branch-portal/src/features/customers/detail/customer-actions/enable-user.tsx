@@ -1,11 +1,11 @@
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import useCustomerStore from "@/store/customer.store";
 import { useModal } from "@coop-super-app/lib/hooks/use-modal";
 import React from "react";
 import SearchCustomer from "./search-customer";
-import ModalHeader from "@/components/modal-header";
 import PasswordIcon from "@/components/icons/password";
-import ModalButtons from "@/components/modal-buttons";
+import ModalFooter from "@coop-super-app/lib/view/modal-footer";
+import ModalHeader from "@coop-super-app/lib/view/modal-header";
 import { toast } from "sonner";
 import { reasonSchema, ReasonType } from "@/validations/customer-action.schema";
 import { Form, Formik } from "formik";
@@ -34,7 +34,7 @@ const EnableUser = ({ customerCode }: Props) => {
   const { closeModal } = useModal();
   const [currentStep, setCurrentStep] = React.useState<number>(1); //step one send otp step 2 verify otp
   const { customerInfo } = useCustomerStore((state) => state);
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
 
   const phoneNumberValues: ReasonType = {
     reason: "",
@@ -86,7 +86,7 @@ const EnableUser = ({ customerCode }: Props) => {
                       placeholder="Enter Your Reason"
                       className="w-full"
                     />
-                    <ModalButtons
+                    <ModalFooter
                       loading={postMutation.isPending}
                       submitButtonType="submit"
                       submitButtonText={

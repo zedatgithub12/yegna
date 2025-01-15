@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { otpVerifySchema, OtpVerifyType } from "@/validations/auth.schema";
 import FormikCodeInput from "@coop-super-app/lib/forms/otp";
 import { Button } from "@coop-super-app/ui/button";
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 type Props<T> = {
   onSuccess: (v: T) => void;
   body: {
@@ -12,7 +12,7 @@ type Props<T> = {
   };
 };
 const OtpVerifyForm = <T,>({ onSuccess, body }: Props<T>) => {
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
   const initialValues: OtpVerifyType = {
     code: "",
   };

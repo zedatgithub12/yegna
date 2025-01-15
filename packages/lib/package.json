@@ -12,14 +12,21 @@
     "./forms/multi-select": "./src/forms/multi-select.tsx",
     "./forms/text-area": "./src/forms/text-area.tsx",
     "./hooks/use-drawer": "./src/hooks/use-drawer.ts",
+    "./hooks/use-is-mounted": "./src/hooks/use-is-mounted.ts",
     "./hooks/use-modal": "./src/hooks/use-modal.ts",
     "./view/drawer-view": "./src/views/drawer-view.tsx",
     "./view/modal-view": "./src/views/modal-view.tsx",
+    "./view/error-message": "./src/views/error-message.tsx",
+    "./view/modal-footer": "./src/views/modal-footer.tsx",
+    "./view/modal-header": "./src/views/modal-header.tsx",
+    "./view/section-wrapper": "./src/views/section-wrapper.tsx",
     "./table/table-pagination": "./src/table/table-pagination.tsx",
     "./table/table": "./src/table/table.tsx",
     "./table/header-cell": "./src/table/header-cell.tsx",
     "./table/table-search": "./src/table/table-search.tsx",
-    "./table/loader": "./src/table/loader.tsx"
+    "./table/loader": "./src/table/loader.tsx",
+    "./utils/format-date-time": "./src/utils/format-date-time.ts",
+    "./utils/misc": "./src/utils/misc.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -27,6 +34,7 @@
   },
   "dependencies": {
     "@coop-super-app/ui": "workspace:*",
+    "dayjs": "^1.11.13",
     "formik": "^2.4.6",
     "jotai": "^2.11.0",
     "lodash": "^4.17.21",

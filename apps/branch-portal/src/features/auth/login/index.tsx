@@ -1,5 +1,5 @@
 "use client";
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import { loginSchema, LoginType } from "@/validations/auth.schema";
 import FormikInput from "@coop-super-app/lib/forms/input";
 import { Button } from "@coop-super-app/ui/button";
@@ -14,7 +14,7 @@ import PasswordLogin from "./password-login";
 import CreatePasswordAndLogin from "../create-password";
 
 const LoginPage = () => {
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
   const [time, setTime] = React.useState(120);
   const [isOtpSent, setIsOtpSent] = React.useState(false);
   const initialValues: LoginType = {

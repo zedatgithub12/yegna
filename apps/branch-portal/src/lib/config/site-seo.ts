@@ -26,7 +26,6 @@ export const metaObject = (
     openGraph: openGraph ?? {
       title: title ? `${title} - Coop Super App - Branch Portal` : title,
       description,
-      url: "https://Connect.vercel.app",
       siteName: "Coop Super App - Branch Portal",
       locale: "en_US",
       type: "website",

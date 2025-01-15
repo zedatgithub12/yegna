@@ -2,7 +2,7 @@ import React from "react";
 import RequestActionViewCard from "./request-action-view-card";
 import RejectRequestConfirmation from "./rejection-confirmation";
 import ApproveRequestConfirmation from "./approve-confirmation";
-import SectionWrapper from "@/components/section-wrapper";
+import SectionWrapper from "@coop-super-app/lib/view/section-wrapper";
 
 const CheckerActions = () => {
   const action = {
@@ -21,7 +21,6 @@ const CheckerActions = () => {
       <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 ">
         {action["Text"]}
         {action["Text"]}
-        
       </div>
     </SectionWrapper>
   );

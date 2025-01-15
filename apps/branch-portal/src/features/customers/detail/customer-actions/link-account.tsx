@@ -1,9 +1,8 @@
 import React from "react";
 import OtpVerifyForm, { OtpVerifyFormRef } from "./_components/otp-verify-form";
 import useCustomerStore from "@/store/customer.store";
-import useDynamicMutation from "@/lib/api/usePostData";
+import useDynamicMutation from "@/lib/api/use-post-data";
 import SearchCustomer from "./search-customer";
-import ModalHeader from "@/components/modal-header";
 import PasswordIcon from "@/components/icons/password";
 import {
   accountNumberSchema,
@@ -12,7 +11,8 @@ import {
 import { Form, Formik } from "formik";
 import FormikInput from "@coop-super-app/lib/forms/input";
 import { Button } from "@coop-super-app/ui/button";
-import ModalButtons from "@/components/modal-buttons";
+import ModalFooter from "@coop-super-app/lib/view/modal-footer";
+import ModalHeader from "@coop-super-app/lib/view/modal-header";
 import { toast } from "sonner";
 
 type Props = {
@@ -31,7 +31,7 @@ const headerTitles = {
   },
 };
 const LinkAccount = ({ customerCode }: Props) => {
-  const postMutation = useDynamicMutation();
+  const postMutation = useDynamicMutation({});
   const { customerInfo, tempAccountInfo } = useCustomerStore((state) => state);
   const [currentStep, setCurrentStep] = React.useState<number>(1);
   const otpFormRef = React.useRef<OtpVerifyFormRef | null>(null);
@@ -47,8 +47,7 @@ const LinkAccount = ({ customerCode }: Props) => {
         body: {
           account_number: val.accountNumber,
         },
-        onSuccess: () => {
-        },
+        onSuccess: () => {},
       });
     } catch (err) {
       console.log(err);
@@ -117,7 +116,7 @@ const LinkAccount = ({ customerCode }: Props) => {
                           </div>
                         }
                       />
-                      <ModalButtons
+                      <ModalFooter
                         loading={postMutation.isPending}
                         submitButtonType="button"
                         submitButtonText={

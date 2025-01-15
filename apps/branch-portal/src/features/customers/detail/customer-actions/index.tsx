@@ -10,7 +10,7 @@ import EnableUser from "./enable-user";
 import DetachPhoneNumber from "./detach-phone-number";
 import AddNewAccount from "./add-new-account";
 import UnlinkAccountNumber from "./unlink-account-number";
-import SectionWrapper from "@/components/section-wrapper";
+import SectionWrapper from "@coop-super-app/lib/view/section-wrapper";
 import LinkAccount from "./link-account";
 const CustomerActions = () => {
   const { openModal } = useModal();

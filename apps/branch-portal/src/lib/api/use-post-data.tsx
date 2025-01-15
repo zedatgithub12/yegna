@@ -31,8 +31,8 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-const useDynamicMutation = () => {
-  const header = useGetHeaders({});
+const useDynamicMutation = ({type="Json"}:{type?: "FormData" | "Json";}) => {
+  const header = useGetHeaders({type});
   const dynamicMutation = useMutation({
     mutationFn: async (options: MutationOptions) => {
       const {
