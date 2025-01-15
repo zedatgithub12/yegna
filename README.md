@@ -135,7 +135,7 @@ To change the project name from `coop-super-app` to the new project name:
    - Use VSCode’s search-and-replace utility (`Ctrl + Shift + F` or `Cmd + Shift + F` on Mac).
    - Replace all instances in `package.json` files and import statements.
 2. Save your changes across all files.
-
+3. ReInstall the package by running `pnpm i`.
 ### Development Workflow
 
 1. Create a new branch for your feature or fix:
