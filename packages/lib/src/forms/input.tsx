@@ -12,9 +12,6 @@ const FormikInput: React.FC<FormikInputProps> = ({
   name,
   label,
   type = "text",
-  placeholder,
-  prefix,
-  suffix,
   className,
   inputClassName,
   color = "primary",
@@ -58,9 +55,6 @@ const FormikInput: React.FC<FormikInputProps> = ({
           </div>
         }
         name={name}
-        prefix={prefix}
-        suffix={suffix}
-        placeholder={placeholder}
         className={cn("[&>label>span]:font-medium", className)}
         inputClassName={cn(
           "text-sm bg-gray-50 dark:bg-gray-100 placeholder:!text-gray-950 [&>label>span]:font-medium border-gray-50  shadow-none",
