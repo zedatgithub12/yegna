@@ -12,8 +12,8 @@ The repository is organized into distinct folders to ensure modularity and reusa
 
 ### `/apps`
 This folder contains separate portal systems for different use cases:
-- **Central Portal:** The main dashboard for managing the entire application.
-- **Branch Portal:** A dashboard tailored for branch-specific operations.
+- **Central Portal:**  A central portal service dashboard boilerplate.
+- **Branch Portal:** A branch portal service dashboard boilerplate.
 
 ### `/packages`
 This folder contains shared resources such as UI components, hooks, and configurations:
@@ -54,9 +54,9 @@ The `dev` branch serves as the primary development environment and is deployed t
 The `main` branch is the production-ready branch.
 - Pull requests to `main` must originate from the `uat` branch.
 
-### **UAT Branch (`uat`)**
-The `uat` branch is used for User Acceptance Testing (UAT).
-- PRs to the `uat` branch can be submitted from the `dev` branch.
+### **UAT Branch (`staging`)**
+The `staging` branch is used for User Acceptance Testing (UAT).
+- PRs to the `staging` branch can be submitted from the `dev` branch.
 
 ---
 
@@ -67,7 +67,7 @@ To maintain consistency and code quality:
 2. **Testing:** Ensure all changes are thoroughly tested locally before creating a PR.
 3. **PR Target:**
    - Feature PRs should target the `dev` branch.
-   - UAT PRs should target the `uat` branch.
+   - UAT PRs should target the `staging` branch.
    - Production PRs should target the `main` branch.
 4. **PR Reviews:** Peer reviews are mandatory before merging into any branch.
 
@@ -115,7 +115,7 @@ This repository follows **GitLab Versioning** for managing releases. The version
    git checkout -b feature/your-feature-name
    ```
 2. Work on your changes and commit frequently with descriptive commit messages.
-3. Push your branch and open a PR targeting the appropriate branch (`dev` or `uat`).
+3. Push your branch and open a PR targeting the appropriate branch (`dev` or `staging`).
 
 ---
 
@@ -132,7 +132,9 @@ To contribute effectively:
 
 ## Deployment
 
-This project leverages **Vercel** & **on premise servers** for seamless deployment. Ensure that the `dev`, `uat`, and `main` branches are correctly linked to their respective environments.
+This project leverages **Vercel** & **on premise servers** for seamless deployment. Ensure that the `dev`, `staging`, and `main` branches are correctly linked to their respective environments.
+
+also we will add dedicated branches if required like QA and staging
 
 ---
 
