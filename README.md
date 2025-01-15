@@ -126,14 +126,14 @@ To contribute effectively:
 - Ensure code adheres to the project’s coding standards.
 - Write clear, concise, and descriptive commit messages.
 - Include tests for new features or bug fixes.
-- Actively participate in code reviews.
+- please create PR per feature, or before making big change to avoid code conflicts
 
 ---
 
 ## Deployment
 
-This project leverages **Vercel** for seamless deployment. Ensure that the `dev`, `uat`, and `main` branches are correctly linked to their respective environments.
+This project leverages **Vercel** & **on premise servers** for seamless deployment. Ensure that the `dev`, `uat`, and `main` branches are correctly linked to their respective environments.
 
 ---
 
-By adhering to these guidelines, we can maintain a clean, efficient, and scalable codebase. Happy coding!
+By adhering to these guidelines, we can maintain a clean, efficient, and scalable codebase.
