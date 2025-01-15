@@ -11,7 +11,7 @@ This repository provides a robust foundation for creating a "super app" with eff
 The repository is organized into distinct folders to ensure modularity and reusability:
 
 ### `/apps`
-This folder contains separate portal systems for different use cases:
+This folder contains separate portal systems for different use cases(new applications will be added later based on project requirement) for instance it will contain:
 - **Central Portal:**  A central portal service dashboard boilerplate.
 - **Branch Portal:** A branch portal service dashboard boilerplate.
 
