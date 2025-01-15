@@ -11,21 +11,27 @@ This repository provides a robust foundation for creating a "super app" with eff
 The repository is organized into distinct folders to ensure modularity and reusability:
 
 ### `/apps`
+
 This folder contains separate portal systems for different use cases(new applications will be added later based on project requirement) for instance it will contain:
-- **Central Portal:**  A central portal service dashboard boilerplate.
+
+- **Central Portal:** A central portal service dashboard boilerplate.
 - **Branch Portal:** A branch portal service dashboard boilerplate.
 
 ### `/packages`
+
 This folder contains shared resources such as UI components, hooks, and configurations:
 
 #### `packages/lib`
+
 - Contains reusable hooks, utility functions, and table components.
 - Includes dynamic UI-building components for forms and other interactive features.
 
 #### `packages/ui`
+
 - Houses Tailwind CSS-based built-in components for consistent styling.
 
 #### `packages/tailwind-config`
+
 - Contains shared Tailwind CSS stylesheets and configurations to maintain a unified design system.
 
 ---
@@ -33,7 +39,9 @@ This folder contains shared resources such as UI components, hooks, and configur
 ## Branching Strategy
 
 ### **Starter Branch**
+
 The `starter` branch contains the base template for initializing new projects. To start a new project:
+
 1. Clone the starter branch using:
    ```bash
    git clone --branch starter https://gitlab.com/bersufekadgetachew/coop-super-app-web.git
@@ -46,16 +54,22 @@ The `starter` branch contains the base template for initializing new projects. T
 4. Initialize a new Git repository and connect it to your project's repository.
 
 ### **Development Branch (`dev`)**
+
 The `dev` branch serves as the primary development environment and is deployed to Vercel for testing.
+
 - Feature branches are merged into the `dev` branch after review and testing.
 - All feature pull requests (PRs) must target the `dev` branch.
 
 ### **Main Branch (`main`)**
+
 The `main` branch is the production-ready branch.
+
 - Pull requests to `main` must originate from the `uat` branch.
 
 ### **UAT Branch (`staging`)**
+
 The `staging` branch is used for User Acceptance Testing (UAT).
+
 - PRs to the `staging` branch can be submitted from the `dev` branch.
 
 ---
@@ -63,6 +77,7 @@ The `staging` branch is used for User Acceptance Testing (UAT).
 ## Pull Request Guidelines
 
 To maintain consistency and code quality:
+
 1. **Branch Naming:** Name branches based on the task being worked on, e.g., `feature/auth` or `feature/mini-app`.
 2. **Testing:** Ensure all changes are thoroughly tested locally before creating a PR.
 3. **PR Target:**
@@ -82,11 +97,13 @@ This repository follows **GitLab Versioning** for managing releases. The version
 ```
 
 ### Definitions
+
 - **Major:** Introduces breaking changes that are not backward-compatible.
 - **Minor:** Adds new features in a backward-compatible manner.
 - **Patch:** Fixes bugs and makes backward-compatible improvements.
 
 ### Workflow
+
 1. **Tagging Releases:** Tag stable releases in the `main` branch using GitLab’s tagging system:
    ```bash
    git tag -a v1.0.0 -m "Initial release"
@@ -103,13 +120,24 @@ This repository follows **GitLab Versioning** for managing releases. The version
 ## Getting Started
 
 ### Cloning the Starter Template
+
 1. Clone the repository from the `starter` branch:
    ```bash
    git clone --branch starter https://gitlab.com/bersufekadgetachew/coop-super-app-web.git
    ```
 2. Follow the instructions under the **Starter Branch** section to set up your project.
 
+### Changing the Project Name
+
+To change the project name from `coop-super-app` to the new project name:
+
+1. Update all occurrences of `coop-super-app` in the repository:
+   - Use VSCode’s search-and-replace utility (`Ctrl + Shift + F` or `Cmd + Shift + F` on Mac).
+   - Replace all instances in `package.json` files and import statements.
+2. Save your changes across all files.
+
 ### Development Workflow
+
 1. Create a new branch for your feature or fix:
    ```bash
    git checkout -b feature/your-feature-name
@@ -122,6 +150,7 @@ This repository follows **GitLab Versioning** for managing releases. The version
 ## Contribution Guidelines
 
 To contribute effectively:
+
 - Follow the branching and versioning guidelines.
 - Ensure code adheres to the project’s coding standards.
 - Write clear, concise, and descriptive commit messages.
