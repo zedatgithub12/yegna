@@ -17,3 +17,7 @@ export function hasNumber(str: string) {
   const numberRegex = /[0-9]/;
   return numberRegex.test(str);
 }
+
+export function hasObjectsDifferentValues(obj1: object, obj2: object) {
+  return JSON.stringify(obj1) !== JSON.stringify(obj2);
+}

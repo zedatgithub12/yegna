@@ -8,11 +8,9 @@ export const routes = {
     dashboard: "/dashboard",
     customers: {
       list: "/customers",
-      create: "/customers/create",
     },
     merchants: {
       list: "/merchants",
-      create: "/merchants/create",
     },
     transactions: "/transactions",
   };

@@ -19,6 +19,7 @@
     "./view/error-message": "./src/views/error-message.tsx",
     "./view/modal-footer": "./src/views/modal-footer.tsx",
     "./view/modal-header": "./src/views/modal-header.tsx",
+    "./view/image": "./src/views/image.tsx",
     "./view/section-wrapper": "./src/views/section-wrapper.tsx",
     "./table/table-pagination": "./src/table/table-pagination.tsx",
     "./table/table": "./src/table/table.tsx",
@@ -41,8 +42,10 @@
     "next": "15.1.3",
     "rc-pagination": "^5.0.0",
     "react": "^19.0.0",
+    "react-dropzone": "^14.3.5",
     "react-icons": "^5.4.0",
-    "react-use": "^17.6.0"
+    "react-use": "^17.6.0",
+    "sonner": "^1.7.1"
   },
   "devDependencies": {
     "@coop-super-app/eslint-config": "workspace:*",

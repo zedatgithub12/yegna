@@ -18,6 +18,7 @@ export * from "./views/error-message";
 export * from "./views/modal-header";
 export * from "./views/modal-footer";
 export * from "./views/section-wrapper";
+export * from "./views/image";
 
 //table
 export * from "./table/table-pagination";
