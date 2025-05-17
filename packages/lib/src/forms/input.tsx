@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client";
-import { Input, InputProps } from "@coop-super-app/ui/input";
-import cn from "@coop-super-app/ui/cn";
+import { Input, InputProps } from "@yegna-systems/ui/input";
+import cn from "@yegna-systems/ui/cn";
 import { useField, ErrorMessage } from "formik";
 interface FormikInputProps extends InputProps {
   name: string;

@@ -1,5 +1,5 @@
-import cn from "@coop-super-app/ui/cn";
-import { Text, Title } from "@coop-super-app/ui/typography";
+import cn from "@yegna-systems/ui/cn";
+import { Text, Title } from "@yegna-systems/ui/typography";
 import React from "react";
 type Props = {
   icon?: React.JSX.Element;
@@ -24,7 +24,7 @@ const ModalHeader = ({
       )}
     >
       {icon && (
-        <div className="bg-[#EFEEFF] h-14 w-14 flex items-center justify-center rounded-full ">
+        <div className="bg-slate-100 h-14 w-14 flex items-center justify-center rounded-full ">
           {icon}
         </div>
       )}

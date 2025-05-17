@@ -1,5 +1,5 @@
-import { useModal } from "@coop-super-app/lib/hooks/use-modal";
-import { Button } from "@coop-super-app/ui/button";
+import { useModal } from "@yegna-systems/lib/hooks/use-modal";
+import { Button } from "@yegna-systems/ui/button";
 import React from "react";
 
 type Props = {

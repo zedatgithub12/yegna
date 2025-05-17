@@ -1,6 +1,6 @@
 "use client";
-import cn from "@coop-super-app/ui/cn";
-import { Select, SelectOption } from "@coop-super-app/ui/select";
+import cn from "@yegna-systems/ui/cn";
+import { Select, SelectOption } from "@yegna-systems/ui/select";
 import { ErrorMessage } from "formik";
 import React from "react";
 interface FormikSelectProps extends SelectOption {

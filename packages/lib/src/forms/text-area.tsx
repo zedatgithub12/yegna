@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client";
-import { Textarea, TextareaProps } from "@coop-super-app/ui/textarea";
-import cn from "@coop-super-app/ui/cn";
+import { Textarea, TextareaProps } from "@yegna-systems/ui/textarea";
+import cn from "@yegna-systems/ui/cn";
 import { useField, ErrorMessage } from "formik";
 interface FormikTextAreaProps extends TextareaProps {
   name: string;

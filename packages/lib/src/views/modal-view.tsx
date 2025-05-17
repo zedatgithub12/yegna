@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Modal } from "@coop-super-app/ui/modal";
+import { Modal } from "@yegna-systems/ui/modal";
 import { useModal } from "../hooks/use-modal";
 
 export default function GlobalModal() {

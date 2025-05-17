@@ -6,8 +6,8 @@ import Image from "../views/image";
 import { toast } from "sonner";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { Toaster } from "sonner";
-import { Text } from "@coop-super-app/ui/typography";
-import cn from "@coop-super-app/ui/cn";
+import { Text } from "@yegna-systems/ui/typography";
+import cn from "@yegna-systems/ui/cn";
 
 export interface Accept {
   [key: string]: string[];

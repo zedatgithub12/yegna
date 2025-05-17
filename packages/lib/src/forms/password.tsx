@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 "use client";
-import cn from "@coop-super-app/ui/cn";
+import cn from "@yegna-systems/ui/cn";
 import { useField, ErrorMessage } from "formik";
-import { Password, PasswordProps } from "@coop-super-app/ui/password";
+import { Password, PasswordProps } from "@yegna-systems/ui/password";
 interface FormikPasswordInputProps extends PasswordProps {
   name: string;
 }

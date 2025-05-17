@@ -1,6 +1,6 @@
 "use client";
-import { PinCode, PinCodeProps } from "@coop-super-app/ui/pin-code";
-import cn from "@coop-super-app/ui/cn";
+import { PinCode, PinCodeProps } from "@yegna-systems/ui/pin-code";
+import cn from "@yegna-systems/ui/cn";
 import { ErrorMessage } from "formik";
 import React from "react";
 

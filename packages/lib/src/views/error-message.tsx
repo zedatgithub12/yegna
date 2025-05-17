@@ -1,5 +1,5 @@
-import { Button } from "@coop-super-app/ui/button";
-import { Text } from "@coop-super-app/ui/typography";
+import { Button } from "@yegna-systems/ui/button";
+import { Text } from "@yegna-systems/ui/typography";
 import React from "react";
 
 type Props = {

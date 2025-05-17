@@ -1,9 +1,9 @@
 "use client";
-import cn from "@coop-super-app/ui/cn";
+import cn from "@yegna-systems/ui/cn";
 import {
   MultiSelect,
   MultiSelectOption,
-} from "@coop-super-app/ui/multi-select";
+} from "@yegna-systems/ui/multi-select";
 import { ErrorMessage } from "formik";
 import React from "react";
 interface FormikSelectProps extends MultiSelectOption {

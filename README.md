@@ -44,7 +44,7 @@ The `starter` branch contains the base template for initializing new projects. T
 
 1. Clone the starter branch using:
    ```bash
-   git clone --branch starter https://gitlab.com/bersufekadgetachew/coop-super-app-web.git
+   git clone --branch starter https://gitlab.com/bersufekadgetachew/yegna-systems-web.git
    ```
 2. Update dependencies such as React, Next.js, and other packages as necessary.
 3. Remove the existing `.git` directory:
@@ -123,15 +123,15 @@ This repository follows **GitLab Versioning** for managing releases. The version
 
 1. Clone the repository from the `starter` branch:
    ```bash
-   git clone --branch starter https://gitlab.com/bersufekadgetachew/coop-super-app-web.git
+   git clone --branch starter https://gitlab.com/bersufekadgetachew/yegna-systems-web.git
    ```
 2. Follow the instructions under the **Starter Branch** section to set up your project.
 
 ### Changing the Project Name
 
-To change the project name from `coop-super-app` to the new project name:
+To change the project name from `yegna-systems` to the new project name:
 
-1. Update all occurrences of `coop-super-app` in the repository:
+1. Update all occurrences of `yegna-systems` in the repository:
    - Use VSCode’s search-and-replace utility (`Ctrl + Shift + F` or `Cmd + Shift + F` on Mac).
    - Replace all instances in `package.json` files and import statements.
 2. Save your changes across all files.

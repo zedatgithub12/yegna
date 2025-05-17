@@ -2,9 +2,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import isEmpty from "lodash/isEmpty";
-import { Table, type TableProps } from "@coop-super-app/ui/table";
+import { Table, type TableProps } from "@yegna-systems/ui/table";
 import type { TablePaginationProps } from "./table-pagination";
-import cn from "@coop-super-app/ui/cn";
+import cn from "@yegna-systems/ui/cn";
 import TableLoader from "./loader";
 
 const TablePagination = dynamic(() => import("./table-pagination"), {

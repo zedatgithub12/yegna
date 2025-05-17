@@ -1,5 +1,5 @@
 {
-  "extends": "@coop-super-app/typescript-config/react-library.json",
+  "extends": "@yegna-systems/typescript-config/react-library.json",
   "compilerOptions": {
     "baseUrl": "."
   },

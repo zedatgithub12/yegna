@@ -1,7 +1,7 @@
 import { PiCaretDownBold } from "react-icons/pi";
 import Pagination, { type PaginationProps } from "./pagination";
-import cn from "@coop-super-app/ui/cn";
-import { Select } from "@coop-super-app/ui/select";
+import cn from "@yegna-systems/ui/cn";
+import { Select } from "@yegna-systems/ui/select";
 
 const paginationLimitOptions = [5, 10, 25, 50, 100].map((v, idx) => ({
   id: idx,

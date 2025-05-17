@@ -1,5 +1,5 @@
 {
-  "name": "@coop-super-app/tailwind-config",
+  "name": "@yegna-systems/tailwind-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -12,8 +12,8 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@coop-super-app/eslint-config": "workspace:*",
-    "@coop-super-app/typescript-config": "workspace:*",
+    "@yegna-systems/eslint-config": "workspace:*",
+    "@yegna-systems/typescript-config": "workspace:*",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.9",
     "@turbo/gen": "^1.12.4",

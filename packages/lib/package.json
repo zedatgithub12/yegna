@@ -1,5 +1,5 @@
 {
-  "name": "@coop-super-app/lib",
+  "name": "@yegna-systems/lib",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -34,7 +34,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@coop-super-app/ui": "workspace:*",
+    "@yegna-systems/ui": "workspace:*",
     "dayjs": "^1.11.13",
     "formik": "^2.4.6",
     "jotai": "^2.11.0",
@@ -48,8 +48,8 @@
     "sonner": "^1.7.1"
   },
   "devDependencies": {
-    "@coop-super-app/eslint-config": "workspace:*",
-    "@coop-super-app/typescript-config": "workspace:*",
+    "@yegna-systems/eslint-config": "workspace:*",
+    "@yegna-systems/typescript-config": "workspace:*",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/lodash": "^4.17.13",
     "@types/node": "^20.11.24",

@@ -1,9 +1,9 @@
 import React from "react";
 import { IoMdRefresh } from "react-icons/io";
 import { useDebounce } from "../hooks/use-debounce";
-import { Input } from "@coop-super-app/ui/input";
-import cn from "@coop-super-app/ui/cn";
-import { ActionIcon } from "@coop-super-app/ui/action-icon";
+import { Input } from "@yegna-systems/ui/input";
+import cn from "@yegna-systems/ui/cn";
+import { ActionIcon } from "@yegna-systems/ui/action-icon";
 
 type SearchProps = {
   setDebouncedValue: (value: string) => void;

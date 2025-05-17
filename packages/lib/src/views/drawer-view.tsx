@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Drawer } from "@coop-super-app/ui/drawer";
+import { Drawer } from "@yegna-systems/ui/drawer";
 import { useDrawer } from "../hooks/use-drawer";
 
 export default function GlobalDrawer() {

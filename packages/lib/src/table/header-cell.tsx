@@ -1,4 +1,4 @@
-import cn from "@coop-super-app/ui/cn";
+import cn from "@yegna-systems/ui/cn";
 import React from "react";
 
 type TextAlign = "left" | "center" | "right";
