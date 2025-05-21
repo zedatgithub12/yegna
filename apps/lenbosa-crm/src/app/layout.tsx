@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@yegna-systems/tailwind-config/base-styles";
+import "./globals.css";
 import GlobalDrawer from "@yegna-systems/lib/view/drawer-view";
 import GlobalModal from "@yegna-systems/lib/view/modal-view";
 import { Toaster } from "sonner";

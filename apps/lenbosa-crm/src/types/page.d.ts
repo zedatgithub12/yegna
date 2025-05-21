@@ -8,7 +8,7 @@ interface pageWrapperProps {
   children?: React.ReactNode;
   isLoading?: boolean;
   notfound?: boolean;
-  isError: boolean;
+  isError?: boolean;
   fallback?: {
     status_code?: string;
     title: string;

@@ -30,8 +30,8 @@ const Header = ({
               className="flex items-center justify-between p-2 px-3 min-w-20 rounded-full border border-gray-300 hover:cursor-pointer hover:bg-gray-100"
               onClick={() => router.back()}
             >
-              <Image src={arrowLeft} alt="BACK" width={16} height={16} />
-              <p className="text-[16px] font-normal">Back</p>
+              <Image src={arrowLeft} alt="BACK" width={16} height={14} />
+              <p className="text-[15px] font-normal">Back</p>
             </div>
           ) : null}
         </div>

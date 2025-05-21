@@ -53,7 +53,7 @@ const RichTextEditor = ({
 
   return (
     <div>
-      <div className="flex gap-2 p-1 border-b bg-slate-100 rounded-t-lg">
+      <div className="flex p-1 border bg-white border-b-0 rounded-t-lg">
         <button
           type="button"
           onClick={() => editor?.chain().focus().toggleBold().run()}

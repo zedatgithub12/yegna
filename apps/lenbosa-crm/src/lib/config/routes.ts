@@ -32,6 +32,10 @@ export const routes = {
     create: "/role-permission/create",
   },
 
+  role: {
+    permissions: (id: string) => `/role/permissions/${id}`,
+  },
+
   configuration: {
     list: "/configuration",
     create: "/configuration/create",

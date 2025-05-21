@@ -51,6 +51,8 @@ export type ModalProps = {
   containerClassName?: string;
   /** Set custom style classes for the Modal root element */
   className?: string;
+  /** position of the modal component */
+  position?: "right" | "center";
 };
 
 /**
@@ -67,6 +69,7 @@ export function Modal({
   containerClassName,
   className,
   children,
+  position = "right",
 }: React.PropsWithChildren<ModalProps>) {
   const TransitionComponent: React.ElementType = Transition;
   const TransitionChild: React.ElementType = HeadLessTransitionChild;
@@ -101,11 +104,11 @@ export function Modal({
           <TransitionChild
             as={Fragment}
             enter="ease-in-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
+            enterFrom={cn("opacity-0")}
+            enterTo={cn("opacity-100")}
             leave="ease-in-out duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            leaveFrom={cn("opacity-100")}
+            leaveTo={cn("opacity-0")}
           >
             <div
               className={cn(
@@ -115,27 +118,38 @@ export function Modal({
               )}
             />
           </TransitionChild>
-          {/*
-            -> Please do not remove this Sr Only button.
-            -> It's required this button to tackle the HeadlessUI's FocusTap Warnings
-          */}
+
           <button type="button" className="sr-only">
             Sr Only
           </button>
           <TransitionChild
             as={Fragment}
             enter="ease-in-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
+            enterFrom={cn(
+              "opacity-0 scale-95",
+              position === "right" && "translate-x-full"
+            )}
+            enterTo={cn(
+              "opacity-100 scale-100",
+              position === "right" && "translate-x-0"
+            )}
             leave="ease-in-out duration-300"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            leaveFrom={cn(
+              "opacity-100 scale-100",
+              position === "right" && "translate-x-0"
+            )}
+            leaveTo={cn(
+              "opacity-0 scale-95",
+              position === "right" && "translate-x-full"
+            )}
           >
             <DialogPanel className="pointer-events-none relative w-full transform overflow-hidden transition-all">
               <div
                 className={cn(
                   makeClassName(`modal-container`),
-                  "pointer-events-auto m-auto w-full break-words bg-background shadow-xl",
+                  "pointer-events-auto  w-full break-words bg-background shadow-xl",
+                  position === "right" && "ml-auto",
+                  position === "center" && "m-auto",
                   size !== "full" && modalStyles.rounded[rounded],
                   !customSize && modalStyles.size[size],
                   containerClassName

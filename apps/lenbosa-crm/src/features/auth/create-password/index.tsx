@@ -11,10 +11,10 @@ import { Button } from "@yegna-systems/ui/button";
 import { Form, Formik } from "formik";
 import { Text, Title } from "@yegna-systems/ui/typography";
 import { toast } from "sonner";
-import Config from "@/config";
 import { queryKeys } from "@/lib/api/query-keys";
-import FormikPasswordInput from "@yegna-systems/lib/forms/password";
 import { useRouter } from "nextjs-toploader/app";
+import Config from "@/config";
+import FormikPasswordInput from "@yegna-systems/lib/forms/password";
 
 const CreatePassword = () => {
   const router = useRouter();
