@@ -12,3 +12,11 @@
   border-color: white;
   transform: rotate(-16deg);
 }
+
+.ProseMirror {
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+  line-height: 1.5;
+  padding: 0.5rem;
+}

@@ -8,8 +8,14 @@ import { Button } from "@yegna-systems/ui/button";
 import { Text } from "@yegna-systems/ui/typography";
 import { generalInfoValidationSchema } from "@/validations/role.schema";
 import { Form, Formik } from "formik";
+import useDynamicMutation from "@/lib/api/use-post-data";
+import { queryKeys } from "@/lib/api/query-keys";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const CreateRole = () => {
+  const router = useRouter();
+  const postMutation = useDynamicMutation({});
   const initialValues = {
     name: "",
     description: "",
@@ -17,7 +23,20 @@ const CreateRole = () => {
   };
 
   const handleFormSubmission = async (values: CreateRoleProps) => {
-    console.log(values);
+    try {
+      await postMutation.mutateAsync({
+        url: queryKeys.get_roles,
+        method: "POST",
+        body: values,
+
+        onSuccess: () => {
+          toast.success("Successfully created new role");
+          router.back();
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <PageWrapper
@@ -36,12 +55,13 @@ const CreateRole = () => {
         {() => (
           <Form className="pb-4 pr-4">
             <GeneralInformation />
-            <Permissions />{" "}
+            <Permissions />
             <div className=" py-4 flex items-center justify-end gap-4 w-full">
               <Button
                 variant="outline"
                 size="md"
                 className="px-1 w-36 border-gray-400 rounded-md font-semibold"
+                onClick={() => router.back()}
               >
                 <Text className="text-gray-600"> Cancel </Text>
               </Button>
@@ -52,6 +72,7 @@ const CreateRole = () => {
                 color="primary"
                 className="px-1 w-36 rounded-md font-bold"
                 type="submit"
+                isLoading={postMutation.isPending}
               >
                 <Text className="text-secondary"> Create Role </Text>
               </Button>

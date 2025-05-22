@@ -47,10 +47,7 @@ const RolePermissions = () => {
         }
       >
         {rolesData && (
-          <div className="w-full flex flex-wrap justify-start gap-10 pt-10 pb-2 ">
-            {" "}
-            <Roles rolesData={rolesData} />
-          </div>
+          <Roles rolesData={rolesData} className="flex flex-wrap gap-10 mt-9" />
         )}
       </PageWrapper>
     </div>

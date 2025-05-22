@@ -2,16 +2,23 @@ import React from "react";
 import FolderCard from "@/components/FolderCard";
 import { useModal } from "@yegna-systems/lib/hooks/use-modal";
 import RoleDetail from "../rolePermissions/role-detail";
+import cn from "@yegna-systems/ui/cn";
 
-const Roles = ({ rolesData }: { rolesData: rolesProps[] }) => {
+const Roles = ({
+  rolesData,
+  className,
+}: {
+  rolesData: rolesProps[];
+  className?: string;
+}) => {
   const { openModal } = useModal();
   return (
-    <>
+    <div className={cn(className)}>
       {rolesData.length > 0 &&
         rolesData.map((role, index) => (
           <div
             key={role.uuid}
-            className="w-1/5"
+            className="w-1/6"
             onClick={() =>
               openModal({
                 view: (
@@ -40,7 +47,7 @@ const Roles = ({ rolesData }: { rolesData: rolesProps[] }) => {
             />
           </div>
         ))}
-    </>
+    </div>
   );
 };
 

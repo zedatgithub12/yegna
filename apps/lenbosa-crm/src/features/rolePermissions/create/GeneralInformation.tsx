@@ -51,7 +51,7 @@ const GeneralInformation = () => {
           <RichTextEditor
             value={values.description}
             onChange={(value) => setFieldValue("description", value)}
-            className="border-2 border-gray-100  rounded-bl-lg rounded-br-lg editor-content"
+            className={"border-2 border-gray-100  rounded-bl-lg rounded-br-lg editor-content"}
           />
         </div>
       </div>

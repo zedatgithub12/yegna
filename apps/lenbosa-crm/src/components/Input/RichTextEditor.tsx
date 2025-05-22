@@ -156,7 +156,7 @@ const RichTextEditor = ({
       <EditorContent
         name="description"
         editor={editor}
-        className={cn(className)}
+        className={cn("overflow-auto rounded-b-lg", className)}
       />
       <ErrorMessage name="description">
         {(msg) => <Text className="text-red-500">{msg}</Text>}

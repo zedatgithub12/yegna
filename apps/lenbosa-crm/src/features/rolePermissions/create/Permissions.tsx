@@ -5,13 +5,15 @@ import { queryKeys } from "@/lib/api/query-keys";
 import { useFetchData } from "@/lib/api/use-fetch-data";
 import FallbackComponent from "@/utils/fallback/NotFound";
 import { Text, Title } from "@yegna-systems/ui/typography";
-import { useFormikContext } from "formik";
+import { ErrorMessage, useFormikContext } from "formik";
+import { Check } from "lucide-react";
 
 interface permissionProps {
   permissions: string[];
 }
 const Permissions = () => {
-  const { values, setFieldValue } = useFormikContext<permissionProps>();
+  const { values, setFieldValue, touched } =
+    useFormikContext<permissionProps>();
 
   const responsePayload = useFetchData(
     [queryKeys.get_permissions],
@@ -81,12 +83,14 @@ const Permissions = () => {
                   className="hidden"
                 />
                 {values.permissions.includes(permission.uuid) ? (
-                  <Text className="w-[12px] h-[12px] border border-gray-400 rounded-sm bg-secondary"></Text>
+                  <div className="w-[14px] h-[14px]  rounded-[4px] bg-secondary flex items-center justify-center">
+                    <Check size={10} className="text-primary" />
+                  </div>
                 ) : (
-                  <Text className="w-[12px] h-[12px] border border-gray-400 rounded-sm"></Text>
+                  <div className="w-[14px] h-[14px] rounded-[4px] border border-gray-400"></div>
                 )}
                 <span
-                  className={`text-xs font-medium  capitalize
+                  className={`text-xs font-medium capitalize
                 ${values.permissions.includes(permission.uuid) ? "text-secondary" : ""}`}
                 >
                   {permission.name.split("_").join(" ")}
@@ -94,6 +98,13 @@ const Permissions = () => {
               </label>
             );
           })}
+          {touched.permissions && (
+            <ErrorMessage
+              name="permissions"
+              component="div"
+              className={"text-xs text-red-500 pt-1 font-medium"}
+            />
+          )}
         </div>
       )}
     </div>

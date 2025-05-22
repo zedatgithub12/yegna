@@ -47,9 +47,10 @@ const Users = () => {
         }
       >
         {rolesData && (
-          <div className="w-full flex justify-start gap-4 pt-10 pb-2 overflow-x-scroll scrollbar-hide">
-            <Roles rolesData={rolesData} />
-          </div>
+          <Roles
+            rolesData={rolesData}
+            className="w-full flex justify-start gap-6 pt-10 pb-2 overflow-x-scroll scrollbar-hide"
+          />
         )}
       </PageWrapper>
     </div>
