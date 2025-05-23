@@ -2,8 +2,7 @@
 
 import PageWrapper from "@/components/PagesWrapper";
 import React from "react";
-import GeneralInformation from "./sections/GeneralInformation";
-import Permissions from "./sections/Permissions";
+
 import { Button } from "@yegna-systems/ui/button";
 import { Text } from "@yegna-systems/ui/typography";
 import { generalInfoValidationSchema } from "@/validations/role.schema";
@@ -12,42 +11,68 @@ import useDynamicMutation from "@/lib/api/use-post-data";
 import { queryKeys } from "@/lib/api/query-keys";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import GeneralInformation from "./sections/GeneralInformation";
+import { useFetchData } from "@/lib/api/use-fetch-data";
+import { useParams } from "next/navigation";
+import Permissions from "./sections/Permissions";
 
-const CreateRole = () => {
+const EditRole = () => {
   const router = useRouter();
+  const params = useParams();
+  const id = params?.id;
+
   const postMutation = useDynamicMutation({});
-  const initialValues = {
-    name: "",
-    description: "",
-    permissions: [],
-  };
 
   const handleFormSubmission = async (values: CreateRoleProps) => {
     try {
       await postMutation.mutateAsync({
-        url: queryKeys.get_roles,
-        method: "POST",
+        url: `${queryKeys.get_roles}/${id}`,
+        method: "PATCH",
         body: values,
 
-        onSuccess: () => {
-          toast.success("Successfully created new role");
-          router.back();
+        onSuccess: (res) => {
+          if (res.success) {
+            toast.success(res.message);
+            router.back();
+          } else {
+            toast.error(res.message);
+          }
         },
       });
-    } catch (err) {
-      console.log(err);
+    } catch {
+      toast.error("There is error saving changes");
     }
   };
+
+  const responsePayload = useFetchData(
+    [queryKeys.get_roles, id],
+    `${queryKeys.get_roles}/${id}`
+  );
+
+  const roleData: rolesProps = responsePayload?.data?.data;
+
+  const permissionUuids: string[] = Array.isArray(roleData?.permissions)
+    ? roleData.permissions.map((perm: { uuid: string }) => perm.uuid)
+    : [];
+
+  const initialValues = {
+    name: roleData?.name || "",
+    description: roleData?.description || "",
+    permissions: permissionUuids,
+  };
+
   return (
     <PageWrapper
-      isLoading={false}
-      title="Create New Role"
+      isLoading={responsePayload.isFetching}
+      title="Edit Role"
+      isError={responsePayload.isError}
       back={true}
       search={false}
       breadcrumb={true}
       childrenClassnames="bg-white rounded-xl p-4 mt-4"
     >
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         validationSchema={generalInfoValidationSchema}
         onSubmit={handleFormSubmission}
@@ -74,7 +99,7 @@ const CreateRole = () => {
                 type="submit"
                 isLoading={postMutation.isPending}
               >
-                <Text className="text-secondary"> Create Role </Text>
+                <Text className="text-secondary"> Save Changes </Text>
               </Button>
             </div>
           </Form>
@@ -84,4 +109,4 @@ const CreateRole = () => {
   );
 };
 
-export default CreateRole;
+export default EditRole;

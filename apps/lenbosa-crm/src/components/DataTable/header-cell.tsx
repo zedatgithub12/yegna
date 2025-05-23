@@ -45,7 +45,7 @@ export default function HeaderCell({
   return (
     <div
       className={cn(
-        "flex items-center gap-1 whitespace-nowrap !text-sm capitalize font-semibold text-primary",
+        "flex items-center gap-1 whitespace-nowrap !text-sm capitalize font-semibold text-gray-800",
         sortable && "cursor-pointer",
         handleTextAlignment(align),
         className

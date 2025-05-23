@@ -23,6 +23,7 @@ const Roles = ({
               openModal({
                 view: (
                   <RoleDetail
+                    id={role.uuid}
                     roleName={role.name}
                     created_at={role.created_at}
                     user_count={role.users_count}
@@ -39,11 +40,7 @@ const Roles = ({
               title={role?.name}
               users={role?.users_count}
               labelColor={index % 2 ? "orange" : "indigo"}
-              // avatars={[
-              //   "/avatars/user1.jpg",
-              //   "/avatars/user2.jpg",
-              //   "/avatars/user3.jpg",
-              // ]}
+              avatars={role.three_users_profile_image}
             />
           </div>
         ))}

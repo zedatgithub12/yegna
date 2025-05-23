@@ -40,7 +40,7 @@ const FolderCard = ({
               src={src}
               name="avatar"
               size="sm"
-              className="rounded-full border border-white"
+              className="rounded-full bg-white"
             />
           ))}
         </div>

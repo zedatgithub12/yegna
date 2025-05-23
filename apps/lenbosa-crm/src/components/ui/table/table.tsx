@@ -7,10 +7,9 @@ import { DefaultRecordType } from "rc-table/lib/interface";
 export type ExtractProps<T> = T extends React.ComponentType<infer P> ? P : T;
 
 const tableStyles = {
-  table:
-    "[&_.rc-table-content]:overflow-x-auto [&_table]:w-full [&_.rc-table-row:hover]:bg-muted/10",
+  table: "[&_.rc-table-content]:overflow-x-auto [&_table]:w-full",
   thead:
-    "[&_thead]:text-left [&_thead]:rtl:text-right [&_th.rc-table-cell]:capitalize [&_th.rc-table-cell]:bg-primary-light [&_th.rc-table-cell]:text-xs [&_th.rc-table-cell]:font-medium [&_th.rc-table-cell]:tracking-wide",
+    "[&_thead]:text-left [&_thead]:rtl:text-right [&_th.rc-table-cell]:capitalize [&_th.rc-table-cell]:bg-[#EFFFF1] [&_th.rc-table-cell]:text-xs [&_th.rc-table-cell]:font-medium [&_th.rc-table-cell]:tracking-wide",
   tCell:
     "[&_.rc-table-cell]:px-3 [&_th.rc-table-cell]:py-3 [&_td.rc-table-cell]:py-4",
   variants: {
@@ -50,7 +49,7 @@ export function RcTable({
         tableStyles.tCell,
         tableStyles.variants[variant],
         striped && tableStyles.striped,
-        className,
+        className
       )}
       emptyText={emptyText ?? <p>No results!</p>}
       {...props}

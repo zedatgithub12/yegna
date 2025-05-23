@@ -11,4 +11,5 @@ export const queryKeys = {
   //roles
   get_roles: "roles",
   get_permissions: "permissions",
+  get_users: "users",
 };
