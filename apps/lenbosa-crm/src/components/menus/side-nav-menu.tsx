@@ -17,6 +17,14 @@ export const SideNavMenus = [
     collapsable: false,
     children: [],
   },
+  {
+    id: "institution",
+    title: "Institution Management",
+    icon: "/icons/Email.svg",
+    path: routes.messages.list,
+    collapsable: false,
+    children: [],
+  },
 
   {
     id: "subscription",
