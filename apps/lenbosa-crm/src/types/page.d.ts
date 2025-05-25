@@ -16,4 +16,5 @@ interface pageWrapperProps {
     action?: React.ReactNode;
   };
   childrenClassnames?: string;
+  staticComponent?: React.ReactNode;
 }

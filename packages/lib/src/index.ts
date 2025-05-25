@@ -5,6 +5,7 @@ export * from "./forms/otp";
 export * from "./forms/text-area";
 export * from "./forms/select";
 export * from "./forms/multi-select";
+export * from "./forms/file-uploader";
 
 //hooks
 export * from "./hooks/use-drawer";
@@ -13,6 +14,7 @@ export * from "./hooks/use-is-mounted";
 
 //components
 export * from "./views/drawer-view";
+export * from "./views/drawer-header";
 export * from "./views/modal-view";
 export * from "./views/error-message";
 export * from "./views/modal-header";

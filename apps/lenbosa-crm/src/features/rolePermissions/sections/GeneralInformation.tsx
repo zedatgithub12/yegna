@@ -27,7 +27,7 @@ const GeneralInformation = () => {
           Add your General information from here
         </Text>
       </div>
-      <div className="col-span-8 space-y-3  ">
+      <div className="col-span-8 space-y-3">
         <div>
           <Title as="h6" className="font-normal w-full">
             Role name

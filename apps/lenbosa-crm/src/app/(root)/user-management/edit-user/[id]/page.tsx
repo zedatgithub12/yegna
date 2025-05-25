@@ -1,7 +1,8 @@
+import EditUser from "@/features/users/edit-user";
 import React from "react";
 
 const page = () => {
-  return <div>page</div>;
+  return <EditUser />;
 };
 
 export default page;

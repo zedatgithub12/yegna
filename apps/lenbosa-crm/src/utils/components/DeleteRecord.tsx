@@ -4,7 +4,6 @@ import React from "react";
 import { IoMdClose } from "react-icons/io";
 import useDynamicMutation from "@/lib/api/use-post-data";
 import { toast } from "sonner";
-import { useModal } from "@/lib/hooks/use-modal";
 import { Title } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 
@@ -13,13 +12,14 @@ const DeleteRecord = ({
   title,
   description,
   onRefresh,
+  closeModal,
 }: {
   url: string;
   title: string;
   description: string;
   onRefresh: () => void;
+  closeModal: () => void;
 }) => {
-  const { closeModal } = useModal();
   const postMutation = useDynamicMutation({});
 
   const handleDeleting = async () => {
@@ -44,8 +44,8 @@ const DeleteRecord = ({
   };
 
   return (
-    <div className="min-h-32 h-full flex flex-col items-start space-y-5  bg-white rounded-2xl overflow-hidden my-8">
-      <div className="w-full flex  items-center justify-between bg-gray-100 p-2 ">
+    <div className="min-h-32 h-full flex flex-col items-start space-y-5  rounded-2xl overflow-hidden mb-2">
+      <div className="w-full flex  items-center justify-between bg-gray-100 p-2">
         <Title className="text-[16px] font-bold text-left ">
           {title ? title : "Delete"}
         </Title>
@@ -70,7 +70,7 @@ const DeleteRecord = ({
             type="button"
             variant="outline"
             className="px-4 py-1 rounded-md w-full border-primary text-primary"
-            onClick={closeModal}
+            onClick={() => closeModal()}
             color="primary"
           >
             Cancel

@@ -24,7 +24,9 @@ export const routes = {
 
   user: {
     list: "/user-management",
-    create: "/user-management/create",
+    create: "/user-management/add-user",
+    edit: (id: string) => `/user-management/edit-user/${id}`,
+    details: (id: string) => `/user-management/details/${id}`,
   },
 
   role_permission: {

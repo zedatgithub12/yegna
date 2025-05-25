@@ -4,7 +4,6 @@ import FallbackComponent from "@/utils/fallback/NotFound";
 import { Loader } from "rizzui/loader";
 import cn from "@yegna-systems/ui/cn";
 
-
 const PageWrapper = ({
   title,
   search,
@@ -18,6 +17,7 @@ const PageWrapper = ({
   fallback,
   notfound,
   childrenClassnames,
+  staticComponent,
 }: pageWrapperProps) => {
   return (
     <div>
@@ -31,6 +31,7 @@ const PageWrapper = ({
       />
 
       <div className={cn(" p-2", childrenClassnames)}>
+        {staticComponent}
         {isLoading ? (
           <div className="w-full h-52 flex flex-col items-center justify-center">
             <Loader color="success" className="w-8 h-8 text-primary" />

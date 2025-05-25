@@ -8,7 +8,7 @@ import SvgWrapper from "@/components/SvgWrapper";
 import PageWrapper from "@/components/PagesWrapper";
 import { queryKeys } from "@/lib/api/query-keys";
 import { useFetchData } from "@/lib/api/use-fetch-data";
-import Roles from "../users/roles";
+import Roles from "./roles";
 
 const RolePermissions = () => {
   const router = useRouter();

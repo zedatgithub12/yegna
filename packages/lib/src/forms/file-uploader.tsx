@@ -1,21 +1,21 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import { Text } from "../ui/typography";
-import { UploadCloud } from "lucide-react";
 import { ErrorMessage } from "formik";
+import { Text } from "@yegna-systems/ui/typography";
+import { FiUploadCloud } from "react-icons/fi";
 
 const FileUploader = ({
   name,
   value,
   previewUrl,
   setSelectedFile,
-  title,
+  title = true,
 }: {
   name: string;
   value: File | null;
   previewUrl?: string;
   setSelectedFile: (file: File | null) => void;
-  title?: string;
+  title?: boolean;
 }) => {
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -48,7 +48,7 @@ const FileUploader = ({
   return (
     <div className="w-full mx-auto">
       {title ? (
-        <Text className="text-[16px] font-medium mb-2">{title}</Text>
+        <Text className="text-[16px] font-medium mb-2">Upload Image</Text>
       ) : (
         <Text className="text-[16px] font-medium mb-2" />
       )}
@@ -75,7 +75,7 @@ const FileUploader = ({
             className="flex items-center justify-center h-full"
             onClick={handleTriggeringFileUpload}
           >
-            <UploadCloud size={18} className="text-gray-400 mr-2" />
+            <FiUploadCloud size={18} className="text-gray-400 mr-2" />
             <Text className="text-gray-400 font-medium text-[16px] ">
               Drop or Select file
             </Text>
@@ -90,7 +90,7 @@ const FileUploader = ({
           onChange={handleFileChange}
         />
       </div>
-      <ErrorMessage name={name}>
+      <ErrorMessage name="thumbnail">
         {(msg) => <Text className="text-red-500">{msg}</Text>}
       </ErrorMessage>
     </div>
