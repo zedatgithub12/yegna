@@ -32,7 +32,7 @@ const Roles = ({
                 ),
                 position: "right",
                 rounded: "md",
-                customSize: "550px",
+                customSize: "400px",
               })
             }
           >

@@ -23,6 +23,8 @@ function DropdownMenu() {
       onClick: () =>
         openModal({
           view: <ChangePassword />,
+          customSize: "400px",
+          position: "center",
         }),
     },
   ];
