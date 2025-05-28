@@ -197,6 +197,181 @@ importers:
         specifier: ^5
         version: 5.5.4
 
+  apps/muhro-admin:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.27.5
+        version: 0.27.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@headlessui/react':
+        specifier: ^2.2.0
+        version: 2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tanstack/react-query':
+        specifier: ^5.62.11
+        version: 5.76.0(react@19.1.0)
+      '@tiptap/core':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/pm@2.12.0)
+      '@tiptap/extension-bullet-list':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))
+      '@tiptap/extension-list-item':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))
+      '@tiptap/extension-ordered-list':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))
+      '@tiptap/extension-text-align':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))
+      '@tiptap/extension-text-style':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))
+      '@tiptap/extension-underline':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))
+      '@tiptap/pm':
+        specifier: ^2.11.5
+        version: 2.12.0
+      '@tiptap/react':
+        specifier: ^2.11.5
+        version: 2.12.0(@tiptap/core@2.12.0(@tiptap/pm@2.12.0))(@tiptap/pm@2.12.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tiptap/starter-kit':
+        specifier: ^2.11.5
+        version: 2.12.0
+      '@yegna-systems/lib':
+        specifier: workspace:*
+        version: link:../../packages/lib
+      '@yegna-systems/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
+      '@yegna-systems/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.21(postcss@8.5.3)
+      axios:
+        specifier: ^1.7.9
+        version: 1.9.0
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
+      formik:
+        specifier: ^2.4.6
+        version: 2.4.6(react@19.1.0)
+      jotai:
+        specifier: ^2.11.0
+        version: 2.12.4(@types/react@19.1.3)(react@19.1.0)
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      lucide-react:
+        specifier: ^0.503.0
+        version: 0.503.0(react@19.1.0)
+      next:
+        specifier: 15.1.3
+        version: 15.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next-auth:
+        specifier: ^4.24.11
+        version: 4.24.11(next@15.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next-themes:
+        specifier: ^0.4.4
+        version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      nextjs-toploader:
+        specifier: ^3.7.15
+        version: 3.8.16(next@15.1.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-pagination:
+        specifier: ^5.0.0
+        version: 5.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rc-table:
+        specifier: ^7.50.1
+        version: 7.50.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.1.0
+      react-datepicker:
+        specifier: ^8.3.0
+        version: 8.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.1.0(react@19.1.0)
+      react-dropzone:
+        specifier: ^14.3.5
+        version: 14.3.8(react@19.1.0)
+      react-icons:
+        specifier: ^5.4.0
+        version: 5.5.0(react@19.1.0)
+      react-quill:
+        specifier: ^2.0.0
+        version: 2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-svg:
+        specifier: ^16.3.0
+        version: 16.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-use:
+        specifier: ^17.6.0
+        version: 17.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      rizzui:
+        specifier: ^1.0.1
+        version: 1.0.1(@floating-ui/react@0.27.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@headlessui/react@2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      sonner:
+        specifier: ^1.7.1
+        version: 1.7.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      tailwind-merge:
+        specifier: ^2.6.0
+        version: 2.6.0
+      tailwind-scrollbar-hide:
+        specifier: ^2.0.0
+        version: 2.0.0(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@20.17.46)(typescript@5.5.4)))
+      xlsx:
+        specifier: ^0.18.5
+        version: 0.18.5
+      yup:
+        specifier: ^1.6.1
+        version: 1.6.1
+      zustand:
+        specifier: ^5.0.3
+        version: 5.0.4(@types/react@19.1.3)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
+    devDependencies:
+      '@eslint/eslintrc':
+        specifier: ^3
+        version: 3.3.1
+      '@types/lodash':
+        specifier: ^4.17.13
+        version: 4.17.16
+      '@types/node':
+        specifier: ^20
+        version: 20.17.46
+      '@types/react':
+        specifier: ^19
+        version: 19.1.3
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.1.4(@types/react@19.1.3)
+      '@yegna-systems/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@yegna-systems/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      eslint:
+        specifier: ^9
+        version: 9.26.0(jiti@1.21.7)
+      eslint-config-next:
+        specifier: 15.1.3
+        version: 15.1.3(eslint@9.26.0(jiti@1.21.7))(typescript@5.5.4)
+      postcss:
+        specifier: ^8
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^3.4.1
+        version: 3.4.17(ts-node@10.9.2(@types/node@20.17.46)(typescript@5.5.4))
+      typescript:
+        specifier: ^5
+        version: 5.5.4
+
   apps/starter-template:
     dependencies:
       '@floating-ui/react':

@@ -6,9 +6,9 @@ type Props = {
 };
 const MainLayout = ({ children }: Props) => {
   return (
-    <div className="flex bg-gray-100 ">
+    <div className="flex bg-gray-100 max-h-screen">
       <SideNav />
-      <div className="w-full h-screen ml-3 pr-4 py-2 overflow-y-scroll scrollbar-hide">
+      <div className="w-full max-h-screen ml-3 pr-4 py-2 overflow-y-scroll scrollbar-hide">
         {children}
       </div>
     </div>

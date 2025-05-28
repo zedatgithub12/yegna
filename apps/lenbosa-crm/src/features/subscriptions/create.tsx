@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 import ColorSelection from "./components/ColorSelector";
+import PlanFeatures from "./components/PlanFeatures";
 
 const CreateSubscriptionPlan = () => {
   const router = useRouter();
@@ -164,30 +165,33 @@ const CreateSubscriptionPlan = () => {
               </div>
 
               <div className="col-span-12 md:col-span-8 space-y-3">
-                <div className=" py-4 flex items-center justify-end gap-4 w-full">
-                  <Button
-                    variant="outline"
-                    size="md"
-                    className="px-1 w-36 border-gray-400 rounded-md font-semibold"
-                    onClick={() => router.back()}
-                  >
-                    <Text className="text-gray-600"> Cancel </Text>
-                  </Button>
-
-                  <Button
-                    variant="solid"
-                    size="md"
-                    color="primary"
-                    className="px-1 w-36 rounded-md font-bold"
-                    type="submit"
-                    isLoading={postMutation.isPending}
-                  >
-                    <Text className="text-secondary font-medium text-[14px]">
-                      Submit
-                    </Text>
-                  </Button>
-                </div>
+                {" "}
+                <PlanFeatures />
               </div>
+            </div>
+
+            <div className=" py-4 flex items-center justify-end gap-4 w-full">
+              <Button
+                variant="outline"
+                size="md"
+                className="px-1 w-36 border-gray-400 rounded-md font-semibold"
+                onClick={() => router.back()}
+              >
+                <Text className="text-gray-600"> Cancel </Text>
+              </Button>
+
+              <Button
+                variant="solid"
+                size="md"
+                color="primary"
+                className="px-1 w-36 rounded-md font-bold"
+                type="submit"
+                isLoading={postMutation.isPending}
+              >
+                <Text className="text-secondary font-medium text-[14px]">
+                  Submit
+                </Text>
+              </Button>
             </div>
           </Form>
         )}

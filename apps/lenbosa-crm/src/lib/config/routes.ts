@@ -15,6 +15,7 @@ export const routes = {
   subscription: {
     list: "/subscription-management",
     create: "/subscription-management/create",
+    edit: (id: string) => `/subscription-management/edit/${id}`,
   },
 
   api_keys: {
