@@ -15,4 +15,7 @@ export const queryKeys = {
   subscriptions: "subscription-plans",
   features: "features",
   messages: "message-broadcasts",
+  get_institution: "institutions",
+  get_subscription_plans: "subscription-plans",
+  get_categories: "categories",
 };
