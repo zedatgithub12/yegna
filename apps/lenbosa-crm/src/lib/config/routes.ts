@@ -15,6 +15,8 @@ export const routes = {
   institution: {
     list: "/institution",
     create: "/institution/create",
+    edit: (id: string) => `/institution/edit/${id}`,
+    details: (id: string) => `/institution/details/${id}`,
   },
 
   subscription: {

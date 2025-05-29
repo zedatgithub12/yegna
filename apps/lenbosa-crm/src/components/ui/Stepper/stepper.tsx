@@ -21,12 +21,12 @@ export const Stepper = ({ steps, currentStep }: StepperProps) => {
           <div key={index} className="flex items-center w-full">
             <div className="flex items-center gap-2">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold  ${
                   isCompleted
                     ? "bg-green-600"
                     : isActive
-                      ? "bg-teal-900"
-                      : "border-2 border-gray-300 text-gray-600 bg-white"
+                      ? "bg-teal-900 text-white"
+                      : "border-2 border-gray-300 text-black-300 bg-white"
                 }`}
               >
                 {isCompleted ? (

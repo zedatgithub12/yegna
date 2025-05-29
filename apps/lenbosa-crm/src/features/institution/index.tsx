@@ -7,31 +7,53 @@ import { queryKeys } from "@/lib/api/query-keys";
 import { useFetchData } from "@/lib/api/use-fetch-data";
 import { routes } from "@/lib/config/routes";
 import { useGetHeaders } from "@/lib/hooks/use-get-headers";
-import { useModal } from "@/lib/hooks/use-modal";
+
 import { Button } from "@yegna-systems/ui/button";
 import TableSearch from "@yegna-systems/lib/table/table-search";
 import { FileInput, ListFilter } from "lucide-react";
 import React, { useState } from "react";
 import ControlledTable from "@/components/DataTable/table";
 import { useRouter } from "next/navigation";
-import { GetColumns } from "./componets/column";
+import { GetColumns } from "./components/column";
+import DeleteRecord from "@/utils/components/DeleteRecord";
+import { useQueryClient } from "@tanstack/react-query";
+import { useModal } from "@yegna-systems/lib/hooks/use-modal";
 
 const Institution = () => {
   const router = useRouter();
-  const { openModal } = useModal();
+  const queryClient = useQueryClient();
+  const { openModal, closeModal } = useModal();
+
   const headers = useGetHeaders({ type: "Json" });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 
   const responsePayload = useFetchData(
-    [queryKeys.get_institution],
-    `${queryKeys.get_institution}`
+    [queryKeys.get_institution, currentPage, pageSize, searchTerm],
+    `${queryKeys.get_institution}?page=${currentPage}&limit=${pageSize}&search=${searchTerm}`
   );
 
   const institutionData: getInstitutionProps[] =
     responsePayload?.data?.data?.data;
+
+  const handleSelectRow = (id: string) => {
+    setSelectedRowKeys((prev) =>
+      prev.includes(id) ? prev.filter((key) => key !== id) : [...prev, id]
+    );
+  };
+
+  const handleSelectAll = () => {
+    if (institutionData.length === selectedRowKeys.length) {
+      setSelectedRowKeys([]);
+    } else if (selectedRowKeys.length < institutionData.length) {
+      setSelectedRowKeys(institutionData.map((institution) => institution.id));
+    } else if (selectedRowKeys.length === 0) {
+      setSelectedRowKeys(institutionData.map((institution) => institution.id));
+    }
+  };
 
   return (
     <div>
@@ -108,7 +130,35 @@ const Institution = () => {
             rowKey={"id"}
             scroll={{ x: 1000 }}
             // @ts-expect-error ts-migrate(2322) TS2551: Expression will have type 'never' because expression is not callable.
-            columns={GetColumns()}
+            columns={GetColumns({
+              selectedRowKeys,
+              onSelectRow: handleSelectRow,
+              onSelectAll: handleSelectAll,
+              allRowKeys: institutionData?.map(
+                (inst: getInstitutionProps) => inst.id
+              ),
+              onDeleteInstitution: (institution_id) =>
+                openModal({
+                  view: (
+                    <DeleteRecord
+                      key="delete institution"
+                      title="Delete Institution"
+                      description="Are you sure you want to delete this institution?"
+                      url={`${queryKeys.get_institution}/${institution_id}`}
+                      onRefresh={() =>
+                        queryClient.invalidateQueries({
+                          queryKey: [queryKeys.get_institution],
+                        })
+                      }
+                      closeModal={closeModal}
+                    />
+                  ),
+                  customSize: "400px",
+                  position: "center",
+                  onClose: () => closeModal(),
+                }),
+            })}
+            striped={false}
             paginatorOptions={{
               pageSize,
               setPageSize,

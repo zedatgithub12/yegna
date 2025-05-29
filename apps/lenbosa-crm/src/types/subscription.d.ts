@@ -1,8 +1,10 @@
 interface Feature {
   id: string;
-  name: string;
-  value: string | null;
   is_active: boolean;
+  value: string | null;
+  feature: {
+    name: string;
+  };
 }
 interface SubscriptionProps {
   iconPath: string;

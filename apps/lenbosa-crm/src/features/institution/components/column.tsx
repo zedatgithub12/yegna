@@ -1,14 +1,67 @@
 "use client";
 
 import HeaderCell from "@/components/DataTable/header-cell";
+import EditPencil from "@/components/icons/edit-pencil";
+import TrashIcon from "@/components/icons/trash";
+import { routes } from "@/lib/config/routes";
 import { formatDate } from "@/utils/lib/format-date-time";
+import { ActionIcon } from "@yegna-systems/ui/action-icon";
 import { Avatar } from "@yegna-systems/ui/avatar";
-import { Button } from "@yegna-systems/ui/button";
-import { Text } from "@yegna-systems/ui/typography";
-import { Eye } from "lucide-react";
+import { Checkbox } from "@yegna-systems/ui/checkbox";
 
-export const GetColumns = () => {
+import { Text } from "@yegna-systems/ui/typography";
+import { useRouter } from "nextjs-toploader/app";
+
+import { RiEyeFill } from "react-icons/ri";
+
+type RowSelectionProps = {
+  selectedRowKeys: string[];
+  onSelectRow: (id: string, checked: boolean) => void;
+  onSelectAll: (checked: boolean) => void;
+  allRowKeys: string[];
+  onDeleteInstitution: (id: string) => void;
+};
+
+export const GetColumns = ({
+  selectedRowKeys = [],
+  onSelectRow = () => {},
+  onSelectAll = () => {},
+  allRowKeys = [],
+  onDeleteInstitution = () => {},
+}: Partial<RowSelectionProps> = {}) => {
+  const router = useRouter();
+
+  const isAllSelected =
+    allRowKeys.length > 0 && selectedRowKeys.length === allRowKeys.length;
+
+  const renderCheckbox = (
+    checked: boolean,
+    onChange: (checked: boolean) => void,
+    label: string
+  ) => (
+    <Checkbox
+      checked={checked}
+      onChange={(v) => onChange(!!v)}
+      aria-label={label}
+      size="sm"
+      rounded="lg"
+      inputClassName="p-0 border border-black"
+    />
+  );
+
   return [
+    {
+      title: renderCheckbox(isAllSelected, onSelectAll, "Select all rows"),
+      dataIndex: "select",
+      key: "select",
+      width: 40,
+      render: (_: unknown, record: institutionProps) =>
+        renderCheckbox(
+          selectedRowKeys.includes(record.id),
+          (v) => onSelectRow(record.id, v),
+          "Select row"
+        ),
+    },
     {
       title: (
         <HeaderCell title="Institution Name" className="whitespace-nowrap" />
@@ -27,9 +80,6 @@ export const GetColumns = () => {
             <Text className="font-semibold text-[15px] text-gray-900">
               {name}
             </Text>
-            {/* <Text className="font-medium text-gray-400 text-xs">
-              {record.type}
-            </Text> */}
           </div>
         </div>
       ),
@@ -40,7 +90,9 @@ export const GetColumns = () => {
       key: "type",
       width: 100,
       render: (type: string) => (
-        <Text className="font-medium text-gray-900">{type}</Text>
+        <Text className="font-medium text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit">
+          {type}
+        </Text>
       ),
     },
     {
@@ -88,20 +140,31 @@ export const GetColumns = () => {
         </Text>
       ),
     },
+
     {
       title: <HeaderCell title="Actions" className="whitespace-nowrap" />,
       dataIndex: "id",
       key: "actions",
       width: 80,
-      render: (id: string) => (
-        <Button
-          variant="text"
-          onClick={() => {
-            console.log(id);
-          }}
-        >
-          <Eye className="w-4 h-4" />
-        </Button>
+      render: (value: string) => (
+        <div className="flex items-center">
+          <ActionIcon
+            variant="text"
+            onClick={() => router.push(routes.institution.details(value))}
+          >
+            <RiEyeFill className="text-primary" size={16} />
+          </ActionIcon>
+          <ActionIcon
+            variant="text"
+            onClick={() => router.push(routes.institution.edit(value))}
+          >
+            <EditPencil className="w-4 h-4" />
+          </ActionIcon>
+
+          <ActionIcon variant="text" onClick={() => onDeleteInstitution(value)}>
+            <TrashIcon className="w-4 h-4 text-primary" color="#0B4650" />
+          </ActionIcon>
+        </div>
       ),
     },
   ];
