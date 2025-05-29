@@ -5,6 +5,7 @@ import { useFetchData } from "@/lib/api/use-fetch-data";
 import FallbackComponent from "@/utils/fallback/NotFound";
 import { Text } from "@yegna-systems/ui/typography";
 import { useFormikContext } from "formik";
+import { Check } from "lucide-react";
 import React from "react";
 
 const PlanFeatures = () => {
@@ -63,6 +64,10 @@ const PlanFeatures = () => {
                 size="sm"
                 checked={values.features.includes(feature.id)}
                 readOnly
+                onIcon={
+                  <Check className="p-0.5 text-primary" strokeWidth={4} />
+                }
+                switchClassName=""
                 switchKnobClassName={`${values.features.includes(feature.id) ? "bg-secondary text-primary" : ""} `}
               />
             </div>

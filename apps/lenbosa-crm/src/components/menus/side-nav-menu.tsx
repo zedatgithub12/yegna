@@ -13,7 +13,7 @@ import InstitutionIcon from "../icons/institution";
 
 export const SideNavMenus = [
   {
-    id: "dashboard",
+    id: "read_dashboard",
     title: "Dashboard",
     icon: <HomeIcon />,
     path: routes.dashboard,
@@ -21,7 +21,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "institution",
+    id: "read_institution",
     title: "Institution Management",
     icon: <InstitutionIcon />,
     path: routes.institution.list,
@@ -30,7 +30,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "message-broadcast",
+    id: "read_message_broadcast",
     title: "Message Broadcast",
     icon: <MessageIcon />,
     path: routes.messages.list,
@@ -39,7 +39,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "subscription",
+    id: "read_subscription",
     title: "Subscription",
     icon: <StarIcon />,
     path: routes.subscription.list,
@@ -57,7 +57,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "users",
+    id: "read_user",
     title: "User Management",
     icon: <UserGroupIcon />,
     path: routes.user.list,
@@ -66,7 +66,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "role-permission",
+    id: "read_role",
     title: "Role & Permissions",
     icon: <HRIcon />,
     path: routes.role_permission.list,
@@ -75,7 +75,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "system-configuration",
+    id: "system_configuration",
     title: "System Configurations",
     icon: <SettingIcon />,
     path: routes.configuration.list,
@@ -84,7 +84,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "system-report",
+    id: "system_report",
     title: "System  Report",
     icon: <AnalyticsIcon />,
     path: routes.system_report.list,
@@ -93,7 +93,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "system-log",
+    id: "read_activity_log",
     title: "System Log",
     icon: <LogIcon />,
     path: routes.system_log.list,
@@ -101,7 +101,7 @@ export const SideNavMenus = [
     children: [],
   },
   {
-    id: "system-health",
+    id: "system_health",
     title: "System Health",
     icon: <HealthIcon />,
     path: routes.system_health.list,

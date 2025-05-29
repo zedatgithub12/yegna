@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import PageWrapper from "@/components/PagesWrapper";
 import SvgWrapper from "@/components/SvgWrapper";
 import BillingCycle from "./components/BillingCycle";
@@ -10,9 +10,16 @@ import { routes } from "@/lib/config/routes";
 import { Button } from "@yegna-systems/ui/button";
 import { useRouter } from "nextjs-toploader/app";
 import SubscriptionPlans from "./components/SubscriptionPlans";
+import useDynamicMutation from "@/lib/api/use-post-data";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Subscriptions = () => {
   const router = useRouter();
+  const postMutation = useDynamicMutation({});
+  const queryClient = useQueryClient();
+
+  const [changingStatus, setChangingStatus] = useState(false);
 
   const subscriptionPayload = useFetchData(
     [queryKeys.subscriptions],
@@ -21,6 +28,30 @@ const Subscriptions = () => {
   const subscriptionData: SubscriptionPlans[] =
     subscriptionPayload?.data?.data?.data;
 
+  const handleChangingPlanStatus = async (id: string) => {
+    try {
+      setChangingStatus(true);
+      await postMutation.mutateAsync({
+        url: `${queryKeys.changePlanStatus}/${id}`,
+        method: "POST",
+
+        onSuccess: (res) => {
+          if (res.success) {
+            toast.success(res?.data?.message);
+            queryClient.invalidateQueries({
+              queryKey: [queryKeys.subscriptions],
+            });
+          } else {
+            toast.error(res.message);
+          }
+        },
+      });
+    } catch {
+      toast.error("There is error changing the status");
+    } finally {
+      setChangingStatus(false);
+    }
+  };
   return (
     <PageWrapper
       isLoading={subscriptionPayload.isFetching}
@@ -48,7 +79,11 @@ const Subscriptions = () => {
       }
     >
       <BillingCycle />
-      <SubscriptionPlans plans={subscriptionData} />
+      <SubscriptionPlans
+        plans={subscriptionData}
+        onChangePlanStatus={(id) => handleChangingPlanStatus(id)}
+        isChanging={changingStatus}
+      />
     </PageWrapper>
   );
 };
