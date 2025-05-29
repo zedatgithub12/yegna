@@ -20,8 +20,9 @@ export const routes = {
   },
 
   subscription: {
-    list: "/subscription",
-    create: "/subscription/create",
+    list: "/subscription-management",
+    create: "/subscription-management/create",
+    edit: (id: string) => `/subscription-management/edit/${id}`,
   },
 
   api_keys: {

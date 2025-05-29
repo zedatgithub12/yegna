@@ -12,6 +12,10 @@ export const queryKeys = {
   get_roles: "roles",
   get_permissions: "permissions",
   get_users: "users",
+  
+  subscriptions: "subscription-plans",
+  features: "features",
+  messages: "message-broadcasts",
   get_institution: "institutions",
   get_subscription_plans: "subscription-plans",
   get_categories: "categories",

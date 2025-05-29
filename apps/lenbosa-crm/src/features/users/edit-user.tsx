@@ -262,7 +262,7 @@ const EditUser = () => {
                     type="submit"
                     isLoading={postMutation.isPending}
                   >
-                    <Text className="text-secondary font-medium text-[16px]">
+                    <Text className="text-secondary font-medium text-[14px]">
                       Save Changes
                     </Text>
                   </Button>

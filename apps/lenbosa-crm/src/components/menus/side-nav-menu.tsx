@@ -40,7 +40,7 @@ export const SideNavMenus = [
 
   {
     id: "subscription",
-    title: "Subscription Management",
+    title: "Subscription",
     icon: <StarIcon />,
     path: routes.subscription.list,
     collapsable: false,
