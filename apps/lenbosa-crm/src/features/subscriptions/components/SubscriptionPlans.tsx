@@ -1,11 +1,10 @@
-import { Title } from "@yegna-systems/ui/typography";
+import { Text, Title } from "@yegna-systems/ui/typography";
 import { Button } from "@yegna-systems/ui/button";
-import { Tooltip } from "@/components/ui/tooltip";
 import { Check } from "lucide-react";
 import { useRouter } from "nextjs-toploader/app";
-import EditPencil from "@/components/icons/edit-pencil";
-import InfoIcon from "@/components/icons/info-icon";
 import { routes } from "@/lib/config/routes";
+import { Switch } from "@/components/ui/switch";
+import EditPencil from "@/components/icons/edit-pencil";
 
 type Props = {
   plans: SubscriptionPlans[];
@@ -34,7 +33,7 @@ const SubscriptionPlans: React.FC<Props> = ({ plans }) => {
                 {" "}
                 <div className="w-6 h-6 rounded-full bg-white" />{" "}
               </div>
-              <Tooltip
+              {/* <Tooltip
                 content={
                   <div
                     className="text-sm text-gray-400 my-1 w-52"
@@ -43,7 +42,19 @@ const SubscriptionPlans: React.FC<Props> = ({ plans }) => {
                 }
               >
                 <InfoIcon color="#AAAAAA" className="w-5 h-5" />
-              </Tooltip>
+              </Tooltip> */}
+
+              <div className="flex items-center gap-2">
+                <Text className="text-[#4BB543]">
+                  {plan.is_active ? "Active" : "InActive"}
+                </Text>
+                <Switch
+                  variant="flat"
+                  checked={plan.is_active}
+                  size="sm"
+                  onIcon={<Check className="p-0.5 text-primary" />}
+                />
+              </div>
             </div>
 
             <div className="border-b pb-2 px-2">

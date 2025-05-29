@@ -36,7 +36,7 @@ const EditSubscriptionPlan = () => {
     yearly_price: subscriptionData?.yearly_price || "",
     features:
       subscriptionData?.features.map(
-        (feature: FeatureReference) => feature.id
+        (feature: FeatureReference) => feature.feature_id
       ) || [],
     color: subscriptionData?.color || [],
   };
@@ -50,7 +50,7 @@ const EditSubscriptionPlan = () => {
 
         onSuccess: (res) => {
           if (res.success) {
-            toast.success(res.message);
+            toast.success(res.data.message);
             router.back();
           } else {
             toast.error(res.message);
@@ -181,7 +181,6 @@ const EditSubscriptionPlan = () => {
               <div className="col-span-12 md:col-span-8 space-y-3">
                 {" "}
                 <PlanFeatures />
-               
               </div>
             </div>
 

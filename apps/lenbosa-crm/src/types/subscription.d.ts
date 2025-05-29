@@ -20,6 +20,7 @@ interface SubscriptionPlans {
   id: string;
   name: string;
   description: string | null;
+  is_active: boolean;
   color: string[];
   features: Features[];
 }
@@ -52,6 +53,7 @@ interface SubscriptionPlanFeatures {
 
 type FeatureReference = {
   id: string;
+  feature_id: string;
 };
 
 type PlanDetail = {
