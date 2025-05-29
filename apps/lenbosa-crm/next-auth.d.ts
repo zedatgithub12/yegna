@@ -9,10 +9,13 @@ declare module "next-auth" {
         roleId: string;
         userName: string;
         phoneNumber: string;
-        fullname:string;
+        fullname: string;
         homeBranch: string;
         branchName: string;
         loginTime: number;
+        roles: {
+          permissions: { uuid: string; name: string };
+        }[];
       };
     } & DefaultSession["user"];
   }
@@ -26,7 +29,7 @@ declare module "next-auth/jwt" {
       user: {
         roleId: string;
         userName: string;
-        fullname:string;
+        fullname: string;
         phoneNumber: string;
         homeBranch: string;
         branchName: string;

@@ -8,9 +8,15 @@ import EditPencil from "@/components/icons/edit-pencil";
 
 type Props = {
   plans: SubscriptionPlans[];
+  onChangePlanStatus: (id: string) => void;
+  isChanging: boolean;
 };
 
-const SubscriptionPlans: React.FC<Props> = ({ plans }) => {
+const SubscriptionPlans: React.FC<Props> = ({
+  plans,
+  onChangePlanStatus,
+  isChanging,
+}) => {
   const router = useRouter();
   return (
     <section className="p-1.5 my-4">
@@ -45,7 +51,7 @@ const SubscriptionPlans: React.FC<Props> = ({ plans }) => {
               </Tooltip> */}
 
               <div className="flex items-center gap-2">
-                <Text className="text-[#4BB543]">
+                <Text className={`${plan.is_active ? "text-[#4BB543]" : "text-[#e53131]"}`}>
                   {plan.is_active ? "Active" : "InActive"}
                 </Text>
                 <Switch
@@ -53,6 +59,8 @@ const SubscriptionPlans: React.FC<Props> = ({ plans }) => {
                   checked={plan.is_active}
                   size="sm"
                   onIcon={<Check className="p-0.5 text-primary" />}
+                  onChange={() => onChangePlanStatus(plan.id)}
+                  disabled={isChanging}
                 />
               </div>
             </div>
