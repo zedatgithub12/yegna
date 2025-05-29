@@ -12,4 +12,7 @@ export const queryKeys = {
   get_roles: "roles",
   get_permissions: "permissions",
   get_users: "users",
+  get_institution: "institutions",
+  get_subscription_plans: "subscription-plans",
+  get_categories: "categories",
 };
