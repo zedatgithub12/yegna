@@ -12,7 +12,7 @@ export type StepperProps = {
 
 export const Stepper = ({ steps, currentStep }: StepperProps) => {
   return (
-    <div className="flex items-center justify-between w-full p-4 rounded-lg bg-gray-50">
+    <div className="bg-white flex items-center justify-between w-full p-4 rounded-lg ">
       {steps.map((step, index) => {
         const isActive = index === currentStep;
         const isCompleted = index < currentStep;

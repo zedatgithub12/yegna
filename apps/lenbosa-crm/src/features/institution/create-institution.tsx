@@ -131,54 +131,58 @@ const CreateInstitution = () => {
       back={true}
       search={false}
       breadcrumb={true}
-      childrenClassnames="bg-white rounded-xl p-4 mt-4"
+      childrenClassnames="rounded-xl p-4 mt-4"
     >
       <Stepper steps={steps} currentStep={step} />
+      <div className="bg-white rounded-xl p-4 mt-4">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={institutionValidationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting, values, submitForm }) => {
+            return (
+              <Form className="pt-6 space-y-4">
+                {step === 0 && <BasicInformation />}
+                {step === 1 && <AdminInformation />}
+                {step === 2 && <DocumentsAndAgreements />}
+                {step === 3 && (
+                  <InstitutionReview
+                    values={values}
+                    onEdit={handleEditSection}
+                  />
+                )}
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={institutionValidationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting, values, submitForm }) => {
-          return (
-            <Form className="pt-6 space-y-4">
-              {step === 0 && <BasicInformation />}
-              {step === 1 && <AdminInformation />}
-              {step === 2 && <DocumentsAndAgreements />}
-              {step === 3 && (
-                <InstitutionReview values={values} onEdit={handleEditSection} />
-              )}
-
-              <div className="pt-4 flex items-center justify-end gap-4 w-full">
-                <Button
-                  type="button"
-                  onClick={goBack}
-                  disabled={step === 0}
-                  variant="outline"
-                >
-                  Previous
-                </Button>
-
-                {step < steps.length - 1 ? (
-                  <Button type="button" onClick={() => goNext(values)}>
-                    Next
-                  </Button>
-                ) : (
+                <div className="pt-4 flex items-center justify-end gap-4 w-full">
                   <Button
                     type="button"
-                    onClick={submitForm}
-                    isLoading={isSubmitting || mutation.isPending}
-                    className="font-bold"
+                    onClick={goBack}
+                    disabled={step === 0}
+                    variant="outline"
                   >
-                    Create Institution
+                    Previous
                   </Button>
-                )}
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+
+                  {step < steps.length - 1 ? (
+                    <Button type="button" onClick={() => goNext(values)}>
+                      Next
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      onClick={submitForm}
+                      isLoading={isSubmitting || mutation.isPending}
+                      className="font-bold"
+                    >
+                      Create Institution
+                    </Button>
+                  )}
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
     </PageWrapper>
   );
 };

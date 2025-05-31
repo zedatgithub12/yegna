@@ -18,11 +18,14 @@ import { GetColumns } from "./components/column";
 import DeleteRecord from "@/utils/components/DeleteRecord";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@yegna-systems/lib/hooks/use-modal";
+import InstitutionFilter from "./components/InstitutionFilter";
+import { useDrawer } from "@yegna-systems/lib/hooks/use-drawer";
 
 const Institution = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { openModal, closeModal } = useModal();
+  const { openDrawer } = useDrawer();
 
   const headers = useGetHeaders({ type: "Json" });
 
@@ -38,6 +41,13 @@ const Institution = () => {
 
   const institutionData: getInstitutionProps[] =
     responsePayload?.data?.data?.data;
+
+  const categoriePayload = useFetchData(
+    [queryKeys.get_categories],
+    `${queryKeys.get_categories}`
+  );
+
+  const categoriesData = categoriePayload?.data?.data?.data ?? [];
 
   const handleSelectRow = (id: string) => {
     setSelectedRowKeys((prev) =>
@@ -93,10 +103,10 @@ const Institution = () => {
           <Button
             className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
             onClick={() =>
-              openModal({
-                view: <div className="flex flex-col">Filter Modal</div>,
-                customSize: "400px",
-                // position: "right",
+              openDrawer({
+                view: <InstitutionFilter categories={categoriesData} />,
+                placement: "right",
+                customSize: 10,
               })
             }
           >
