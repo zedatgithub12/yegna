@@ -33,7 +33,7 @@ const FallbackComponent = ({
   action,
 }: fallbackComponentProps) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-40 py-8">
+    <div className="w-full flex flex-col items-center justify-center min-h-40 py-8">
       {FallbackImages(status_code)}
 
       <p className="text-xl font-semibold">{title}</p>
