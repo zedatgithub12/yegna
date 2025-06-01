@@ -15,4 +15,5 @@ export const queryKeys = {
   get_institution: "institutions",
   get_subscription_plans: "subscription-plans",
   get_categories: "categories",
+  get_logs: "my-activity-logs",
 };

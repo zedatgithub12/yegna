@@ -93,6 +93,7 @@ const Institution = () => {
       >
         <TableSearch
           title="Search for Institution"
+          titleClassName="text-md font-semibold"
           setDebouncedValue={(val) => {
             setCurrentPage(1);
             setSearchTerm(val);
