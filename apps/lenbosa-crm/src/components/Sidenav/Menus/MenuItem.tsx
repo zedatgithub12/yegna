@@ -8,46 +8,46 @@ import { useRouter } from "nextjs-toploader/app";
 
 import SvgWrapper from "@/components/SvgWrapper";
 import { Text } from "@/components/ui/typography";
+import { Tooltip } from "@/components/ui/tooltip";
 
 const CollapsableMenu = ({
   item,
   expanded,
   onPress,
+  hovered,
+  drawerOpen,
 }: {
   item: menuItem;
   expanded: boolean;
   onPress: () => void;
+  hovered: boolean;
+  drawerOpen: boolean;
 }) => (
   <div className="w-11/12">
     <div
-      className={`flex items-center justify-between gap-4 p-2 pl-3 cursor-pointer font-medium hover:bg-primary rounded-lg mx-1 hover:text-[#D7F400] ${
-        expanded ? "bg-primary text-[#D7F400]" : ""
-      }`}
+      className={`group flex items-center justify-between gap-4 p-2 pl-3 cursor-pointer font-medium rounded-lg mx-1
+        ${expanded || hovered ? "bg-primary text-secondary]" : ""}
+      `}
       onClick={onPress}
     >
       <div className="flex items-center gap-4">
-        {item?.icon && expanded ? (
-          <SvgWrapper
-            src={item.icon}
-            width="16px"
-            height="16px"
-            className="text-lime-300 text-inherit"
-            color="#D7F400"
-          />
-        ) : item.icon ? (
-          <SvgWrapper
-            src={item?.icon}
-            width="20px"
-            height="20px"
-            className="text-inherit"
-          />
+        {item.icon &&
+          React.cloneElement(
+            item.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
+            {
+              color: expanded || hovered ? "#D7F400" : "#656565",
+              className: "w-5 h-5",
+            }
+          )}
+
+        {drawerOpen ? (
+          <Text
+            className="text-[15px] font-outfit text-inherit line-clamp-1"
+            style={{ color: expanded || hovered ? "#D7F400" : "" }}
+          >
+            {item.title}
+          </Text>
         ) : null}
-        <Text
-          className="text-[15px] font-outfit text-inherit"
-          style={{ color: expanded ? "#D7F400" : "" }}
-        >
-          {item?.title}
-        </Text>
       </div>
 
       {expanded ? (
@@ -63,13 +63,13 @@ const CollapsableMenu = ({
       )}
     </div>
 
-    {expanded ? (
+    {expanded && (
       <div className="ml-2">
-        {item.children?.map((item, index) => (
-          <MenuItem key={index} item={item} />
+        {item.children?.map((child, index) => (
+          <MenuItem key={index} item={child} />
         ))}
       </div>
-    ) : null}
+    )}
   </div>
 );
 
@@ -77,45 +77,46 @@ const UncollapsableMenu = ({
   item,
   active,
   onPress,
+  hovered,
+  drawerOpen,
 }: {
   item: menuItem;
   active: boolean;
   onPress: () => void;
+  hovered: boolean;
+  drawerOpen: boolean;
 }) => (
   <div
     onClick={onPress}
-    className={`w-11/12 flex items-center gap-4 p-2 pl-5  cursor-pointer font-medium hover:bg-primary hover:text-[#D7F400]  rounded-lg mx-1 ${
-      active ? "bg-primary text-secondary" : ""
-    }`}
+    className={`group w-11/12 flex items-center ${drawerOpen ? "pl-4" : "justify-center"} gap-4 p-2  cursor-pointer font-medium rounded-lg mx-1
+      ${active || hovered ? "bg-primary text-secondary]" : ""}
+    `}
   >
-    {item?.icon && active ? (
-      <SvgWrapper
-        src={item.icon}
-        width="20px"
-        height="20px"
-        className="text-lime-300 hover:text-inherit"
-        color="#bbf451"
-      />
-    ) : item.icon ? (
-      <SvgWrapper
-        src={item?.icon}
-        width="20px"
-        height="20px"
-        className="text-inherit"
-      />
+    {item.icon &&
+      React.cloneElement(
+        item.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
+        {
+          color: active || hovered ? "#D7F400" : "#656565",
+          className: "w-5 h-5",
+        }
+      )}
+
+    {drawerOpen ? (
+      <Text
+        className="text-[15px] font-outfit text-inherit transition-colors duration-300 ease-in line-clamp-1"
+        style={{ color: active || hovered ? "#D7F400" : "" }}
+      >
+        {item.title}
+      </Text>
     ) : null}
-    <Text
-      className="text-[15px] font-outfit text-inherit"
-      style={{ color: active ? "#D7F400" : "" }}
-    >
-      {item?.title}
-    </Text>
   </div>
 );
 
 const MenuItem = ({ item }: { item: menuItem }) => {
-  const { expanded, active_menu, onExpand, onSetActiveMenu } = useNavStore();
+  const { drawerOpen, expanded, active_menu, onExpand, onSetActiveMenu } =
+    useNavStore();
   const router = useRouter();
+  const [hoveredId, setHoveredId] = React.useState<string | null>(null);
 
   const handleCollapsableMenu = (menuID: string) => {
     if (menuID === expanded) {
@@ -143,34 +144,63 @@ const MenuItem = ({ item }: { item: menuItem }) => {
     await secondTask();
   };
 
+  const isHovered = hoveredId === item.id;
+
   return (
     <>
       {item.collapsable ? (
-        <div className="flex items-start justify-between  w-full pr-1 my-1">
-          {item.id === expanded ? (
-            <div className="min-w-1.5 max-w-1/12 h-9 bg-primary  rounded-tr-md rounded-br-md" />
-          ) : (
-            <div className="min-w-1.5 max-w-1/12 h-9 bg-white  rounded-tr-md rounded-br-md" />
-          )}
-          <CollapsableMenu
-            item={item}
-            expanded={item.id === expanded}
-            onPress={() => handleCollapsableMenu(item.id)}
-          />
-        </div>
+        <Tooltip
+          placement="right-start"
+          animation="fadeIn"
+          content={item.title}
+          className={`${drawerOpen ? "hidden" : "flex"}`}
+        >
+          <div
+            className="flex items-start justify-between w-fit pr-1 my-1"
+            onMouseEnter={() => setHoveredId(item.id)}
+            onMouseLeave={() => setHoveredId(null)}
+          >
+            <div
+              className={`min-w-1.5 max-w-1/12 h-9 ${
+                item.id === expanded ? "bg-primary" : "bg-white"
+              } rounded-tr-md rounded-br-md`}
+            />
+
+            <CollapsableMenu
+              item={item}
+              expanded={item.id === expanded}
+              onPress={() => handleCollapsableMenu(item.id)}
+              hovered={isHovered}
+              drawerOpen={drawerOpen}
+            />
+          </div>
+        </Tooltip>
       ) : (
-        <div className="flex items-start justify-between w-full pr-1 my-1">
-          {item.id === active_menu ? (
-            <div className="min-w-1.5 max-w-1/12 h-9 bg-primary  rounded-tr-md rounded-br-md" />
-          ) : (
-            <div className="min-w-1.5 max-w-1/12 h-9 bg-white  rounded-tr-md rounded-br-md" />
-          )}
-          <UncollapsableMenu
-            item={item}
-            active={item.id === active_menu}
-            onPress={() => handleMenuClick(item.id, item?.path)}
-          />
-        </div>
+        <Tooltip
+          placement="right-start"
+          animation="fadeIn"
+          content={item.title}
+          className={`${drawerOpen ? "hidden" : "flex"}`}
+        >
+          <div
+            className="flex items-start justify-between w-full pr-1 my-1"
+            onMouseEnter={() => setHoveredId(item.id)}
+            onMouseLeave={() => setHoveredId(null)}
+          >
+            <div
+              className={`min-w-1.5 max-w-1/12 h-9 ${
+                item.id === active_menu ? "bg-primary" : "bg-white"
+              } rounded-tr-md rounded-br-md`}
+            />
+            <UncollapsableMenu
+              item={item}
+              active={item.id === active_menu}
+              onPress={() => handleMenuClick(item.id, item?.path)}
+              hovered={isHovered}
+              drawerOpen={drawerOpen}
+            />
+          </div>
+        </Tooltip>
       )}
     </>
   );

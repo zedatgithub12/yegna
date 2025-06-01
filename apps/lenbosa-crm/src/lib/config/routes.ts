@@ -15,11 +15,20 @@ export const routes = {
   institution: {
     list: "/institution",
     create: "/institution/create",
+    edit: (id: string) => `/institution/edit/${id}`,
+    details: (id: string) => `/institution/details/${id}`,
   },
 
   subscription: {
-    list: "/subscription",
-    create: "/subscription/create",
+    list: "/subscription-management",
+    create: "/subscription-management/create",
+    edit: (id: string) => `/subscription-management/edit/${id}`,
+  },
+
+  customers: {
+    list: "/customers",
+    create: "/customers/create",
+    details: (id: string) => `/customers/details/${id}`,
   },
 
   api_keys: {
@@ -29,12 +38,19 @@ export const routes = {
 
   user: {
     list: "/user-management",
-    create: "/user-management/create",
+    create: "/user-management/add-user",
+    edit: (id: string) => `/user-management/edit-user/${id}`,
+    details: (id: string) => `/user-management/details/${id}`,
   },
 
   role_permission: {
     list: "/role-permission",
     create: "/role-permission/create",
+    edit: (id: string) => `/role-permission/edit/${id}`,
+  },
+
+  role: {
+    permissions: (id: string) => `/role/permissions/${id}`,
   },
 
   configuration: {

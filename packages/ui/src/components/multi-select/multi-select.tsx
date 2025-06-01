@@ -20,12 +20,12 @@ import {
 } from "./multi-select.lib";
 import { roundedStyles } from "../../lib/rounded";
 import { labelStyles } from "../../lib/label-size";
-import { ExtractProps } from "src/lib/extract-props";
+import { ExtractProps } from "../../lib/extract-props";
 import { FieldHelperText } from "../field-helper-text";
-import { makeClassName } from "src/lib/make-class-name";
+import { makeClassName } from "../../lib/make-class-name";
 import { FieldClearButton } from "../field-clear-button";
 import { dropdownStyles } from "../../lib/dropdown-list-style";
-import { CheckmarkIcon } from "src/icons/checkmark";
+import { CheckmarkIcon } from "../../icons/checkmark";
 
 const selectStyles = {
   base: "flex items-center peer border hover:border-primary w-full transition duration-200 ring-[0.6px] hover:ring-primary focus:border-primary focus:ring-[0.8px] focus:ring-primary",

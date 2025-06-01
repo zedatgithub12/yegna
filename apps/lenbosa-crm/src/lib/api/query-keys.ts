@@ -1,8 +1,4 @@
 export const queryKeys = {
-  getLoginPasswordRuleQuery: "getLoginPasswordRuleQueryApi",
-
-  //customers
-  getAllCustomersListQuery: "getAllCustomersListQueryApi",
   login: "login",
   forgot_password: "reset-password",
   verify_otp: "verify-otp",
@@ -11,4 +7,17 @@ export const queryKeys = {
 
   my_profile: "my-profile",
   update_profile: "update-profile",
+
+  //roles
+  get_roles: "roles",
+  get_permissions: "permissions",
+  get_users: "users",
+
+  subscriptions: "subscription-plans",
+  changePlanStatus: "change-plan-status",
+  features: "features",
+  messages: "message-broadcasts",
+  get_institution: "institutions",
+  get_subscription_plans: "subscription-plans",
+  get_categories: "categories",
 };

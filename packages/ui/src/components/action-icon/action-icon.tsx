@@ -73,7 +73,7 @@ export const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
       disabled,
       ...actionIconProps
     },
-    ref
+    ref,
   ) => {
     const Component = as;
     const variantStyle = actionIconStyles.variant[variant];
@@ -90,7 +90,7 @@ export const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
           variantStyle.color[color],
           isLoading && "pointer-events-none relative",
           disabled && actionIconStyles.disabled,
-          className
+          className,
         )}
         {...(as && as !== "span" && { type })}
         {...actionIconProps}
@@ -109,7 +109,7 @@ export const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
         )}
       </Component>
     );
-  }
+  },
 );
 
 ActionIcon.displayName = "ActionIcon";

@@ -3,6 +3,7 @@ import cn from "../lib/class-names";
 
 const helperTextStyles = {
   size: {
+    xs: "text-[9px] ",
     sm: "text-[11px] mt-0.5",
     md: "text-[13px] mt-0.5",
     lg: "text-[13px] mt-1",

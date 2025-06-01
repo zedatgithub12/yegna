@@ -15,6 +15,7 @@
     "./hooks/use-is-mounted": "./src/hooks/use-is-mounted.ts",
     "./hooks/use-modal": "./src/hooks/use-modal.ts",
     "./view/drawer-view": "./src/views/drawer-view.tsx",
+    "./view/drawer-header": "./src/views/drawer-header.tsx",
     "./view/modal-view": "./src/views/modal-view.tsx",
     "./view/error-message": "./src/views/error-message.tsx",
     "./view/modal-footer": "./src/views/modal-footer.tsx",

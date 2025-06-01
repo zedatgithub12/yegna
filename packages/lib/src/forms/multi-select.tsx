@@ -1,16 +1,32 @@
 "use client";
+
 import cn from "@yegna-systems/ui/cn";
-import {
-  MultiSelect,
-  MultiSelectOption,
-} from "@yegna-systems/ui/multi-select";
+import { MultiSelect, MultiSelectOption } from "@yegna-systems/ui/multi-select";
 import { ErrorMessage } from "formik";
 import React from "react";
-interface FormikSelectProps extends MultiSelectOption {
+interface FormikSelectProps {
   name: string;
+  value: string[];
+  label?: string;
+  placeholder?: string;
+  prefix?: React.ReactNode;
+  className?: string;
+  inputClassName?: string;
+  disabled?: boolean;
+  size?: "sm" | "md" | "lg";
+  options: MultiSelectOption[];
+  onChange: (value: string[]) => void;
+  searchable?: boolean;
+  displayValue?: (
+    selectedItems: string[],
+    options: MultiSelectOption[],
+    handleClearItem?: (item: string) => void
+  ) => React.ReactNode;
+  required?: boolean;
+  labelClassName?: string;
 }
 
-const FormikSelect: React.FC<FormikSelectProps> = ({
+const FormikMultiSelect: React.FC<FormikSelectProps> = ({
   label,
   name,
   placeholder,
@@ -39,10 +55,10 @@ const FormikSelect: React.FC<FormikSelectProps> = ({
         label={
           <div className={cn("", labelClassName)}>
             {label}
-            {required && <sup className="text-red-500">*</sup>}
+            {required && <sup className="text-red-700 text-[16px]">*</sup>}
           </div>
         }
-        getOptionValue={(option: MultiSelectOption) => option.value}
+        // getOptionValue={(option: MultiSelectOption) => option.value}
         size={size}
         searchable={searchable}
         displayValue={displayValue}
@@ -63,4 +79,4 @@ const FormikSelect: React.FC<FormikSelectProps> = ({
   );
 };
 
-export default FormikSelect;
+export default FormikMultiSelect;

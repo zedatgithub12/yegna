@@ -1,4 +1,5 @@
 interface pageWrapperProps {
+  hasHeader?: boolean;
   title?: string;
   search?: React.ReactNode;
   back?: boolean;
@@ -8,7 +9,7 @@ interface pageWrapperProps {
   children?: React.ReactNode;
   isLoading?: boolean;
   notfound?: boolean;
-  isError: boolean;
+  isError?: boolean;
   fallback?: {
     status_code?: string;
     title: string;
@@ -16,4 +17,5 @@ interface pageWrapperProps {
     action?: React.ReactNode;
   };
   childrenClassnames?: string;
+  staticComponent?: React.ReactNode;
 }
