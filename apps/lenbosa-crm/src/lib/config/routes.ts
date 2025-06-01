@@ -20,8 +20,15 @@ export const routes = {
   },
 
   subscription: {
-    list: "/subscription",
-    create: "/subscription/create",
+    list: "/subscription-management",
+    create: "/subscription-management/create",
+    edit: (id: string) => `/subscription-management/edit/${id}`,
+  },
+
+  customers: {
+    list: "/customers",
+    create: "/customers/create",
+    details: (id: string) => `/customers/details/${id}`,
   },
 
   api_keys: {

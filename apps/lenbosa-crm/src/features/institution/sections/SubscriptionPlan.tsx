@@ -86,9 +86,9 @@ const SubscriptionPlan: React.FC<Subscription> = ({
 
             <hr className="my-4 border-gray-200" />
             <ul className="mt-4 space-y-3">
-              {plan.features.map((feature: Feature) => (
+              {plan.features.map((feature: Features) => (
                 <li
-                  key={feature.id}
+                  key={feature.feature.id}
                   className="flex items-center text-sm text-gray-700"
                 >
                   <svg

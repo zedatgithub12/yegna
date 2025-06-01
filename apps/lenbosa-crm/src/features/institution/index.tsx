@@ -182,6 +182,7 @@ const Institution = () => {
       </PageWrapper>
     </div>
   );
+
 };
 
 export default Institution;

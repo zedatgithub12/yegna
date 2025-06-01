@@ -10,10 +10,11 @@ import AnalyticsIcon from "../icons/analytics";
 import LogIcon from "../icons/logs";
 import HealthIcon from "../icons/system-health";
 import InstitutionIcon from "../icons/institution";
+import UserIcon from "../icons/user-icon";
 
 export const SideNavMenus = [
   {
-    id: "dashboard",
+    id: "read_dashboard",
     title: "Dashboard",
     icon: <HomeIcon />,
     path: routes.dashboard,
@@ -21,7 +22,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "institution",
+    id: "read_institution",
     title: "Institution Management",
     icon: <InstitutionIcon />,
     path: routes.institution.list,
@@ -30,23 +31,75 @@ export const SideNavMenus = [
   },
 
   {
-    id: "message-broadcast",
+    id: "read_message_broadcast",
     title: "Message Broadcast",
     icon: <MessageIcon />,
     path: routes.messages.list,
     collapsable: false,
     children: [],
   },
+  {
+    id: "institution",
+    title: "Institution Management",
+    icon: "/icons/Email.svg",
+    path: routes.messages.list,
+    collapsable: false,
+    children: [],
+  },
 
   {
-    id: "subscription",
-    title: "Subscription Management",
+    id: "read_subscription",
+    title: "Subscription",
     icon: <StarIcon />,
     path: routes.subscription.list,
     collapsable: false,
     children: [],
   },
 
+  {
+    id: "read_user",
+    title: "Customers",
+    icon: <UserIcon />,
+    path: routes.customers.list,
+    collapsable: false,
+    children: [],
+  },
+
+  {
+    id: "read_user",
+    title: "User Management",
+    icon: <UserGroupIcon />,
+    path: routes.user.list,
+    collapsable: false,
+    children: [],
+  },
+
+  {
+    id: "read_role",
+    title: "Role & Permissions",
+    icon: <HRIcon />,
+    path: routes.role_permission.list,
+    collapsable: false,
+    children: [],
+  },
+
+  {
+    id: "system_configuration",
+    title: "System Configurations",
+    icon: <SettingIcon />,
+    path: routes.configuration.list,
+    collapsable: false,
+    children: [],
+  },
+
+  {
+    id: "system_report",
+    title: "System  Report",
+    icon: <AnalyticsIcon />,
+    path: routes.system_report.list,
+    collapsable: false,
+    children: [],
+  },
   {
     id: "api-key-integration",
     title: "API Key Integration",
@@ -57,43 +110,7 @@ export const SideNavMenus = [
   },
 
   {
-    id: "users",
-    title: "User Management",
-    icon: <UserGroupIcon />,
-    path: routes.user.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "role-permission",
-    title: "Role & Permissions",
-    icon: <HRIcon />,
-    path: routes.role_permission.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "system-configuration",
-    title: "System Configurations",
-    icon: <SettingIcon />,
-    path: routes.configuration.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "system-report",
-    title: "System  Report",
-    icon: <AnalyticsIcon />,
-    path: routes.system_report.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "system-log",
+    id: "read_activity_log",
     title: "System Log",
     icon: <LogIcon />,
     path: routes.system_log.list,
@@ -101,7 +118,7 @@ export const SideNavMenus = [
     children: [],
   },
   {
-    id: "system-health",
+    id: "system_health",
     title: "System Health",
     icon: <HealthIcon />,
     path: routes.system_health.list,

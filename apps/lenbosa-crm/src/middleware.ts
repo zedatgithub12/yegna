@@ -4,6 +4,7 @@ import { routes } from "./lib/config/routes";
 export default withAuth(function middleware() {}, {
   pages: {
     signIn: routes.signIn,
+    signOut: routes.signOut,
     error: routes.error,
   },
 

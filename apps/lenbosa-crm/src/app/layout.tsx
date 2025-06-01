@@ -25,7 +25,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${inter.variable} font-outfit antialiased`}
+        className={`${outfit.variable} ${inter.variable} font-outfit antialiased `}
         suppressHydrationWarning
       >
         <AppProvider session={session}>

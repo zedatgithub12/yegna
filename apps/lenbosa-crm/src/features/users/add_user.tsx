@@ -284,9 +284,8 @@ const AddUser = () => {
                     type="submit"
                     isLoading={postMutation.isPending}
                   >
-                    <Text className="text-secondary font-medium text-[16px]">
-                      {" "}
-                      Submit{" "}
+                    <Text className="text-secondary font-medium text-[14px]">
+                      Submit
                     </Text>
                   </Button>
                 </div>
