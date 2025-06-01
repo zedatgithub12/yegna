@@ -10,6 +10,7 @@ import AnalyticsIcon from "../icons/analytics";
 import LogIcon from "../icons/logs";
 import HealthIcon from "../icons/system-health";
 import InstitutionIcon from "../icons/institution";
+import UserIcon from "../icons/user-icon";
 
 export const SideNavMenus = [
   {
@@ -48,10 +49,10 @@ export const SideNavMenus = [
   },
 
   {
-    id: "api-key-integration",
-    title: "API Key Integration",
-    icon: <PluginIcon />,
-    path: routes.api_keys.list,
+    id: "read_user",
+    title: "Customers",
+    icon: <UserIcon />,
+    path: routes.customers.list,
     collapsable: false,
     children: [],
   },
@@ -88,6 +89,14 @@ export const SideNavMenus = [
     title: "System  Report",
     icon: <AnalyticsIcon />,
     path: routes.system_report.list,
+    collapsable: false,
+    children: [],
+  },
+  {
+    id: "api-key-integration",
+    title: "API Key Integration",
+    icon: <PluginIcon />,
+    path: routes.api_keys.list,
     collapsable: false,
     children: [],
   },
