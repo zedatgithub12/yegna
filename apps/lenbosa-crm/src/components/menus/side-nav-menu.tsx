@@ -41,11 +41,28 @@ export const SideNavMenus = [
 
   {
     id: "read_subscription",
-    title: "Subscription",
+    title: "Subscriptions",
     icon: <StarIcon />,
     path: routes.subscription.list,
-    collapsable: false,
-    children: [],
+    collapsable: true,
+    children: [
+      {
+        id: "read_subscription",
+        title: "Subscription Plans",
+        icon: <></>,
+        path: routes.subscription.list,
+        collapsable: false,
+        children: [],
+      },
+      {
+        id: "read_subscribers",
+        title: "Subscribers",
+        icon: <></>,
+        path: routes.subscription.list,
+        collapsable: false,
+        children: [],
+      },
+    ],
   },
 
   {

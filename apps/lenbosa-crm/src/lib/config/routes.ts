@@ -21,6 +21,7 @@ export const routes = {
 
   subscription: {
     list: "/subscription-management",
+    subscribers: "/subscription-management/subscribers",
     create: "/subscription-management/create",
     edit: (id: string) => `/subscription-management/edit/${id}`,
   },

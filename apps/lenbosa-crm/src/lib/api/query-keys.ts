@@ -14,6 +14,7 @@ export const queryKeys = {
   get_users: "users",
 
   subscriptions: "subscription-plans",
+  subscribers: "subscribers",
   changePlanStatus: "change-plan-status",
   features: "features",
   messages: "message-broadcasts",
