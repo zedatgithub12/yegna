@@ -10,6 +10,7 @@ import { useRouter } from "nextjs-toploader/app";
 import { routes } from "@/lib/config/routes";
 import { RiEyeFill } from "react-icons/ri";
 import { ActionIcon } from "@yegna-systems/ui/action-icon";
+import PhoneIcon from "@/components/icons/phone";
 
 type RowSelectionProps = {
   selectedRowKeys: string[];
@@ -25,7 +26,7 @@ export const GetColumns = ({}: Partial<RowSelectionProps> = {}) => {
   const renderUser = (user: UserDataProps) => (
     <div className="flex items-center gap-4">
       <Avatar
-        src={user.profile_photo_url}
+        src={user.profile_image}
         className="w-8 h-8 rounded-full"
         name={user.name}
       />
@@ -53,9 +54,12 @@ export const GetColumns = ({}: Partial<RowSelectionProps> = {}) => {
       key: "phone",
       width: 160,
       render: (value: string) => (
-        <Text className="font-medium text-gray-900">
-          {EthiopianPhoneNumber(value)}
-        </Text>
+        <div className="flex items-center gap-2">
+          <PhoneIcon className="w-5 h-5" />
+          <Text className="font-normal text-gray-600">
+            {EthiopianPhoneNumber(value)}
+          </Text>
+        </div>
       ),
     },
     {
@@ -69,11 +73,11 @@ export const GetColumns = ({}: Partial<RowSelectionProps> = {}) => {
     },
     {
       title: <HeaderCell title="Billing Cycle" className="whitespace-nowrap" />,
-      dataIndex: "billing_Cycle",
-      key: "billing_Cycle",
+      dataIndex: "cycle",
+      key: "cycle",
       width: 100,
       render: (value: string) => (
-        <Text className="font-medium text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit">
+        <Text className="font-semibold text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit capitalize">
           {value}
         </Text>
       ),
@@ -82,11 +86,11 @@ export const GetColumns = ({}: Partial<RowSelectionProps> = {}) => {
       title: (
         <HeaderCell title="Subscription Plan" className="whitespace-nowrap" />
       ),
-      dataIndex: "subscription_plan",
-      key: "subscription_plan",
+      dataIndex: "plan",
+      key: "plan",
       width: 100,
       render: (value: string) => (
-        <Text className="font-medium text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit">
+        <Text className="font-semibold text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit capitalize">
           {value}
         </Text>
       ),
@@ -115,7 +119,7 @@ export const GetColumns = ({}: Partial<RowSelectionProps> = {}) => {
       key: "created_at",
       width: 100,
       render: (value: string) => (
-        <Text className="font-medium text-gray-900 ">
+        <Text className="text-gray-600 text-sm">
           {value ? formatDate(new Date(value)) : "-"}
         </Text>
       ),

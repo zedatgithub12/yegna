@@ -38,7 +38,7 @@ const Customers = () => {
   //get the user data
   const usersPayload = useFetchData(
     [
-      queryKeys.get_users,
+      queryKeys.customers,
       currentPage,
       pageSize,
       searchTerm,
@@ -46,7 +46,7 @@ const Customers = () => {
       gender,
       status,
     ],
-    `${queryKeys.get_users}?page=${currentPage}&limit=${pageSize}&search=${searchTerm}&role=${role}&gender=${gender}&status=${status}`
+    `${queryKeys.customers}?page=${currentPage}&limit=${pageSize}&search=${searchTerm}&role=${role}&gender=${gender}&status=${status}`
   );
   const usersData: UserDataProps[] = usersPayload?.data?.data?.data;
 

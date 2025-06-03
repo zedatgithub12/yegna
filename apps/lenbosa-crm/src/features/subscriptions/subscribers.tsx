@@ -10,7 +10,7 @@ import ControlledTable from "@/components/DataTable/table";
 
 const billing_cycles = [
   { name: "all", color: "#eee" },
-  { name: "monthly", color: "#ff00ff" },
+  { name: "monthly", color: "#02B516" },
   { name: "yearly", color: "#ff0000" },
 ];
 
@@ -34,19 +34,28 @@ const Subscribers = () => {
       search={true}
       isError={subscribersPayload.isError}
       breadcrumb={true}
+      staticComponent={
+        <div className="flex items-center gap-2 my-2">
+          {billing_cycles.map((billing_cycle, index) => (
+            <div
+              key={index}
+              className={`${cycle === billing_cycle.name ? "bg-primary" : "bg-white"} flex items-center gap-2 py-1.5 px-4  border-[1.5px] border-white rounded-full cursor-pointer`}
+              onClick={() => setCycle(billing_cycle.name)}
+            >
+              <div
+                className={`w-2.5 h-2.5 rounded-full `}
+                style={{ backgroundColor: billing_cycle.color }}
+              />
+              <Text
+                className={`${cycle === billing_cycle.name ? "text-white" : ""} capitalize `}
+              >
+                {billing_cycle.name}
+              </Text>
+            </div>
+          ))}
+        </div>
+      }
     >
-      <div>
-        {billing_cycles.map((cycle, index) => (
-          <div
-            key={index}
-            className="flex items-center border border-gray-500"
-            onClick={() => setCycle(cycle.name)}
-          >
-            <div className={`w-4 h-4  rounded-full bg-[${cycle.color}]`} />
-            <Text>{cycle.name}</Text>
-          </div>
-        ))}
-      </div>
       <div className="table-wrapper flex-grow">
         <ControlledTable
           variant="modern"

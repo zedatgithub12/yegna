@@ -25,5 +25,6 @@ interface UserDataProps {
   status: "Active" | "Inactive" | string;
   created_at: string;
   profile_photo_url: string;
+  profile_image: string;
   roles: RoleProp[];
 }

@@ -22,4 +22,5 @@ export const queryKeys = {
   get_subscription_plans: "subscription-plans",
   get_categories: "categories",
   customers: "customers",
+  adverts: "adverts",
 };

@@ -13,5 +13,5 @@ export function EthiopianPhoneNumber(phone: string): string | null {
     return `+251${cleaned}`;
   }
 
-  return null;
+  return phone;
 }

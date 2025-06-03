@@ -26,28 +26,30 @@ const CollapsableMenu = ({
 }) => (
   <div className="w-full">
     <div
-      className={`group w-11/12 flex items-center ${drawerOpen ? "pl-4" : "justify-center"} gap-4 p-2  cursor-pointer font-medium rounded-lg mx-1
+      className={`group w-12/12 flex items-center  ${drawerOpen ? "pl-4 justify-between" : "justify-center"} gap-4 p-2 ml-2  cursor-pointer font-medium rounded-lg mx-1
       ${expanded || hovered ? "bg-primary text-secondary]" : ""}
     `}
       onClick={onPress}
     >
-      {item.icon &&
-        React.cloneElement(
-          item.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
-          {
-            color: expanded || hovered ? "#D7F400" : "#656565",
-            className: "w-5 h-5",
-          }
-        )}
+      <div className="flex items-center justify-center gap-3 ">
+        {item.icon &&
+          React.cloneElement(
+            item.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
+            {
+              color: expanded || hovered ? "#D7F400" : "#656565",
+              className: "w-5 h-5",
+            }
+          )}
 
-      {drawerOpen ? (
-        <Text
-          className="text-[15px] font-outfit text-inherit line-clamp-1"
-          style={{ color: expanded || hovered ? "#D7F400" : "" }}
-        >
-          {item.title}
-        </Text>
-      ) : null}
+        {drawerOpen ? (
+          <Text
+            className="text-[15px] font-outfit text-inherit line-clamp-1 pl-1"
+            style={{ color: expanded || hovered ? "#D7F400" : "" }}
+          >
+            {item.title}
+          </Text>
+        ) : null}
+      </div>
 
       {drawerOpen && (
         <>
@@ -57,7 +59,7 @@ const CollapsableMenu = ({
               width="20px"
               height="20px"
               className="text-secondary"
-              color="#bbf451"
+              color="#D7F400"
             />
           ) : (
             <Image src={chevronRight} alt="icon" width={16} height={16} />

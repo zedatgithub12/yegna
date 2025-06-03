@@ -20,7 +20,7 @@ const Menus = () => {
   return (
     <div>
       {SideNavMenus.filter((menu) =>
-        permissions?.some((permission) => permission.name === menu.id)
+        permissions?.some((permission) => permission.name === menu.permission)
       ).map((menu, index) => (
         <MenuItem key={index} item={menu} />
       ))}

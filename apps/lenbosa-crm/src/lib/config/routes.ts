@@ -32,6 +32,12 @@ export const routes = {
     details: (id: string) => `/customers/details/${id}`,
   },
 
+  adverts: {
+    list: "/adverts",
+    create: "/adverts/create",
+    details: (id: string) => `/adverts/details/${id}`,
+  },
+
   api_keys: {
     list: "/api-key",
     create: "/api-key/create",
