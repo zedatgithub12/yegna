@@ -10,6 +10,7 @@ export const routes = {
   messages: {
     list: "/message-broadcast",
     create: "/message-broadcast/create",
+    details: (id: string) => `/message-broadcast/details/${id}`,
   },
 
   institution: {

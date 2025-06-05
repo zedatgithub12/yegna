@@ -20,5 +20,11 @@ export const queryKeys = {
   get_institution: "institutions",
   get_subscription_plans: "subscription-plans",
   get_categories: "categories",
+  getAll_categories: "all-categories",
   get_logs: "my-activity-logs",
+  get_all_message_templates: "all-message-templates",
+  message_templates: "message-templates",
+  get_all_trash_message_broadcasts: "message-broadcasts-trashes",
+  get_groups: "groups",
+  group: "groups",
 };
