@@ -1,90 +1,58 @@
-import TablePagination from "@/components/DataTable/table-pagination";
 import PageWrapper from "@/components/PagesWrapper";
 import { queryKeys } from "@/lib/api/query-keys";
 import { useFetchData } from "@/lib/api/use-fetch-data";
-import { formatDate } from "@/utils/lib/format-date-time";
-import { Avatar } from "@yegna-systems/ui/avatar";
 import { Checkbox } from "@yegna-systems/ui/checkbox";
-import { Input } from "@yegna-systems/ui/input";
-import { Text, Title } from "@yegna-systems/ui/typography";
-import { Plus } from "lucide-react";
-import Image from "next/image";
-import React, { useState } from "react";
+
+import React from "react";
 import { FiFilter } from "react-icons/fi";
-import useDebounce from "react-use/lib/useDebounce";
-import MessageDetailPage from "./DetailMessage";
-import { useModal } from "@yegna-systems/lib/hooks/use-modal";
-import CreateMessageForm from "./CreateMessage";
+import Image from "next/image";
 
-const Inbox = () => {
-  const { openModal, closeModal } = useModal();
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = React.useState("");
-  const [selected, setSelected] = useState<number[]>([]);
-  const [selectAll, setSelectAll] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [selectedMessage, setSelectedMessage] = useState<MessageProps | null>(
-    null
-  );
+import { Text, Title } from "@yegna-systems/ui/typography";
+import { Avatar } from "@yegna-systems/ui/avatar";
+import TablePagination from "@/components/DataTable/table-pagination";
+import { formatDate } from "@/utils/lib/format-date-time";
+import TrashDetailMessage from "./TrashDetailMessage";
 
-  const messagesPayload = useFetchData(
-    [queryKeys.messages, debouncedSearchTerm, currentPage, pageSize],
-    `${queryKeys.messages}?search=${debouncedSearchTerm}&page=${currentPage}&page_size=${pageSize}`
-  );
-  const messagesData: MessageProps[] = messagesPayload?.data?.data?.data;
-
-  useDebounce(
-    () => {
-      setDebouncedSearchTerm(searchTerm);
-    },
-    300,
-    [searchTerm]
-  );
+const TrashMessage = () => {
+  const [selectedMessage, setSelectedMessage] =
+    React.useState<MessageProps | null>(null);
+  const [selectAll, setSelectAll] = React.useState(false);
+  const [selected, setSelected] = React.useState<number[]>([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(10);
 
   const handleSelectAll = () => {
-    if (selectAll) {
-      setSelected([]);
-    } else {
-      setSelected(messagesData?.map((_, index) => index));
-    }
     setSelectAll(!selectAll);
+    if (!selectAll) {
+      setSelected(Array.from({ length: TrashMessageData.length }, (_, i) => i));
+    } else {
+      setSelected([]);
+    }
   };
 
   const handleSelect = (index: number) => {
-    setSelected((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+    if (selected.includes(index)) {
+      setSelected(selected.filter((item) => item !== index));
+    } else {
+      setSelected([...selected, index]);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleCreateMessage = () => {
-    openModal({
-      view: (
-        <CreateMessageForm
-          onClose={closeModal}
-          onSubmit={() => {
-            messagesPayload.refetch();
-          }}
-        />
-      ),
-      position: "right",
-      rounded: "md",
-      customSize: "400px",
-    });
-  };
+  const TrashMessagePayload = useFetchData(
+    [queryKeys.get_all_trash_message_broadcasts],
+    `${queryKeys.get_all_trash_message_broadcasts}`
+  );
+  const TrashMessageData: MessageProps[] =
+    TrashMessagePayload?.data?.data?.data || [];
 
   return (
     <PageWrapper
       hasHeader={false}
-      isLoading={messagesPayload.isFetching}
+      isLoading={TrashMessagePayload.isFetching}
       title="Message Broadcasting"
       back={false}
       search={true}
-      isError={messagesPayload.isError}
+      isError={TrashMessagePayload.isError}
       breadcrumb={true}
       notfound={false}
       fallback={{
@@ -96,16 +64,7 @@ const Inbox = () => {
         !selectedMessage && (
           <div className="w-full bg-gray-50 p-3 rounded-xl mb-3 ">
             <div className="flex justify-between items-start mb-4 w-full">
-              <Input
-                placeholder="Search"
-                inputClassName="bg-gray-100 rounded-lg"
-                className="w-full max-w-sm py-2 rounded-md"
-                variant="text"
-                value={searchTerm}
-                onChange={handleChange}
-                clearable
-                onClear={() => setSearchTerm("")}
-              />
+              <Title className="text-lg font-semibold">Trash Messages</Title>
               <button className="ml-4 flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-100 text-gray-700">
                 <FiFilter />
                 Filter
@@ -129,16 +88,15 @@ const Inbox = () => {
     >
       {selectedMessage ? (
         <div className="bg-white p-4 rounded-xl shadow-sm">
-          <MessageDetailPage
+          <TrashDetailMessage
             message={selectedMessage}
-            id={selectedMessage.id}
             goBack={() => setSelectedMessage(null)}
           />
         </div>
       ) : (
         <div className="w-full space-y-3">
-          {messagesData?.length === 0 ? (
-            <div className="bg-gray-50 flex flex-col items-center justify-center p-4 rounded-xl">
+          {TrashMessageData?.length === 0 ? (
+            <div className="bg-gray-50 flex flex-col items-center justify-center">
               <div className="w-56 h-56 relative mb-4">
                 <Image
                   src="/images/no-message.gif"
@@ -153,7 +111,7 @@ const Inbox = () => {
             </div>
           ) : (
             <>
-              {messagesData?.map((notif, index) => (
+              {TrashMessageData?.map((notif, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedMessage(notif)}
@@ -200,7 +158,7 @@ const Inbox = () => {
               <TablePagination
                 pageSize={pageSize}
                 setPageSize={setPageSize}
-                total={messagesPayload?.data?.data?.total}
+                total={TrashMessagePayload?.data?.data?.total}
                 current={currentPage}
                 onChange={(page: number) => setCurrentPage(page)}
               />
@@ -208,17 +166,8 @@ const Inbox = () => {
           )}
         </div>
       )}
-
-      {!selectedMessage && (
-        <button
-          onClick={handleCreateMessage}
-          className="absolute bottom-6 right-6 bg-primary hover:bg-primary-dark text-white p-4 rounded-full shadow-lg transition-all"
-        >
-          <Plus className="text-secondary" />
-        </button>
-      )}
     </PageWrapper>
   );
 };
 
-export default Inbox;
+export default TrashMessage;

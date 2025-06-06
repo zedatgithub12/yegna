@@ -9,6 +9,13 @@ import MessageDraft from "@/components/icons/message-draft";
 import MessageTemplate from "@/components/icons/message-template";
 import Inbox from "./Inbox";
 import { Plus } from "lucide-react";
+import Templates from "./templates";
+import RecipientGroup from "./RecipientGroup";
+import TrashMessage from "./TrashMessage";
+import { useModal } from "@yegna-systems/lib/hooks/use-modal";
+import CreateMessageForm from "./CreateMessage";
+import { useFetchData } from "@/lib/api/use-fetch-data";
+import { queryKeys } from "@/lib/api/query-keys";
 
 const MessageTabOptions = [
   {
@@ -27,30 +34,55 @@ const MessageTabOptions = [
     id: 3,
     name: "Trash",
     icon: <TrashIcon className="w-5 h-5" />,
-    component: <div>Trashed Messages</div>,
+    component: <TrashMessage />,
   },
   {
     id: 4,
     name: "Templates",
     icon: <MessageTemplate className="w-5 h-5" />,
-    component: <div>Message Template</div>,
+    component: <Templates />,
   },
   {
     id: 5,
     name: "Recipient Group",
     icon: <UserGroupIcon className="w-5 h-5" />,
-    component: <div>Recipient Group</div>,
+    component: <RecipientGroup />,
   },
 ];
 
 const MessageSideNav = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const { openModal, closeModal } = useModal();
+
+  const messagesPayload = useFetchData(
+    [queryKeys.messages],
+    `${queryKeys.messages}`
+  );
+
+  const handleCreateMessage = () => {
+    openModal({
+      view: (
+        <CreateMessageForm
+          onClose={closeModal}
+          onSubmit={() => {
+            messagesPayload.refetch();
+          }}
+        />
+      ),
+      position: "right",
+      rounded: "md",
+      customSize: "400px",
+    });
+  };
 
   return (
     <div className="flex min-h-3/6 gap-4 mt-3">
       {/* Sidebar */}
       <aside className="w-64 min-h-dvh bg-white p-4 rounded-3xl">
-        <div className="w-full rounded-2xl gap-2 hover:scale-105 transition-all ease-out duration-200 cursor-pointer bg-[#F7F7F7] py-5 flex items-center justify-center">
+        <div
+          onClick={handleCreateMessage}
+          className="w-full rounded-2xl gap-2 hover:scale-105 transition-all ease-out duration-200 cursor-pointer bg-[#F7F7F7] py-5 flex items-center justify-center"
+        >
           <Plus size={18} color="#00464F" />
           <Title as="h6" className="font-normal text-primary">
             Compose Message

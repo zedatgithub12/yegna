@@ -11,12 +11,14 @@ export const useGetHeaders = ({ type = "Json" }: Props) => {
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
       Authorization: `Bearer ${session?.user.token}`,
+      poolsource: "muhuro",
     };
   } else {
     return {
       "Content-Type": "application/json",
       Accept: "application/json",
       Authorization: `Bearer ${session?.user.token}`,
+      poolsource: "muhuro",
     };
   }
 };

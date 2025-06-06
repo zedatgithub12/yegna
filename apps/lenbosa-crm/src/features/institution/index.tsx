@@ -18,11 +18,14 @@ import { GetColumns } from "./components/column";
 import DeleteRecord from "@/utils/components/DeleteRecord";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@yegna-systems/lib/hooks/use-modal";
+import InstitutionFilter from "./components/InstitutionFilter";
+import { useDrawer } from "@yegna-systems/lib/hooks/use-drawer";
 
 const Institution = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { openModal, closeModal } = useModal();
+  const { openDrawer } = useDrawer();
 
   const headers = useGetHeaders({ type: "Json" });
 
@@ -38,6 +41,13 @@ const Institution = () => {
 
   const institutionData: getInstitutionProps[] =
     responsePayload?.data?.data?.data;
+
+  const categoriePayload = useFetchData(
+    [queryKeys.get_categories],
+    `${queryKeys.get_categories}`
+  );
+
+  const categoriesData = categoriePayload?.data?.data?.data ?? [];
 
   const handleSelectRow = (id: string) => {
     setSelectedRowKeys((prev) =>
@@ -80,48 +90,50 @@ const Institution = () => {
             Add Institution
           </Button>
         }
-      >
-        <TableSearch
-          title="Search for Institution"
-          setDebouncedValue={(val) => {
-            setCurrentPage(1);
-            setSearchTerm(val);
-          }}
-          placeholder="Search..."
-          className="w-full bg-gray-100 rounded-xl "
-        >
-          <Button
-            className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
-            onClick={() =>
-              openModal({
-                view: <div className="flex flex-col">Filter Modal</div>,
-                customSize: "400px",
-                // position: "right",
-              })
-            }
+        staticComponent={
+          <TableSearch
+            title="Search for Institution"
+            titleClassName="text-md font-medium"
+            setDebouncedValue={(val) => {
+              setCurrentPage(1);
+              setSearchTerm(val);
+            }}
+            placeholder="Search..."
+            className="w-full bg-gray-100 rounded-xl "
           >
-            <ListFilter className="text-gray-600" size={18} />
-            Filter
-          </Button>
-
-          {institutionData?.length ? (
             <Button
-              color="primary"
-              className="flex items-center gap-2 w-full rounded-2xl text-secondary"
+              className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
               onClick={() =>
-                handleExport(
-                  `users/export-all/?format=excel&page=${currentPage}&limit=${pageSize}&search=${searchTerm}`,
-                  headers
-                )
+                openDrawer({
+                  view: <InstitutionFilter categories={categoriesData} />,
+                  placement: "right",
+                  customSize: 10,
+                })
               }
-              disabled={institutionData?.length === 0}
             >
-              <FileInput className="text-secondary" size={18} />
-              Export
+              <ListFilter className="text-gray-600" size={18} />
+              Filter
             </Button>
-          ) : null}
-        </TableSearch>
 
+            {institutionData?.length ? (
+              <Button
+                color="primary"
+                className="flex items-center gap-2 w-full rounded-2xl text-secondary"
+                onClick={() =>
+                  handleExport(
+                    `users/export-all/?format=excel&page=${currentPage}&limit=${pageSize}&search=${searchTerm}`,
+                    headers
+                  )
+                }
+                disabled={institutionData?.length === 0}
+              >
+                <FileInput className="text-secondary" size={18} />
+                Export
+              </Button>
+            ) : null}
+          </TableSearch>
+        }
+      >
         <div className="tabel-wrapper flex-grow">
           <ControlledTable
             variant="modern"
