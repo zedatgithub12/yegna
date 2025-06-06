@@ -1,6 +1,11 @@
+import React, { useState } from "react";
 import UsersCard from "@/components/Card/UsersCard";
+import Pagination from "@/components/DataTable/pagination";
 import EditPencil from "@/components/icons/edit-pencil";
 import RoleFolder from "@/components/icons/role-folder";
+import Loader from "@/components/Loader";
+import { queryKeys } from "@/lib/api/query-keys";
+import { useFetchData } from "@/lib/api/use-fetch-data";
 import { routes } from "@/lib/config/routes";
 import { formatDate } from "@/utils/lib/format-date-time";
 import { useModal } from "@yegna-systems/lib/hooks/use-modal";
@@ -8,7 +13,6 @@ import { Button } from "@yegna-systems/ui/button";
 import { Text, Title } from "@yegna-systems/ui/typography";
 import { ChevronLeft, User } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const RoleDetail = ({
   id,
@@ -25,6 +29,15 @@ const RoleDetail = ({
 }) => {
   const { closeModal } = useModal();
   const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const responsePayload = useFetchData(
+    [queryKeys.get_roles, id, currentPage],
+    `${queryKeys.get_roles}/${id}?page=${currentPage}`
+  );
+
+  const roleUsers: roleUser[] = responsePayload?.data?.data?.users?.data;
 
   return (
     <div className="relative h-[98dvh] ">
@@ -94,14 +107,39 @@ const RoleDetail = ({
             </Title>
           </div>
 
-          <UsersCard
-            showIcon={true}
-            avatar=""
-            name="Philimon Mehari"
-            email="philimon2@gmail.com"
-            onPress={() => {}}
-            onRemove={() => {}}
-          />
+          {responsePayload.isFetching ? (
+            <Loader size={12} />
+          ) : roleUsers.length > 0 ? (
+            <div className="flex flex-col justify-between h-[51dvh]">
+              <div>
+                {roleUsers.map((user) => (
+                  <UsersCard
+                    key={user.id}
+                    showIcon={false}
+                    avatar={user.profile_photo_url}
+                    name={user.name}
+                    email={user.email}
+                    onPress={() => {}}
+                    onRemove={() => {}}
+                  />
+                ))}
+              </div>
+
+              {responsePayload?.data?.data?.users?.total > pageSize && (
+                <Pagination
+                  total={responsePayload?.data?.data?.users?.total}
+                  pageSize={pageSize}
+                  current={currentPage}
+                  onChange={(page: number) => setCurrentPage(page)}
+                  showLessItems={true}
+                  prevIconClassName="py-0 text-gray-500 !leading-[26px]"
+                  nextIconClassName="py-0 text-gray-500 !leading-[26px]"
+                  color="primary"
+                  className="rounded-2xl justify-end"
+                />
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

@@ -35,6 +35,7 @@ export const routes = {
   adverts: {
     list: "/adverts",
     create: "/adverts/create",
+    edit: (id: string) => `/adverts/edit/${id}`,
     details: (id: string) => `/adverts/details/${id}`,
   },
 

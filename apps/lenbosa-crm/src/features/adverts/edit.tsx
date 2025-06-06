@@ -15,16 +15,27 @@ import RichTextEditor from "@/components/Input/RichTextEditor";
 import { advertValidationSchema } from "@/validations/advert.schema";
 import ReactDatePicker from "@/components/ui/date-picker";
 import { CalendarDays } from "lucide-react";
+import { useFetchData } from "@/lib/api/use-fetch-data";
+import { useParams } from "next/navigation";
 
-const CreateAdvert = () => {
+const EditAdvert = () => {
   const router = useRouter();
+  const params = useParams();
+  const id = params?.id;
   const postMutation = useDynamicMutation({ type: "FormData" });
 
+  const responsePayload = useFetchData(
+    [queryKeys.adverts, id],
+    `${queryKeys.adverts}/${id}`
+  );
+
+  const advertData = responsePayload?.data?.data;
+
   const initialValues: AdvertFormValues = {
-    title: "",
-    start_date: "",
-    end_date: "",
-    description: "",
+    title: advertData?.name || "",
+    start_date: advertData?.start_date || "",
+    end_date: advertData?.end_date || "",
+    description: advertData?.body || "",
     ad_banner: null,
   };
 
@@ -41,13 +52,13 @@ const CreateAdvert = () => {
       }
 
       await postMutation.mutateAsync({
-        url: queryKeys.adverts,
-        method: "POST",
+        url: `${queryKeys.adverts}/${id}`,
+        method: "PATCH",
         body: formData,
 
         onSuccess: (res) => {
           if (res.success) {
-            toast.success("Successfully created!");
+            toast.success("Successfully updated!");
             router.back();
           } else {
             toast.error(res.message);
@@ -69,14 +80,15 @@ const CreateAdvert = () => {
 
   return (
     <PageWrapper
-      isLoading={false}
-      title="Create Advert"
+      isLoading={responsePayload.isFetching}
+      title="Edit Advert"
       back={true}
       search={false}
       breadcrumb={true}
       childrenClassnames="bg-white rounded-xl p-4 mt-4"
     >
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         validationSchema={advertValidationSchema}
         onSubmit={handleFormSubmission}
@@ -92,7 +104,7 @@ const CreateAdvert = () => {
                   as="p"
                   className="text-gray-400 text-sm mt-0.5 font-normal capitalize"
                 >
-                  Add the Ad information from here
+                  Edit the Ad information from here
                 </Text>
               </div>
               <div className="col-span-12 md:col-span-8 space-y-3">
@@ -207,6 +219,7 @@ const CreateAdvert = () => {
                   setSelectedFile={(ad_banner) =>
                     setFieldValue("ad_banner", ad_banner)
                   }
+                  previewUrl={advertData?.image?.url}
                 />
               </div>
             </div>
@@ -249,4 +262,4 @@ const CreateAdvert = () => {
   );
 };
 
-export default CreateAdvert;
+export default EditAdvert;

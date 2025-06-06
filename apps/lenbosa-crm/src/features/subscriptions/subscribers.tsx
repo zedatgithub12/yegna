@@ -9,13 +9,13 @@ import { Text } from "@yegna-systems/ui/typography";
 import ControlledTable from "@/components/DataTable/table";
 
 const billing_cycles = [
-  { name: "all", color: "#eee" },
-  { name: "monthly", color: "#02B516" },
-  { name: "yearly", color: "#ff0000" },
+  { name: "all", value: "", color: "#eee" },
+  { name: "monthly", value: "monthly", color: "#02B516" },
+  { name: "yearly", value: "yearly", color: "#ff0000" },
 ];
 
 const Subscribers = () => {
-  const [cycle, setCycle] = useState("all");
+  const [cycle, setCycle] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -39,15 +39,15 @@ const Subscribers = () => {
           {billing_cycles.map((billing_cycle, index) => (
             <div
               key={index}
-              className={`${cycle === billing_cycle.name ? "bg-primary" : "bg-white"} flex items-center gap-2 py-1.5 px-4  border-[1.5px] border-white rounded-full cursor-pointer`}
-              onClick={() => setCycle(billing_cycle.name)}
+              className={`${cycle === billing_cycle.value ? "bg-primary" : "bg-white"} flex items-center gap-2 py-1.5 px-4  border-[1.5px] border-white rounded-full cursor-pointer`}
+              onClick={() => setCycle(billing_cycle.value)}
             >
               <div
                 className={`w-2.5 h-2.5 rounded-full `}
                 style={{ backgroundColor: billing_cycle.color }}
               />
               <Text
-                className={`${cycle === billing_cycle.name ? "text-white" : ""} capitalize `}
+                className={`${cycle === billing_cycle.value ? "text-white" : ""} capitalize `}
               >
                 {billing_cycle.name}
               </Text>

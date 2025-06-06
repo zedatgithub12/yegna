@@ -1,7 +1,6 @@
 "use client";
 
 import HeaderCell from "@/components/DataTable/header-cell";
-import { EthiopianPhoneNumber } from "@/utils/lib/ethiopian-phone";
 import { formatDate } from "@/utils/lib/format-date-time";
 import { StatusColor } from "@/utils/lib/status-color";
 import { Text } from "@yegna-systems/ui/typography";
@@ -21,24 +20,26 @@ export const GetColumns = ({ onDeleteUser }: advertsProps) => {
 
   return [
     {
-      title: <HeaderCell title="User Name" className="whitespace-nowrap" />,
+      title: <HeaderCell title="Title" className="whitespace-nowrap" />,
+      dataIndex: "name",
       key: "name",
-      width: 200,
-      render: (value: string) => {
-        <Text className="font-semibold text-[15px] text-gray-900 ">
+      width: 80,
+      render: (value: string) => (
+        <Text className="font-medium text-[15px] text-gray-900 ">
           {value}
-        </Text>;
-      },
+        </Text>
+      ),
     },
     {
       title: <HeaderCell title="Description" className="whitespace-nowrap" />,
-      dataIndex: "description",
-      key: "description",
-      width: 160,
+      dataIndex: "body",
+      key: "body",
+      width: 100,
       render: (value: string) => (
-        <Text className="font-medium text-gray-900">
-          {EthiopianPhoneNumber(value)}
-        </Text>
+        <div
+          className="text-sm text-gray-400 my-1"
+          dangerouslySetInnerHTML={{ __html: value ?? "" }}
+        />
       ),
     },
     {
@@ -47,7 +48,7 @@ export const GetColumns = ({ onDeleteUser }: advertsProps) => {
       key: "start_date",
       width: 100,
       render: (value: string) => (
-        <Text className="font-medium text-gray-900 ">
+        <Text className="font-normal text-gray-500 text-sm">
           {value ? formatDate(new Date(value)) : "-"}
         </Text>
       ),
@@ -59,7 +60,7 @@ export const GetColumns = ({ onDeleteUser }: advertsProps) => {
       key: "end_date",
       width: 100,
       render: (value: string) => (
-        <Text className="font-medium text-gray-900 ">
+        <Text className="font-normal text-gray-500 text-sm">
           {value ? formatDate(new Date(value)) : "-"}
         </Text>
       ),
@@ -67,51 +68,42 @@ export const GetColumns = ({ onDeleteUser }: advertsProps) => {
 
     {
       title: <HeaderCell title="Status" className="whitespace-nowrap" />,
-      dataIndex: "status",
-      key: "status",
+      dataIndex: "is_active",
+      key: "is_active",
       width: 100,
       render: (value: string) => (
         <Text
-          className="font-normal text-center px-2 py-1 rounded-full"
+          className="font-normal text-center px-2 py-1 rounded-full capitalize"
           style={{
-            color: StatusColor(value)?.color,
-            backgroundColor: StatusColor(value)?.background,
+            color: StatusColor(value ? "active" : "inactive")?.color,
+            backgroundColor: StatusColor(value ? "active" : "inactive")
+              ?.background,
           }}
         >
-          {value}
+          {value ? "active" : "inactive"}
         </Text>
       ),
     },
-    {
-      title: <HeaderCell title="Registered at" className="whitespace-nowrap" />,
-      dataIndex: "created_at",
-      key: "created_at",
-      width: 100,
-      render: (value: string) => (
-        <Text className="font-medium text-gray-900 ">
-          {value ? formatDate(new Date(value)) : "-"}
-        </Text>
-      ),
-    },
+
     {
       title: <HeaderCell title="Action" className="whitespace-nowrap" />,
       dataIndex: "id",
       key: "id",
-      width: 60,
+      width: 40,
       render: (value: string) => (
         <div className="flex items-center">
           <ActionIcon
             variant="text"
-            onClick={() => router.push(routes.user.details(value))}
+            onClick={() => router.push(routes.adverts.details(value))}
           >
             <RiEyeFill className="text-primary" size={16} />
           </ActionIcon>
 
           <ActionIcon
             variant="text"
-            onClick={() => router.push(routes.user.edit(value))}
+            onClick={() => router.push(routes.adverts.edit(value))}
           >
-            <EditPencil className="w-4 h-4" />
+            <EditPencil className="w-4 h-4 text-primary" color="#0B4650" />
           </ActionIcon>
 
           <ActionIcon variant="text" onClick={() => onDeleteUser(value)}>

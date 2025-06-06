@@ -14,3 +14,10 @@ interface CreateRoleProps {
   description: string;
   permissions: string[];
 }
+
+interface roleUser {
+  id: string;
+  name: string;
+  email: string;
+  profile_photo_url: string;
+}

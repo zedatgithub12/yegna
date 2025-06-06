@@ -72,8 +72,8 @@ export const SideNavMenus = [
     ],
   },
   {
-    id: "ads_campaigns",
-    permission: "read_user",
+    id: "read_campaign",
+    permission: "read_campaign",
     title: "Ads & Campaigns",
     icon: <AdsIcon />,
     path: routes.adverts.list,
@@ -82,8 +82,8 @@ export const SideNavMenus = [
   },
 
   {
-    id: "read_user",
-    permission: "read_user",
+    id: "read_customer",
+    permission: "read_customer",
     title: "Customers",
     icon: <UserIcon />,
     path: routes.customers.list,

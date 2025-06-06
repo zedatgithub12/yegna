@@ -5,13 +5,9 @@ export const advertValidationSchema = Yup.object().shape({
     .required("Title is required")
     .max(100, "Title must be at most 100 characters"),
 
-  start_date: Yup.string()
-    .required("Start date is required")
-    .matches(/^\d{4}-\d{2}-\d{2}$/, "Start date must be in YYYY-MM-DD format"),
+  start_date: Yup.string().required("Start date is required"),
 
-  end_date: Yup.string()
-    .required("End date is required")
-    .matches(/^\d{4}-\d{2}-\d{2}$/, "End date must be in YYYY-MM-DD format"),
+  end_date: Yup.string().required("End date is required"),
 
   description: Yup.string()
     .required("Description is required")
@@ -21,7 +17,7 @@ export const advertValidationSchema = Yup.object().shape({
     .nullable()
     .test("fileSize", "File size is too large", (value) => {
       const file = value as File | null;
-      return !file || (file && file.size <= 5 * 1024 * 1024);
+      return !file || (file && file.size <= 10 * 1024 * 1024);
     })
     .test("fileType", "Unsupported file format", (value) => {
       return (

@@ -28,8 +28,7 @@ const Adverts = () => {
     [queryKeys.adverts, currentPage, pageSize, searchTerm],
     `${queryKeys.adverts}?page=${currentPage}&limit=${pageSize}&search=${searchTerm}`
   );
-
-  const _data = responsePayload?.data?.data;
+  const _data = responsePayload?.data?.data?.data;
 
   return (
     <div>
@@ -77,7 +76,6 @@ const Adverts = () => {
             isLoading={responsePayload.isFetching}
             rowKey={"id"}
             scroll={{ x: 1000 }}
-            // @ts-expect-error ts-migrate(2322) TS2551: Expression will have type 'never' because expression is not callable.
             columns={GetColumns({
               onDeleteUser: (ad_id) =>
                 openModal({
@@ -89,7 +87,7 @@ const Adverts = () => {
                       url={`${queryKeys.adverts}/${ad_id}`}
                       onRefresh={() =>
                         queryClient.invalidateQueries({
-                          queryKey: [queryKeys.get_users],
+                          queryKey: [queryKeys.adverts],
                         })
                       }
                       closeModal={closeModal}
