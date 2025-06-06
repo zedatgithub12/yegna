@@ -5,21 +5,18 @@ import PageWrapper from "@/components/PagesWrapper";
 import SvgWrapper from "@/components/SvgWrapper";
 import useUserFilterStore from "@/store/user.store";
 import TableSearch from "@yegna-systems/lib/table/table-search";
-import UserFilter from "../users/components/UserFilter";
 import ControlledTable from "@/components/DataTable/table";
 import { queryKeys } from "@/lib/api/query-keys";
 import { useFetchData } from "@/lib/api/use-fetch-data";
 import { routes } from "@/lib/config/routes";
 import { exportToExcel } from "@/utils/lib/export-data";
-import { useDrawer } from "@yegna-systems/lib/hooks/use-drawer";
 import { Button } from "@yegna-systems/ui/button";
 import { useRouter } from "nextjs-toploader/app";
-import { FileInput, ListFilter } from "lucide-react";
+import { FileInput, } from "lucide-react";
 import { GetColumns } from "./column";
 
 const Customers = () => {
   const router = useRouter();
-  const { openDrawer } = useDrawer();
 
   const { role, gender, status } = useUserFilterStore((state) => state);
 
@@ -27,13 +24,6 @@ const Customers = () => {
   const [pageSize, setPageSize] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
-
-  const responsePayload = useFetchData(
-    [queryKeys.get_roles],
-    `${queryKeys.get_roles}`
-  );
-
-  const rolesData: rolesProps[] = responsePayload?.data?.data;
 
   //get the user data
   const usersPayload = useFetchData(
@@ -124,7 +114,7 @@ const Customers = () => {
             className="w-full bg-gray-100 rounded-xl "
             titleClassName="text-[16px]"
           >
-            <Button
+            {/* <Button
               className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
               onClick={() =>
                 openDrawer({
@@ -136,7 +126,7 @@ const Customers = () => {
             >
               <ListFilter className="text-gray-600" size={18} />
               Filter
-            </Button>
+            </Button> */}
 
             {usersData?.length ? (
               <Button

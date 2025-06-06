@@ -2,10 +2,8 @@ import { routes } from "@/lib/config/routes";
 import HomeIcon from "../icons/home";
 import MessageIcon from "../icons/message";
 import StarIcon from "../icons/star";
-import PluginIcon from "../icons/plugin";
 import UserGroupIcon from "../icons/user-group";
 import HRIcon from "../icons/human-resource";
-import SettingIcon from "../icons/setting";
 import AnalyticsIcon from "../icons/analytics";
 import LogIcon from "../icons/logs";
 import HealthIcon from "../icons/system-health";
@@ -112,30 +110,11 @@ export const SideNavMenus = [
   },
 
   {
-    id: "read_configuration",
-    permission: "read_configuration",
-    title: "System Configurations",
-    icon: <SettingIcon />,
-    path: routes.configuration.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
     id: "read_report",
     permission: "read_report",
     title: "System  Report",
     icon: <AnalyticsIcon />,
     path: routes.system_report.list,
-    collapsable: false,
-    children: [],
-  },
-  {
-    id: "api-key-integration",
-    permission: "read_api-key-integration",
-    title: "API Key Integration",
-    icon: <PluginIcon />,
-    path: routes.api_keys.list,
     collapsable: false,
     children: [],
   },
