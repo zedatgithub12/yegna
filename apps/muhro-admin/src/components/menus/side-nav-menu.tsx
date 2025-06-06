@@ -1,10 +1,7 @@
 import { routes } from "@/lib/config/routes";
 import HomeIcon from "../icons/home";
 import MessageIcon from "../icons/message";
-import StarIcon from "../icons/star";
-import PluginIcon from "../icons/plugin";
 import UserGroupIcon from "../icons/user-group";
-import HRIcon from "../icons/human-resource";
 import SettingIcon from "../icons/setting";
 import AnalyticsIcon from "../icons/analytics";
 import LogIcon from "../icons/logs";
@@ -29,37 +26,10 @@ export const SideNavMenus = [
   },
 
   {
-    id: "subscription",
-    title: "Subscription Management",
-    icon: <StarIcon />,
-    path: routes.subscription.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "api-key-integration",
-    title: "API Key Integration",
-    icon: <PluginIcon />,
-    path: routes.api_keys.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
     id: "users",
     title: "User Management",
     icon: <UserGroupIcon />,
     path: routes.user.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "role-permission",
-    title: "Role & Permissions",
-    icon: <HRIcon />,
-    path: routes.role_permission.list,
     collapsable: false,
     children: [],
   },

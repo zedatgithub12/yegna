@@ -20,6 +20,7 @@ const Subscriptions = () => {
   const queryClient = useQueryClient();
 
   const [changingStatus, setChangingStatus] = useState(false);
+  const [selectedCycle, setSelectedCycle] = useState("monthly");
 
   const subscriptionPayload = useFetchData(
     [queryKeys.subscriptions],
@@ -78,11 +79,15 @@ const Subscriptions = () => {
         </Button>
       }
     >
-      <BillingCycle />
+      <BillingCycle
+        selectedCycle={selectedCycle}
+        setSelectedCycle={setSelectedCycle}
+      />
       <SubscriptionPlans
         plans={subscriptionData}
         onChangePlanStatus={(id) => handleChangingPlanStatus(id)}
         isChanging={changingStatus}
+        billing_cycle={selectedCycle}
       />
     </PageWrapper>
   );

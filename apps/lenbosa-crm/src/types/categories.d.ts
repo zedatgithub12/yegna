@@ -4,3 +4,5 @@ interface Category {
   createdAt: Date;
   updatedAt: Date;
 }
+
+type AllCategories = Category[];

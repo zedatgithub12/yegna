@@ -1,5 +1,5 @@
 export const queryKeys = {
-  login: "login",
+  login: "/auth/login",
   forgot_password: "reset-password",
   verify_otp: "verify-otp",
   create_password: "create-password",

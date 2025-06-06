@@ -90,48 +90,50 @@ const Institution = () => {
             Add Institution
           </Button>
         }
-      >
-        <TableSearch
-          title="Search for Institution"
-          setDebouncedValue={(val) => {
-            setCurrentPage(1);
-            setSearchTerm(val);
-          }}
-          placeholder="Search..."
-          className="w-full bg-gray-100 rounded-xl "
-        >
-          <Button
-            className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
-            onClick={() =>
-              openDrawer({
-                view: <InstitutionFilter categories={categoriesData} />,
-                placement: "right",
-                customSize: 10,
-              })
-            }
+        staticComponent={
+          <TableSearch
+            title="Search for Institution"
+            titleClassName="text-md font-medium"
+            setDebouncedValue={(val) => {
+              setCurrentPage(1);
+              setSearchTerm(val);
+            }}
+            placeholder="Search..."
+            className="w-full bg-gray-100 rounded-xl "
           >
-            <ListFilter className="text-gray-600" size={18} />
-            Filter
-          </Button>
-
-          {institutionData?.length ? (
             <Button
-              color="primary"
-              className="flex items-center gap-2 w-full rounded-2xl text-secondary"
+              className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
               onClick={() =>
-                handleExport(
-                  `users/export-all/?format=excel&page=${currentPage}&limit=${pageSize}&search=${searchTerm}`,
-                  headers
-                )
+                openDrawer({
+                  view: <InstitutionFilter categories={categoriesData} />,
+                  placement: "right",
+                  customSize: 10,
+                })
               }
-              disabled={institutionData?.length === 0}
             >
-              <FileInput className="text-secondary" size={18} />
-              Export
+              <ListFilter className="text-gray-600" size={18} />
+              Filter
             </Button>
-          ) : null}
-        </TableSearch>
 
+            {institutionData?.length ? (
+              <Button
+                color="primary"
+                className="flex items-center gap-2 w-full rounded-2xl text-secondary"
+                onClick={() =>
+                  handleExport(
+                    `users/export-all/?format=excel&page=${currentPage}&limit=${pageSize}&search=${searchTerm}`,
+                    headers
+                  )
+                }
+                disabled={institutionData?.length === 0}
+              >
+                <FileInput className="text-secondary" size={18} />
+                Export
+              </Button>
+            ) : null}
+          </TableSearch>
+        }
+      >
         <div className="tabel-wrapper flex-grow">
           <ControlledTable
             variant="modern"
@@ -181,7 +183,6 @@ const Institution = () => {
       </PageWrapper>
     </div>
   );
-
 };
 
 export default Institution;

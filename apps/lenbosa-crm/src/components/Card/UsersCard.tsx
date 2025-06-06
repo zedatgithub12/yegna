@@ -48,7 +48,7 @@ const UsersCard = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between w-full p-2 cursor-pointer group border-b",
+        "flex items-center justify-between w-full p-2 cursor-pointer group border-b hover:bg-gray-50",
         className
       )}
     >

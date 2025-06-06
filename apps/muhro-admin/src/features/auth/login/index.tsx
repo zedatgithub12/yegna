@@ -29,7 +29,7 @@ const LoginPage = () => {
         url: queryKeys.login,
         method: "POST",
         body: {
-          username: values.username,
+          user_name: values.username,
           password: values.password,
         },
         onSuccess: (res) => {

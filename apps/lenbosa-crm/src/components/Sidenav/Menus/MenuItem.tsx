@@ -9,6 +9,7 @@ import { useRouter } from "nextjs-toploader/app";
 import SvgWrapper from "@/components/SvgWrapper";
 import { Text } from "@/components/ui/typography";
 import { Tooltip } from "@/components/ui/tooltip";
+import SubMenuItem from "./SubMenu";
 
 const CollapsableMenu = ({
   item,
@@ -23,14 +24,14 @@ const CollapsableMenu = ({
   hovered: boolean;
   drawerOpen: boolean;
 }) => (
-  <div className="w-11/12">
+  <div className="w-full">
     <div
-      className={`group flex items-center justify-between gap-4 p-2 pl-3 cursor-pointer font-medium rounded-lg mx-1
-        ${expanded || hovered ? "bg-primary text-secondary]" : ""}
-      `}
+      className={`group w-12/12 flex items-center  ${drawerOpen ? "pl-4 justify-between" : "justify-center"} gap-4 p-2 ml-2  cursor-pointer font-medium rounded-lg mx-1
+      ${expanded || hovered ? "bg-primary text-secondary]" : ""}
+    `}
       onClick={onPress}
     >
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-center gap-3 ">
         {item.icon &&
           React.cloneElement(
             item.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>,
@@ -42,7 +43,7 @@ const CollapsableMenu = ({
 
         {drawerOpen ? (
           <Text
-            className="text-[15px] font-outfit text-inherit line-clamp-1"
+            className="text-[15px] font-outfit text-inherit line-clamp-1 pl-1"
             style={{ color: expanded || hovered ? "#D7F400" : "" }}
           >
             {item.title}
@@ -50,23 +51,27 @@ const CollapsableMenu = ({
         ) : null}
       </div>
 
-      {expanded ? (
-        <SvgWrapper
-          src="/assets/icons/arrow-down-01.svg"
-          width="20px"
-          height="20px"
-          className="text-lime-300"
-          color="#bbf451"
-        />
-      ) : (
-        <Image src={chevronRight} alt="icon" width={16} height={16} />
+      {drawerOpen && (
+        <>
+          {expanded ? (
+            <SvgWrapper
+              src="/assets/icons/arrow-down-01.svg"
+              width="20px"
+              height="20px"
+              className="text-secondary"
+              color="#D7F400"
+            />
+          ) : (
+            <Image src={chevronRight} alt="icon" width={16} height={16} />
+          )}
+        </>
       )}
     </div>
 
-    {expanded && (
-      <div className="ml-2">
+    {expanded && drawerOpen && (
+      <div className="ml-7 border-l-4 border-gray-100 mr-2 pt-1">
         {item.children?.map((child, index) => (
-          <MenuItem key={index} item={child} />
+          <SubMenuItem key={index} item={child} />
         ))}
       </div>
     )}
@@ -156,7 +161,7 @@ const MenuItem = ({ item }: { item: menuItem }) => {
           className={`${drawerOpen ? "hidden" : "flex"}`}
         >
           <div
-            className="flex items-start justify-between w-fit pr-1 my-1"
+            className="flex items-start justify-between w-full pr-1 my-1"
             onMouseEnter={() => setHoveredId(item.id)}
             onMouseLeave={() => setHoveredId(null)}
           >

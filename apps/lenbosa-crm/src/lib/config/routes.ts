@@ -10,6 +10,7 @@ export const routes = {
   messages: {
     list: "/message-broadcast",
     create: "/message-broadcast/create",
+    details: (id: string) => `/message-broadcast/details/${id}`,
   },
 
   institution: {
@@ -21,6 +22,7 @@ export const routes = {
 
   subscription: {
     list: "/subscription-management",
+    subscribers: "/subscription-management/subscribers",
     create: "/subscription-management/create",
     edit: (id: string) => `/subscription-management/edit/${id}`,
   },
@@ -29,6 +31,13 @@ export const routes = {
     list: "/customers",
     create: "/customers/create",
     details: (id: string) => `/customers/details/${id}`,
+  },
+
+  adverts: {
+    list: "/adverts",
+    create: "/adverts/create",
+    edit: (id: string) => `/adverts/edit/${id}`,
+    details: (id: string) => `/adverts/details/${id}`,
   },
 
   api_keys: {

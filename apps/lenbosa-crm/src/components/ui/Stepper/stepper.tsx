@@ -1,3 +1,4 @@
+import cn from "@yegna-systems/ui/cn";
 import { Check } from "lucide-react"; // Optional: use any icon library or replace with ✓
 
 type Step = {
@@ -8,24 +9,35 @@ type Step = {
 export type StepperProps = {
   steps: Step[];
   currentStep: number;
+  stepClassName?: string;
 };
 
-export const Stepper = ({ steps, currentStep }: StepperProps) => {
+export const Stepper = ({
+  steps,
+  currentStep,
+  stepClassName,
+}: StepperProps) => {
   return (
-    <div className="bg-white flex items-center justify-between w-full p-4 rounded-lg ">
+    <div className="flex items-center justify-between w-full p-4 rounded-lg bg-white">
       {steps.map((step, index) => {
         const isActive = index === currentStep;
         const isCompleted = index < currentStep;
 
         return (
-          <div key={index} className="flex items-center w-full">
+          <div
+            key={index}
+            className={cn(
+              `flex items-center  ${index < steps.length - 1 ? "w-10/12" : ""}`,
+              stepClassName
+            )}
+          >
             <div className="flex items-center gap-2">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold  ${
+                className={`min-w-10 min-h-10 rounded-full flex items-center justify-center text-[16px] font-bold  ${
                   isCompleted
                     ? "bg-green-600"
                     : isActive
-                      ? "bg-teal-900 text-white"
+                      ? "bg-primary text-secondary"
                       : "border-2 border-gray-300 text-black-300 bg-white"
                 }`}
               >
@@ -45,7 +57,15 @@ export const Stepper = ({ steps, currentStep }: StepperProps) => {
               </div>
             </div>
             {index < steps.length - 1 && (
-              <div className="flex-1 h-px bg-gray-300 mx-2"></div>
+              <div
+                className={`flex-1 h-0.5  mx-2 w-full rounded-full ${
+                  isCompleted
+                    ? "bg-green-600"
+                    : isActive
+                      ? "bg-primary"
+                      : "bg-gray-800"
+                }`}
+              ></div>
             )}
           </div>
         );

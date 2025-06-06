@@ -1,11 +1,10 @@
 import React from "react";
 import DatePicker, { type DatePickerProps } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CiCalendar } from "react-icons/ci";
-import { IoChevronDownSharp } from "react-icons/io5";
-import { InputProps } from "./input";
+import { Input, InputProps } from "./input";
+import { CalendarIcon } from "lucide-react";
 import cn from "@yegna-systems/ui/cn";
-import { Input } from "@yegna-systems/ui/input";
+import { ChevronDownIcon } from "@/utils/icons/chevron-down";
 
 const calendarContainerClasses = {
   base: "[&.react-datepicker]:shadow-lg [&.react-datepicker]:border-gray-100 [&.react-datepicker]:rounded-md ",
@@ -37,6 +36,9 @@ const popperClasses = {
 
 export type ReactDatePickerProps = DatePickerProps & {
   inputProps?: InputProps;
+  showPrefix?: boolean;
+  prefix?: React.ReactElement;
+  suffix?: React.ReactElement;
 };
 
 export const ReactDatePicker = ({
@@ -46,6 +48,9 @@ export const ReactDatePicker = ({
   onCalendarClose,
   popperClassName,
   calendarClassName,
+  showPrefix = true,
+  prefix,
+  suffix,
   ...props
 }: ReactDatePickerProps) => {
   const [isCalenderOpen, setIsCalenderOpen] = React.useState(false);
@@ -58,14 +63,24 @@ export const ReactDatePicker = ({
         customInput={
           customInput || (
             <Input
-              prefix={<CiCalendar className="w-5 h-5 text-gray-500" />}
+              prefix={
+                showPrefix && prefix ? (
+                  prefix
+                ) : showPrefix ? (
+                  <CalendarIcon className="w-5 h-5 text-gray-500" />
+                ) : null
+              }
               suffix={
-                <IoChevronDownSharp
-                  className={cn(
-                    "h-4 w-4 text-gray-500 transition",
-                    isCalenderOpen && "rotate-180"
-                  )}
-                />
+                suffix ? (
+                  suffix
+                ) : (
+                  <ChevronDownIcon
+                    className={cn(
+                      "h-4 w-4 text-gray-500 transition",
+                      isCalenderOpen && "rotate-180"
+                    )}
+                  />
+                )
               }
               {...inputProps}
             />
