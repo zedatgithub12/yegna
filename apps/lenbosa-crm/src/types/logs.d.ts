@@ -15,3 +15,10 @@ interface getLogsProps {
   created_at: string;
   time: string;
 }
+
+interface LogItem {
+  id: number;
+  name: string;
+  event: string;
+  created_at: string;
+}

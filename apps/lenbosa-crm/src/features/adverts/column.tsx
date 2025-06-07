@@ -13,9 +13,10 @@ import TrashIcon from "@/components/icons/trash";
 
 type advertsProps = {
   onDeleteUser: (id: string) => void;
+  onViewDetail: (ad: AdvertProps) => void;
 };
 
-export const GetColumns = ({ onDeleteUser }: advertsProps) => {
+export const GetColumns = ({ onDeleteUser, onViewDetail }: advertsProps) => {
   const router = useRouter();
 
   return [
@@ -25,9 +26,7 @@ export const GetColumns = ({ onDeleteUser }: advertsProps) => {
       key: "name",
       width: 80,
       render: (value: string) => (
-        <Text className="font-medium text-[15px] text-gray-900 ">
-          {value}
-        </Text>
+        <Text className="font-medium text-[15px] text-gray-900 ">{value}</Text>
       ),
     },
     {
@@ -87,26 +86,31 @@ export const GetColumns = ({ onDeleteUser }: advertsProps) => {
 
     {
       title: <HeaderCell title="Action" className="whitespace-nowrap" />,
-      dataIndex: "id",
+
       key: "id",
       width: 40,
-      render: (value: string) => (
+      render: (row: {
+        id: string;
+        name: string;
+        body: string;
+        image: { url: string };
+        start_date: string;
+        end_date: string;
+        is_active: boolean;
+      }) => (
         <div className="flex items-center">
-          <ActionIcon
-            variant="text"
-            onClick={() => router.push(routes.adverts.details(value))}
-          >
+          <ActionIcon variant="text" onClick={() => onViewDetail(row)}>
             <RiEyeFill className="text-primary" size={16} />
           </ActionIcon>
 
           <ActionIcon
             variant="text"
-            onClick={() => router.push(routes.adverts.edit(value))}
+            onClick={() => router.push(routes.adverts.edit(row.id))}
           >
             <EditPencil className="w-4 h-4 text-primary" color="#0B4650" />
           </ActionIcon>
 
-          <ActionIcon variant="text" onClick={() => onDeleteUser(value)}>
+          <ActionIcon variant="text" onClick={() => onDeleteUser(row.id)}>
             <TrashIcon className="w-4 h-4 text-primary" color="#0B4650" />
           </ActionIcon>
         </div>

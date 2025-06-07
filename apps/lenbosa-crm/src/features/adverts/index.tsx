@@ -14,6 +14,7 @@ import { GetColumns } from "./column";
 import DeleteRecord from "@/utils/components/DeleteRecord";
 import { useModal } from "@yegna-systems/lib/hooks/use-modal";
 import { useQueryClient } from "@tanstack/react-query";
+import AdDetail from "./detail";
 
 const Adverts = () => {
   const router = useRouter();
@@ -77,6 +78,24 @@ const Adverts = () => {
             rowKey={"id"}
             scroll={{ x: 1000 }}
             columns={GetColumns({
+              onViewDetail: (ad) => {
+                openModal({
+                  view: (
+                    <AdDetail
+                      title={ad.name}
+                      description={ad.body}
+                      image={ad.image?.url}
+                      start_date={ad.start_date}
+                      end_date={ad.end_date}
+                      status={ad.is_active}
+                      onClose={() => closeModal()}
+                    />
+                  ),
+                  customSize: "500px",
+                  position: "center",
+                  onClose: () => closeModal(),
+                });
+              },
               onDeleteUser: (ad_id) =>
                 openModal({
                   view: (
