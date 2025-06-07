@@ -166,6 +166,7 @@ const Users = () => {
           </TableSearch>
         </>
       }
+      childrenClassnames="px-0"
     >
       <div className="table-wrapper flex-grow">
         <ControlledTable
