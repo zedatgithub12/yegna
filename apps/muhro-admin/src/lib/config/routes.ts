@@ -22,6 +22,13 @@ export const routes = {
     create: "/api-key/create",
   },
 
+  human_resource: {
+    list: "/human-resource",
+    create: "/human-resource/add-user",
+    edit: (id: string) => `/human-resource/edit-user/${id}`,
+    details: (id: string) => `/human-resource/details/${id}`,
+  },
+
   user: {
     list: "/user-management",
     create: "/user-management/add-user",

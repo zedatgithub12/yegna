@@ -26,6 +26,15 @@ export const SideNavMenus = [
   },
 
   {
+    id: "read_human_resource",
+    title: "Human Resource",
+    icon: <UserGroupIcon />,
+    path: routes.human_resource.list,
+    collapsable: false,
+    children: [],
+  },
+
+  {
     id: "users",
     title: "User Management",
     icon: <UserGroupIcon />,

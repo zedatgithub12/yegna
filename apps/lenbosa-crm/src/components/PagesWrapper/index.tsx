@@ -21,7 +21,7 @@ const PageWrapper = ({
   staticComponent,
 }: pageWrapperProps) => {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {hasHeader ? (
         <Header
           title={title}
