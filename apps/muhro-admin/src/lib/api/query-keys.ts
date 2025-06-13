@@ -15,4 +15,11 @@ export const queryKeys = {
   get_institution: "/school/fetch/all",
   get_school_single: "/school/fetch/single",
   create_school: "/school/add",
+  getAll_categories: "all-categories",
+  messages: "message-broadcasts",
+  message_templates: "message-templates",
+  get_groups: "groups",
+  group: "groups",
+  get_all_message_templates: "all-message-templates",
+  get_all_trash_message_broadcasts: "message-broadcasts-trashes",
 };
