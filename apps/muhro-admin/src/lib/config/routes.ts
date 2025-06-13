@@ -12,6 +12,13 @@ export const routes = {
     create: "/message-broadcast/create",
   },
 
+  institution: {
+    list: "/institution",
+    create: "/institution/create",
+    edit: (id: string) => `/institution/edit/${id}`,
+    details: (id: string) => `/institution/details/${id}`,
+  },
+
   subscription: {
     list: "/subscription",
     create: "/subscription/create",
