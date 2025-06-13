@@ -42,7 +42,7 @@ const CollapsableMenu = ({
 
         {drawerOpen ? (
           <Text
-            className="text-[15px] font-outfit text-inherit"
+            className="text-[15px] font-outfit text-inherit line-clamp-1"
             style={{ color: expanded || hovered ? "#D7F400" : "" }}
           >
             {item.title}
@@ -103,7 +103,7 @@ const UncollapsableMenu = ({
 
     {drawerOpen ? (
       <Text
-        className="text-[15px] font-outfit text-inherit transition-colors duration-300 ease-in"
+        className="text-[15px] font-outfit text-inherit transition-colors duration-300 ease-in line-clamp-1"
         style={{ color: active || hovered ? "#D7F400" : "" }}
       >
         {item.title}
@@ -161,7 +161,7 @@ const MenuItem = ({ item }: { item: menuItem }) => {
             onMouseLeave={() => setHoveredId(null)}
           >
             <div
-              className={`min-w-1.5 max-w-1/12 h-9 ${
+              className={`min-w-1.5 max-w-1/12 h-12 ${
                 item.id === expanded ? "bg-primary" : "bg-white"
               } rounded-tr-md rounded-br-md`}
             />

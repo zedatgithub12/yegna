@@ -12,6 +12,13 @@ export const routes = {
     create: "/message-broadcast/create",
   },
 
+  institution: {
+    list: "/institution",
+    create: "/institution/create",
+    edit: (id: string) => `/institution/edit/${id}`,
+    details: (id: string) => `/institution/details/${id}`,
+  },
+
   subscription: {
     list: "/subscription",
     create: "/subscription/create",
@@ -20,6 +27,13 @@ export const routes = {
   api_keys: {
     list: "/api-key",
     create: "/api-key/create",
+  },
+
+  human_resource: {
+    list: "/human-resource",
+    create: "/human-resource/add-user",
+    edit: (id: string) => `/human-resource/edit-user/${id}`,
+    details: (id: string) => `/human-resource/details/${id}`,
   },
 
   user: {

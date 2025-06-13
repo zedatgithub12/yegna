@@ -10,12 +10,14 @@ type Props = {
   plans: SubscriptionPlans[];
   onChangePlanStatus: (id: string) => void;
   isChanging: boolean;
+  billing_cycle: string;
 };
 
 const SubscriptionPlans: React.FC<Props> = ({
   plans,
   onChangePlanStatus,
   isChanging,
+  billing_cycle,
 }) => {
   const router = useRouter();
   return (
@@ -28,30 +30,32 @@ const SubscriptionPlans: React.FC<Props> = ({
             className="bg-white rounded-3xl  px-2 pt-6 pb-3.5 flex flex-col "
           >
             <div className="flex items-start justify-between mb-4 px-2">
-              <div
-                className="w-9 h-9 rounded-full flex items-center justify-center"
-                style={{
-                  background: plan.color
-                    ? `linear-gradient(45deg, ${plan.color})`
-                    : "#ddd",
-                }}
-              >
-                {" "}
-                <div className="w-6 h-6 rounded-full bg-white" />{" "}
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-7 h-7 rounded-full flex items-center justify-center"
+                  style={{
+                    background: plan.color
+                      ? `linear-gradient(45deg, ${plan.color})`
+                      : "#ddd",
+                  }}
+                >
+                  <div className={`w-5 h-5 rounded-full  bg-white`} />
+                </div>
+
+                <div className="flex items-end gap-1">
+                  <Title as="h3" className={`font-black`}>
+                    {billing_cycle === "monthly"
+                      ? plan.monthly_price
+                      : plan.yearly_price}
+                  </Title>
+                  <Text className={`font-medium text-sm mb-0.5`}>ETB</Text>
+                </div>
               </div>
-              {/* <Tooltip
-                content={
-                  <div
-                    className="text-sm text-gray-400 my-1 w-52"
-                    dangerouslySetInnerHTML={{ __html: plan.description ?? "" }}
-                  />
-                }
-              >
-                <InfoIcon color="#AAAAAA" className="w-5 h-5" />
-              </Tooltip> */}
 
               <div className="flex items-center gap-2">
-                <Text className={`${plan.is_active ? "text-[#4BB543]" : "text-[#e53131]"}`}>
+                <Text
+                  className={`${plan.is_active ? "text-[#4BB543]" : "text-[#e53131]"}`}
+                >
                   {plan.is_active ? "Active" : "InActive"}
                 </Text>
                 <Switch

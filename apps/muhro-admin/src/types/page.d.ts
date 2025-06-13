@@ -1,4 +1,5 @@
 interface pageWrapperProps {
+  hasHeader?: boolean;
   title?: string;
   search?: React.ReactNode;
   back?: boolean;

@@ -5,6 +5,7 @@ import { Loader } from "rizzui/loader";
 import cn from "@yegna-systems/ui/cn";
 
 const PageWrapper = ({
+  hasHeader = true,
   title,
   search,
   back = false,
@@ -20,17 +21,19 @@ const PageWrapper = ({
   staticComponent,
 }: pageWrapperProps) => {
   return (
-    <div>
-      <Header
-        title={title}
-        search={search}
-        back={back}
-        breadcrumb={breadcrumb}
-        hasActionButton={hasActionButton}
-        actionButtons={actionButtons}
-      />
+    <div className="w-full">
+      {hasHeader ? (
+        <Header
+          title={title}
+          search={search}
+          back={back}
+          breadcrumb={breadcrumb}
+          hasActionButton={hasActionButton}
+          actionButtons={actionButtons}
+        />
+      ) : null}
 
-      <div className={cn(" p-2", childrenClassnames)}>
+      <div className={cn("py-2", childrenClassnames)}>
         {staticComponent}
         {isLoading ? (
           <div className="w-full h-52 flex flex-col items-center justify-center">

@@ -54,7 +54,7 @@ export default function HeaderCell({
       <div
         {...(ellipsis && { className: "truncate" })}
         {...(ellipsis && width && { style: { width } })}
-        className="font-bold"
+        className="font-medium"
       >
         {title}
       </div>

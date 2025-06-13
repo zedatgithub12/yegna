@@ -21,8 +21,11 @@ interface SubscriptionPlans {
   name: string;
   description: string | null;
   is_active: boolean;
+  monthly_price: number;
+  yearly_price: number;
   color: string[];
   features: Features[];
+  created_at: string;
 }
 
 interface Feature {

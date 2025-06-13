@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: siteSeo.title,
   description: siteSeo.description,
 };
+// for deployment
 
 export default async function RootLayout({
   children,

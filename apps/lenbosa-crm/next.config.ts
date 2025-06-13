@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         hostname: "ui-avatars.com",
         protocol: "https",
       },
+      {
+        hostname: "lembosa-crm.amanueld.info",
+        protocol: "https",
+      },
     ],
   },
 };

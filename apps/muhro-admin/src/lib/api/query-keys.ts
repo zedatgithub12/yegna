@@ -1,5 +1,5 @@
 export const queryKeys = {
-  login: "login",
+  login: "auth/login",
   forgot_password: "reset-password",
   verify_otp: "verify-otp",
   create_password: "create-password",
@@ -12,4 +12,16 @@ export const queryKeys = {
   get_roles: "roles",
   get_permissions: "permissions",
   get_users: "users",
+  get_employees: "muhrostaff/fetch/all",
+  get_single_employee: "muhrostaff/fetch/single/",
+  get_institution: "/school/fetch/all",
+  get_school_single: "/school/fetch/single",
+  create_school: "/school/add",
+  getAll_categories: "all-categories",
+  messages: "message-broadcasts",
+  message_templates: "message-templates",
+  get_groups: "groups",
+  group: "groups",
+  get_all_message_templates: "all-message-templates",
+  get_all_trash_message_broadcasts: "message-broadcasts-trashes",
 };

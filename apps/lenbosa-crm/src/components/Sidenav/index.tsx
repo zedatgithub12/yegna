@@ -11,7 +11,7 @@ const SideNav = () => {
 
   return (
     <div
-      className={`${drawerOpen ? " min-w-64  w-1/5" : "min-w-28"} h-screen p-2 scrollbar-hide`}
+      className={`${drawerOpen ? "min-w-64  w-1/5" : "min-w-28"} h-screen p-2 scrollbar-hide print:hidden`}
     >
       <div className=" w-fit h-full overflow-y-scroll scrollbar-hide rounded-2xl bg-white shadow-sm shadow-gray-100 py-2 pb-8 ">
         <div className="flex items-center justify-between gap-1 pl-2">

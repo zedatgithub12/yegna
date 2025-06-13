@@ -2,12 +2,13 @@
 
 import Header from "@/components/Header";
 import React from "react";
+import AdminDashboard from "../adminDashboard";
 
 const Dashboard = () => {
   return (
     <div>
-      <Header title="Dashboard" back={true} search={false} breadcrumb={true} />
-      Dashboard
+      <Header title="Dashboard" back={false} search={true} breadcrumb={true} />
+      <AdminDashboard />
     </div>
   );
 };

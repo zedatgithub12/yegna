@@ -20,7 +20,7 @@ const Header = ({
   const router = useRouter();
 
   return (
-    <div className="w-full bg-white shadow-2xl shadow-gray-50 rounded-2xl">
+    <div className="w-full bg-white shadow-2xl shadow-gray-50 rounded-2xl print:hidden">
       <div className="flex items-center justify-between p-3 px-4">
         <div className="">
           {search ? (
@@ -36,7 +36,6 @@ const Header = ({
           ) : null}
         </div>
         <div className="flex items-center">
-          
           <ProfileMenu />
         </div>
       </div>
