@@ -6,6 +6,9 @@ import SettingIcon from "../icons/setting";
 import AnalyticsIcon from "../icons/analytics";
 import LogIcon from "../icons/logs";
 import HealthIcon from "../icons/system-health";
+import SchoolIcon from "../icons/school";
+import JobIcon from "../icons/hr-icon";
+import AdsIcon from "../icons/ads_&_campaigns";
 
 export const SideNavMenus = [
   {
@@ -14,6 +17,24 @@ export const SideNavMenus = [
     icon: <HomeIcon />,
     path: routes.dashboard,
     collapsable: false,
+  },
+
+  {
+    id: "read_institution",
+    title: "Institution Management",
+    icon: <SchoolIcon />,
+    path: routes.messages.list,
+    collapsable: false,
+    children: [],
+  },
+
+  {
+    id: "read_human_resource",
+    title: "Human Resource",
+    icon: <JobIcon />,
+    path: routes.human_resource.list,
+    collapsable: false,
+    children: [],
   },
 
   {
@@ -26,23 +47,14 @@ export const SideNavMenus = [
   },
 
   {
-    id: "read_human_resource",
-    title: "Human Resource",
-    icon: <UserGroupIcon />,
-    path: routes.human_resource.list,
+    id: "read_campaign",
+    permission: "read_campaign",
+    title: "Ads & Campaigns",
+    icon: <AdsIcon />,
+    path: routes.messages.list,
     collapsable: false,
     children: [],
   },
-
-  {
-    id: "users",
-    title: "User Management",
-    icon: <UserGroupIcon />,
-    path: routes.user.list,
-    collapsable: false,
-    children: [],
-  },
-
   {
     id: "system-configuration",
     title: "System Configurations",
@@ -51,10 +63,17 @@ export const SideNavMenus = [
     collapsable: false,
     children: [],
   },
-
   {
-    id: "system-report",
-    title: "System  Report",
+    id: "users",
+    title: "System Users",
+    icon: <UserGroupIcon />,
+    path: routes.user.list,
+    collapsable: false,
+    children: [],
+  },
+  {
+    id: "analytics-report",
+    title: "Analytics Report",
     icon: <AnalyticsIcon />,
     path: routes.system_report.list,
     collapsable: false,
@@ -62,13 +81,14 @@ export const SideNavMenus = [
   },
 
   {
-    id: "system-log",
-    title: "System Log",
+    id: "log",
+    title: "Log",
     icon: <LogIcon />,
     path: routes.system_log.list,
     collapsable: false,
     children: [],
   },
+
   {
     id: "system-health",
     title: "System Health",

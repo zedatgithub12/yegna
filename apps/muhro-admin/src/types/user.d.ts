@@ -28,17 +28,3 @@ interface UserDataProps {
   roles: RoleProp[];
 }
 
-interface EmployeeProps {
-  user_id: string;
-  user_code: string;
-  user_name: string;
-  profile_picture: string;
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  email: string;
-  gender: string;
-  access_role: "admin" | "user" | "manager" | string;
-  phone_number: string;
-  created_at: string;
-}

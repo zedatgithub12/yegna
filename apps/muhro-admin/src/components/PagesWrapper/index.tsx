@@ -30,7 +30,7 @@ const PageWrapper = ({
         actionButtons={actionButtons}
       />
 
-      <div className={cn(" p-2", childrenClassnames)}>
+      <div className={cn("py-2", childrenClassnames)}>
         {staticComponent}
         {isLoading ? (
           <div className="w-full h-52 flex flex-col items-center justify-center">
