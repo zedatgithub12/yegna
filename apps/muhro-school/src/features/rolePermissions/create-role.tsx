@@ -25,9 +25,12 @@ const CreateRole = () => {
   const handleFormSubmission = async (values: CreateRoleProps) => {
     try {
       await postMutation.mutateAsync({
-        url: queryKeys.get_roles,
+        url: queryKeys.create_role,
         method: "POST",
-        body: values,
+        body: {
+          role: values.name,
+          permissions: values.permissions,
+        },
 
         onSuccess: () => {
           toast.success("Successfully created new role");

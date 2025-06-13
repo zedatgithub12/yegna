@@ -18,7 +18,7 @@ const RolePermissions = () => {
     `${queryKeys.get_roles}`
   );
 
-  const rolesData: rolesProps[] = responsePayload?.data?.data;
+  const rolesData: rolesProps[] = responsePayload?.data?.data?.docs;
 
   return (
     <div>

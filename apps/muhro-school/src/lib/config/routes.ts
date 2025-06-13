@@ -4,22 +4,46 @@ export const routes = {
   error: "/auth/error",
   forgotPassword: "/auth/forgot-password",
 
-  //main pages
   dashboard: "/dashboard",
+
+  school_management: {
+    list: "/school-management",
+    create: "/school-management/add-user",
+    edit: (id: string) => `/school-management/edit-user/${id}`,
+    details: (id: string) => `/school-management/details/${id}`,
+  },
+
+  student_management: {
+    list: "/students-management",
+    create: "/students-management/add-user",
+    edit: (id: string) => `/students-management/edit-user/${id}`,
+    details: (id: string) => `/students-management/details/${id}`,
+  },
+
+  parents_management: {
+    list: "/parents-management",
+    create: "/parents-management/add-user",
+    edit: (id: string) => `/parents-management/edit-user/${id}`,
+    details: (id: string) => `/parents-management/details/${id}`,
+  },
+
+  academic_events: {
+    list: "/academic-events",
+    create: "/academic-events/add-user",
+    edit: (id: string) => `/academic-events/edit-user/${id}`,
+    details: (id: string) => `/academic-events/details/${id}`,
+  },
+
+  school_fee_management: {
+    list: "/school-fee-management",
+    create: "/school-fee-management/add-user",
+    edit: (id: string) => `/school-fee-management/edit-user/${id}`,
+    details: (id: string) => `/school-fee-management/details/${id}`,
+  },
 
   messages: {
     list: "/message-broadcast",
     create: "/message-broadcast/create",
-  },
-
-  subscription: {
-    list: "/subscription",
-    create: "/subscription/create",
-  },
-
-  api_keys: {
-    list: "/api-key",
-    create: "/api-key/create",
   },
 
   human_resource: {
@@ -42,10 +66,6 @@ export const routes = {
     edit: (id: string) => `/role-permission/edit/${id}`,
   },
 
-  role: {
-    permissions: (id: string) => `/role/permissions/${id}`,
-  },
-
   configuration: {
     list: "/configuration",
     create: "/configuration/create",
@@ -54,14 +74,5 @@ export const routes = {
   system_report: {
     list: "/system-report",
     create: "/system-report/create",
-  },
-
-  system_log: {
-    list: "/system-log",
-    create: "/system-log/create",
-  },
-  system_health: {
-    list: "/system-health",
-    create: "/system-health/create",
   },
 };

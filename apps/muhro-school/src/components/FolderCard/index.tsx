@@ -23,13 +23,15 @@ const FolderCard = ({
 
   return (
     <div className="w-44  h-24 bg-white rounded-xl rounded-tl-none shadow-sm p-4 relative hover:scale-105 transition-all ease-in-out duration-75 cursor-pointer ">
-      <div className="absolute -top-7 left-0 bg-inherit p-3 py-2 rounded-xl rounded-bl-none my-div ">
+      <div className="absolute -top-7 left-0  bg-inherit p-3 py-2 rounded-xl rounded-bl-none my-div ">
         <div
-          className={`px-2 py-1 text-xs font-medium rounded-md ${badgeColor}`}
+          className={`px-2 py-1  text-xs font-medium rounded-md ${badgeColor}`}
         >
           Role Group
         </div>
-        <div className="mt-1 text-lg font-medium text-gray-900">{title}</div>
+        <div className="mt-1 text-lg font-medium text-gray-900 capitalize">
+          {title?.split("-")?.join(" ")}
+        </div>
       </div>
 
       <div className="absolute bottom-2 left-4 right-4 flex items-center justify-between">

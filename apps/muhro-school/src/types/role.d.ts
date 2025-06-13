@@ -1,12 +1,15 @@
 interface rolesProps {
-  uuid: string;
-  name: string;
-  description?: string;
+  _id: string;
+  role: string;
+  platform: string;
+  permissions: string[];
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  id: string;
   users_count: number;
-  permissions_count: number;
-  permissions: { uuid: string; name: string }[];
-  created_at: string;
-  three_users_profile_image?: string[];
+  three_users_profile_image: string[];
 }
 
 interface CreateRoleProps {

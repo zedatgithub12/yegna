@@ -1,7 +1,8 @@
 import React from "react";
+import AcademicEvents from "@/features/academic-events/page";
 
 const page = () => {
-  return <div>Academic Events</div>;
+  return <AcademicEvents />;
 };
 
 export default page;

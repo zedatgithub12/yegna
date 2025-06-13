@@ -1,7 +1,8 @@
 import React from "react";
+import SchoolManagement from "@/features/school-management";
 
 const page = () => {
-  return <div>School</div>;
+  return <SchoolManagement />;
 };
 
 export default page;

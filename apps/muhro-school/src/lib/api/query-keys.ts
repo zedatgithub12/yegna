@@ -8,8 +8,10 @@ export const queryKeys = {
   my_profile: "my-profile",
   update_profile: "update-profile",
 
-  get_roles: "roles",
-  get_permissions: "permissions",
+  get_roles: "accessrole/fetch/school/roles",
+  create_role: "accessrole/school/create",
+  update_role: "accessrole/school/update/",
+  get_permissions: "accessrole/fetch/school/permissions",
   get_users: "users",
   get_employees: "muhrostaff/fetch/all",
   get_single_employee: "muhrostaff/fetch/single/",

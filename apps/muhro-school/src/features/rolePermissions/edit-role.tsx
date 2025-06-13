@@ -26,9 +26,12 @@ const EditRole = () => {
   const handleFormSubmission = async (values: CreateRoleProps) => {
     try {
       await postMutation.mutateAsync({
-        url: `${queryKeys.get_roles}/${id}`,
-        method: "PATCH",
-        body: values,
+        url: `${queryKeys.update_role}${id}`,
+        method: "PUT",
+        body: {
+          role: values.name,
+          permissions: values.permissions,
+        },
 
         onSuccess: (res) => {
           if (res.success) {
@@ -49,15 +52,16 @@ const EditRole = () => {
     `${queryKeys.get_roles}/${id}`
   );
 
-  const roleData: rolesProps = responsePayload?.data?.data;
+  const roleData: rolesProps = responsePayload?.data?.data?.docs;
 
   const permissionUuids: string[] = Array.isArray(roleData?.permissions)
-    ? roleData.permissions.map((perm: { uuid: string }) => perm.uuid)
+    ? roleData.permissions.map((perm) => perm)
     : [];
 
   const initialValues = {
-    name: roleData?.name || "",
-    description: roleData?.description || "",
+    name: roleData?.role || "",
+    // description: roleData?.description || "",
+    description: "",
     permissions: permissionUuids,
   };
 

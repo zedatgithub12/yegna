@@ -59,7 +59,9 @@ const RoleDetail = ({
 
           <div className="w-10/12 flex items-start justify-between">
             <div>
-              <Text className="text-lg font-medium">{roleName} -Role </Text>
+              <Text className="text-lg font-medium capitalize">
+                {roleName?.split("-")?.join(" ")} - Role{" "}
+              </Text>
               <Text className="text-xs font-normal text-gray-500 mt-1.5">
                 Created at:{" "}
                 {created_at ? formatDate(new Date(created_at)) : "_ "}

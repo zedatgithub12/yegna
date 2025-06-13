@@ -1,7 +1,8 @@
+import ParentManagement from "@/features/parents";
 import React from "react";
 
 const page = () => {
-  return <div>Parent Management</div>;
+  return <ParentManagement />;
 };
 
 export default page;

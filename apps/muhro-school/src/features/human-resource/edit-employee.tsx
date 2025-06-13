@@ -201,8 +201,8 @@ const EditEmployee = () => {
                     options={
                       rolesData
                         ? rolesData?.map((item) => ({
-                            label: item.name,
-                            value: item.uuid,
+                            label: item.role,
+                            value: item._id,
                           }))
                         : []
                     }

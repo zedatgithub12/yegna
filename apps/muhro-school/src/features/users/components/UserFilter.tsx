@@ -22,8 +22,8 @@ const UserFilter = ({ roles }: { roles: rolesProps[] }) => {
           variant="flat"
           placeholder="By Role"
           options={roles.map((role) => ({
-            label: role.name,
-            value: role.name,
+            label: role.role,
+            value: role.role,
           }))}
           value={role}
           onChange={(v: { value: string }) => setRole(v.value)}

@@ -8,31 +8,32 @@ import { Text, Title } from "@yegna-systems/ui/typography";
 import { ErrorMessage, useFormikContext } from "formik";
 import { Check } from "lucide-react";
 
-interface permissionProps {
+interface selectedPermissionProps {
   permissions: string[];
 }
+
 const Permissions = () => {
   const { values, setFieldValue, touched } =
-    useFormikContext<permissionProps>();
+    useFormikContext<selectedPermissionProps>();
 
   const responsePayload = useFetchData(
     [queryKeys.get_permissions],
     `${queryKeys.get_permissions}`
   );
 
-  const permissionsData: { uuid: string; name: string }[] =
-    responsePayload?.data?.data;
+  const permissionsData: PermissionDataProps[] =
+    responsePayload?.data?.data?.docs;
 
-  const handleSelectingPermission = (uuid: string) => {
+  const handleSelectingPermission = (_id: string) => {
     {
       const currentPermissions = values.permissions;
-      if (currentPermissions.includes(uuid)) {
+      if (currentPermissions.includes(_id)) {
         setFieldValue(
           "permissions",
-          currentPermissions.filter((id) => id !== uuid)
+          currentPermissions.filter((id) => id !== _id)
         );
       } else {
-        setFieldValue("permissions", [...currentPermissions, uuid]);
+        setFieldValue("permissions", [...currentPermissions, _id]);
       }
     }
   };
@@ -74,15 +75,15 @@ const Permissions = () => {
               <label
                 key={index}
                 className={`flex items-center w-fit  gap-2 px-2 py-1.5 rounded-full border cursor-pointer transition-all 
-                 ${values.permissions.includes(permission.uuid) ? "bg-primary" : ""}`}
+                 ${values.permissions.includes(permission._id) ? "bg-primary" : ""}`}
               >
                 <input
                   type="checkbox"
-                  checked={values.permissions.includes(permission.uuid)}
-                  onChange={() => handleSelectingPermission(permission.uuid)}
+                  checked={values.permissions.includes(permission._id)}
+                  onChange={() => handleSelectingPermission(permission._id)}
                   className="hidden"
                 />
-                {values.permissions.includes(permission.uuid) ? (
+                {values.permissions.includes(permission._id) ? (
                   <div className="w-[14px] h-[14px]  rounded-[4px] bg-secondary flex items-center justify-center">
                     <Check size={10} className="text-primary" />
                   </div>
@@ -91,9 +92,9 @@ const Permissions = () => {
                 )}
                 <span
                   className={`text-xs font-medium capitalize
-                ${values.permissions.includes(permission.uuid) ? "text-secondary" : ""}`}
+                ${values.permissions.includes(permission._id) ? "text-secondary" : ""}`}
                 >
-                  {permission.name.split("_").join(" ")}
+                  {permission.permission.split("_").join(" ")}
                 </span>
               </label>
             );
