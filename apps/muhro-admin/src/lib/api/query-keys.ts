@@ -12,4 +12,7 @@ export const queryKeys = {
   get_roles: "roles",
   get_permissions: "permissions",
   get_users: "users",
+  get_institution: "/school/fetch/all",
+  get_school_single: "/school/fetch/single",
+  create_school: "/school/add",
 };

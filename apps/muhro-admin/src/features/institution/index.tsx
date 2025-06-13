@@ -5,7 +5,6 @@ import SvgWrapper from "@/components/SvgWrapper";
 import { queryKeys } from "@/lib/api/query-keys";
 import { useFetchData } from "@/lib/api/use-fetch-data";
 import { routes } from "@/lib/config/routes";
-
 import { Button } from "@yegna-systems/ui/button";
 import TableSearch from "@yegna-systems/lib/table/table-search";
 import { FileInput, ListFilter } from "lucide-react";
@@ -33,18 +32,18 @@ const Institution = () => {
 
   const responsePayload = useFetchData(
     [queryKeys.get_institution, currentPage, pageSize, searchTerm],
-    `${queryKeys.get_institution}?page=${currentPage}&limit=${pageSize}&search=${searchTerm}`
+    `${queryKeys.get_institution}`
   );
 
   const institutionData: getInstitutionProps[] =
-    responsePayload?.data?.data?.data;
+    responsePayload?.data?.data?.docs;
 
-  const categoriePayload = useFetchData(
-    [queryKeys.get_categories],
-    `${queryKeys.get_categories}`
-  );
+  // const categoriePayload = useFetchData(
+  //   [queryKeys.get_categories],
+  //   `${queryKeys.get_categories}`
+  // );
 
-  const categoriesData = categoriePayload?.data?.data?.data ?? [];
+  // const categoriesData = categoriePayload?.data?.data?.data ?? [];
 
   const handleSelectRow = (id: string) => {
     setSelectedRowKeys((prev) =>
@@ -52,36 +51,46 @@ const Institution = () => {
     );
   };
 
+  // const handleSelectAll = () => {
+  //   if (institutionData.length === selectedRowKeys.length) {
+  //     setSelectedRowKeys([]);
+  //   } else if (selectedRowKeys.length < institutionData.length) {
+  //     setSelectedRowKeys(institutionData.map((institution) => institution.id));
+  //   } else if (selectedRowKeys.length === 0) {
+  //     setSelectedRowKeys(institutionData.map((institution) => institution.id));
+  //   }
+  // };
+
   const handleSelectAll = () => {
     if (institutionData.length === selectedRowKeys.length) {
       setSelectedRowKeys([]);
-    } else if (selectedRowKeys.length < institutionData.length) {
-      setSelectedRowKeys(institutionData.map((institution) => institution.id));
-    } else if (selectedRowKeys.length === 0) {
-      setSelectedRowKeys(institutionData.map((institution) => institution.id));
+    } else {
+      setSelectedRowKeys(
+        institutionData.map((institution) => institution.school_id)
+      );
     }
   };
 
   const handleExportingExcel = () => {
     const selectedInstitution =
       selectedRowKeys.length > 0
-        ? institutionData.filter((institution) =>
-            selectedRowKeys.includes(institution.id)
+        ? institutionData.filter((school) =>
+            selectedRowKeys.includes(school.school_id)
           )
         : institutionData;
 
-    const _data = selectedInstitution.map((institution) => ({
-      name: institution.name,
-      email: institution.email,
-      phone: institution?.phone,
-      location: institution?.address,
-      institution_type: institution?.type,
+    const _data = selectedInstitution.map((school) => ({
+      name: school.school_name,
+      education_level: school?.education_level,
+      location: school?.location,
+      school_type: school?.school_type,
+      bank: school.bank,
     }));
 
     exportToExcel(
       _data,
-      "Name, Email, Location, Phone Number, Type",
-      "Institution Data"
+      "Name, Education Level, Location, Bank, Type",
+      "School Data"
     );
   };
 
@@ -125,7 +134,7 @@ const Institution = () => {
               className="flex items-center gap-2 w-full rounded-2xl text-black bg-gray-100 hover:bg-gray-200 border border-gray-200"
               onClick={() =>
                 openDrawer({
-                  view: <InstitutionFilter categories={categoriesData} />,
+                  view: <InstitutionFilter categories={[]} />,
                   placement: "right",
                   customSize: 10,
                 })
@@ -154,7 +163,7 @@ const Institution = () => {
             variant="modern"
             data={institutionData}
             isLoading={responsePayload.isFetching}
-            rowKey={"id"}
+            rowKey={"school_id"}
             scroll={{ x: 1000 }}
             // @ts-expect-error ts-migrate(2322) TS2551: Expression will have type 'never' because expression is not callable.
             columns={GetColumns({
@@ -162,7 +171,7 @@ const Institution = () => {
               onSelectRow: handleSelectRow,
               onSelectAll: handleSelectAll,
               allRowKeys: institutionData?.map(
-                (inst: getInstitutionProps) => inst.id
+                (inst: getInstitutionProps) => inst.school_id
               ),
               onDeleteInstitution: (institution_id) =>
                 openModal({
@@ -171,7 +180,7 @@ const Institution = () => {
                       key="delete institution"
                       title="Delete Institution"
                       description="Are you sure you want to delete this institution?"
-                      url={`${queryKeys.get_institution}/${institution_id}`}
+                      url={`${queryKeys.get_school_single}/${institution_id}`}
                       onRefresh={() =>
                         queryClient.invalidateQueries({
                           queryKey: [queryKeys.get_institution],

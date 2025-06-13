@@ -88,6 +88,7 @@ const Customers = () => {
       "Users Data"
     );
   };
+
   return (
     <PageWrapper
       isLoading={usersPayload.isFetching}

@@ -9,9 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@yegna-systems/lib": "workspace:*",
-    "@yegna-systems/tailwind-config": "workspace:*",
-    "@yegna-systems/ui": "workspace:*",
     "@floating-ui/react": "^0.27.5",
     "@headlessui/react": "^2.2.0",
     "@tanstack/react-query": "^5.62.11",
@@ -25,6 +22,9 @@
     "@tiptap/pm": "^2.11.5",
     "@tiptap/react": "^2.11.5",
     "@tiptap/starter-kit": "^2.11.5",
+    "@yegna-systems/lib": "workspace:*",
+    "@yegna-systems/tailwind-config": "workspace:*",
+    "@yegna-systems/ui": "workspace:*",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
@@ -47,6 +47,7 @@
     "react-quill": "^2.0.0",
     "react-svg": "^16.3.0",
     "react-use": "^17.6.0",
+    "recharts": "^2.15.3",
     "rizzui": "^1.0.1",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",

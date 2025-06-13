@@ -6,6 +6,7 @@ import SettingIcon from "../icons/setting";
 import AnalyticsIcon from "../icons/analytics";
 import LogIcon from "../icons/logs";
 import HealthIcon from "../icons/system-health";
+import InstitutionIcon from "../icons/institution";
 
 export const SideNavMenus = [
   {
@@ -14,6 +15,15 @@ export const SideNavMenus = [
     icon: <HomeIcon />,
     path: routes.dashboard,
     collapsable: false,
+  },
+  {
+    id: "read_institution",
+    permission: "read_institution",
+    title: "Institution Management",
+    icon: <InstitutionIcon />,
+    path: routes.institution.list,
+    collapsable: false,
+    children: [],
   },
 
   {
