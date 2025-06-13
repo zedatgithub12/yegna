@@ -26,7 +26,7 @@ const CollapsableMenu = ({
 }) => (
   <div className="w-full">
     <div
-      className={`group w-12/12 flex items-center  ${drawerOpen ? "pl-4 justify-between" : "justify-center"} gap-4 p-2 ml-1  cursor-pointer font-medium rounded-lg mx-1
+      className={`group w-12/12 flex items-center  ${drawerOpen ? "pl-5 justify-between" : "justify-center"} gap-4 p-2 ml-1  cursor-pointer font-medium rounded-lg mx-1
       ${expanded || hovered ? "bg-primary text-secondary]" : ""}
     `}
       onClick={onPress}

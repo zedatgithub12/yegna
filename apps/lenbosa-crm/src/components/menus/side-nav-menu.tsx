@@ -10,6 +10,7 @@ import HealthIcon from "../icons/system-health";
 import InstitutionIcon from "../icons/institution";
 import UserIcon from "../icons/user-icon";
 import AdsIcon from "../icons/ads_&_campaigns";
+import TransactionIcon from "../icons/transactions";
 
 export const SideNavMenus = [
   {
@@ -30,13 +31,22 @@ export const SideNavMenus = [
     collapsable: false,
     children: [],
   },
+  {
+    id: "read_customer",
+    permission: "read_customer",
+    title: "Customers",
+    icon: <UserGroupIcon />,
+    path: routes.customers.list,
+    collapsable: false,
+    children: [],
+  },
 
   {
-    id: "read_message_broadcast",
-    permission: "read_message_broadcast",
-    title: "Message Broadcast",
-    icon: <MessageIcon />,
-    path: routes.messages.list,
+    id: "read_user",
+    permission: "read_user",
+    title: "User Management",
+    icon: <UserIcon />,
+    path: routes.user.list,
     collapsable: false,
     children: [],
   },
@@ -69,32 +79,32 @@ export const SideNavMenus = [
       },
     ],
   },
+
+  {
+    id: "read_transactions",
+    permission: "read_dashboard",
+    title: "Transactions",
+    icon: <TransactionIcon />,
+    path: routes.transactions.list,
+    collapsable: false,
+    children: [],
+  },
+  {
+    id: "read_message_broadcast",
+    permission: "read_message_broadcast",
+    title: "Message Broadcast",
+    icon: <MessageIcon />,
+    path: routes.messages.list,
+    collapsable: false,
+    children: [],
+  },
+
   {
     id: "read_campaign",
     permission: "read_campaign",
     title: "Ads & Campaigns",
     icon: <AdsIcon />,
     path: routes.adverts.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "read_customer",
-    permission: "read_customer",
-    title: "Customers",
-    icon: <UserIcon />,
-    path: routes.customers.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "read_user",
-    permission: "read_user",
-    title: "User Management",
-    icon: <UserGroupIcon />,
-    path: routes.user.list,
     collapsable: false,
     children: [],
   },

@@ -45,7 +45,7 @@ export const GetColumns = ({
     />
   );
 
-  const renderUser = (user: UserDataProps) => (
+  const renderCustomer = (user: UserDataProps) => (
     <div className="flex items-center gap-4">
       <Avatar
         src={user.profile_photo_url}
@@ -63,21 +63,7 @@ export const GetColumns = ({
     </div>
   );
 
-  const renderRoles = (roles: RoleProp[] = []) =>
-    roles.length > 0 ? (
-      <div className="flex flex-wrap items-center gap-2">
-        {roles.map((role) => (
-          <Text
-            key={role.uuid}
-            className="font-medium text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit"
-          >
-            {role.name}
-          </Text>
-        ))}
-      </div>
-    ) : (
-      <Text className="font-medium text-gray-400">No roles</Text>
-    );
+
 
   return [
     {
@@ -93,10 +79,10 @@ export const GetColumns = ({
         ),
     },
     {
-      title: <HeaderCell title="User Name" className="whitespace-nowrap" />,
+      title: <HeaderCell title="Customer Name" className="whitespace-nowrap" />,
       key: "name",
       width: 200,
-      render: renderUser,
+      render: renderCustomer,
     },
     {
       title: <HeaderCell title="Phone Number" className="whitespace-nowrap" />,
@@ -119,11 +105,15 @@ export const GetColumns = ({
       ),
     },
     {
-      title: <HeaderCell title="Role" className="whitespace-nowrap" />,
-      dataIndex: "roles",
-      key: "roles",
+      title: <HeaderCell title="Type" className="whitespace-nowrap" />,
+      dataIndex: "customer_type",
+      key: "customer_type",
       width: 100,
-      render: renderRoles,
+      render: (value: string) => (
+        <Text className="font-medium text-primary block bg-gray-100 p-1 px-3 rounded-xl text-center w-fit capitalize">
+          {value}
+        </Text>
+      ),
     },
     {
       title: <HeaderCell title="Gender" className="whitespace-nowrap" />,

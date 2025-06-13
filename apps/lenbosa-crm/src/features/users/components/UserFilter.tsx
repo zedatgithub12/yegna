@@ -7,14 +7,12 @@ import useUserFilterStore from "@/store/user.store";
 
 const UserFilter = ({ roles }: { roles: rolesProps[] }) => {
   const { closeDrawer } = useDrawer();
-  const { role, setRole, gender, setGender, status, setStatus } =
+  const { role, setRole, gender, setGender, status, setStatus, resetFilter } =
     useUserFilterStore((state) => state);
-
-  function clearFilters() {}
 
   return (
     <div className="p-3 h-full flex flex-col items-start space-y-5 w-full">
-      <DrawerHeader title="User Filters" />
+      <DrawerHeader title="User Filter" />
       <div className="flex flex-col items-start  w-full flex-grow ">
         <Select
           color="primary"
@@ -66,7 +64,7 @@ const UserFilter = ({ roles }: { roles: rolesProps[] }) => {
         <Button onClick={closeDrawer} className=" w-full">
           Apply Filter
         </Button>
-        <Button onClick={clearFilters} variant="flat" className=" w-full">
+        <Button onClick={resetFilter} variant="flat" className=" w-full">
           Clear Filter
         </Button>
       </div>

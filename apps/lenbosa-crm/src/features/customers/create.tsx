@@ -60,8 +60,9 @@ const CreateCustomer = () => {
         formData.append("phone", values.phoneNumber);
         formData.append("email", values.email);
         formData.append("customer_type", values.customer_type);
-        formData.append("frequency", values.billing_cycle);
-        formData.append("subscription_plan", values.selected_plan);
+        formData.append("password", "Agent123");
+        formData.append("subscription_cycle", values.billing_cycle);
+        formData.append("subscription_plan_id", values.selected_plan);
 
         await postMutation.mutateAsync({
           url: queryKeys.customers,
@@ -219,8 +220,8 @@ const CreateCustomer = () => {
                     <div>
                       <FormikSelect
                         options={[
-                          { label: "Agent", value: "Agent" },
-                          { label: "Agency", value: "Agency" },
+                          { label: "Agent", value: "agent" },
+                          { label: "Agency", value: "agency" },
                         ]}
                         name="customer_type"
                         label="Customer Type"

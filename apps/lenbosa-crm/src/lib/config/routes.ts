@@ -27,6 +27,11 @@ export const routes = {
     edit: (id: string) => `/subscription-management/edit/${id}`,
   },
 
+  transactions: {
+    list: "/transactions",
+    invoice: (id: string) => `/transactions/invoice/${id}`,
+  },
+
   customers: {
     list: "/customers",
     create: "/customers/create",
