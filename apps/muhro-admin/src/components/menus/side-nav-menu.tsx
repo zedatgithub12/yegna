@@ -9,6 +9,7 @@ import HealthIcon from "../icons/system-health";
 import SchoolIcon from "../icons/school";
 import JobIcon from "../icons/hr-icon";
 import AdsIcon from "../icons/ads_&_campaigns";
+import InstitutionIcon from "../icons/institution";
 
 export const SideNavMenus = [
   {
@@ -17,6 +18,15 @@ export const SideNavMenus = [
     icon: <HomeIcon />,
     path: routes.dashboard,
     collapsable: false,
+  },
+  {
+    id: "read_institution",
+    permission: "read_institution",
+    title: "Institution Management",
+    icon: <InstitutionIcon />,
+    path: routes.institution.list,
+    collapsable: false,
+    children: [],
   },
 
   {
