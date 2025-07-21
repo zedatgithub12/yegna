@@ -9,6 +9,7 @@ import FileUploader from "@/components/FileUploader";
 import SchoolFeeCollection from "./SchoolFeeCollection";
 import SchoolLegalDocument from "./SchoolLegalDocument";
 import SchoolLocation from "./SchoolLocation";
+import FormikMultiSelect from "@yegna-systems/lib/forms/multi-select";
 // import FormikMultiSelect from "@yegna-systems/lib/forms/multi-select";
 
 export type BasicInformationValues = {
@@ -28,6 +29,12 @@ export type BasicInformationValues = {
     bank: string;
   };
 };
+
+const educationLevelOptions = [
+  { label: "Primary", value: "primary" },
+  { label: "Secondary", value: "secondary" },
+  { label: "Preparatory", value: "preparatory" },
+];
 
 const BasicInformation = () => {
   const { values, setFieldValue } = useFormikContext<BasicInformationValues>();
@@ -61,6 +68,7 @@ const BasicInformation = () => {
               }
             />
           </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Title as="h6" className="font-normal w-full mb-1">
@@ -79,23 +87,17 @@ const BasicInformation = () => {
               </select>
             </div>
             <div>
-              <select
-                multiple
+              <Title as="h6" className="font-normal w-full">
+                Education Level
+              </Title>
+              <FormikMultiSelect
                 name="school_info.education_level"
                 value={values.school_info.education_level || []}
-                onChange={(e) => {
-                  const selected = Array.from(
-                    e.target.selectedOptions,
-                    (option) => option.value
-                  );
+                options={educationLevelOptions}
+                onChange={(selected: string[]) => {
                   setFieldValue("school_info.education_level", selected);
                 }}
-                className="bg-white border border-gray-300 rounded-md w-full p-2 text-sm"
-              >
-                <option value="primary">Primary</option>
-                <option value="secondary">Secondary</option>
-                <option value="preparatory">Preparatory</option>
-              </select>
+              />
             </div>
           </div>
 

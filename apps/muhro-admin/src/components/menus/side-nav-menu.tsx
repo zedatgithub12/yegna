@@ -9,7 +9,7 @@ import HealthIcon from "../icons/system-health";
 import SchoolIcon from "../icons/school";
 import JobIcon from "../icons/hr-icon";
 import AdsIcon from "../icons/ads_&_campaigns";
-import InstitutionIcon from "../icons/institution";
+import UserManaIcon from "../icons/user-manage";
 
 export const SideNavMenus = [
   {
@@ -23,17 +23,8 @@ export const SideNavMenus = [
     id: "read_institution",
     permission: "read_institution",
     title: "Institution Management",
-    icon: <InstitutionIcon />,
-    path: routes.institution.list,
-    collapsable: false,
-    children: [],
-  },
-
-  {
-    id: "read_institution",
-    title: "Institution Management",
     icon: <SchoolIcon />,
-    path: routes.messages.list,
+    path: routes.institution.list,
     collapsable: false,
     children: [],
   },
@@ -54,6 +45,33 @@ export const SideNavMenus = [
     path: routes.messages.list,
     collapsable: false,
     children: [],
+  },
+  {
+    id: "user-management",
+    title: "User Management",
+    icon: <UserManaIcon />,
+    path: routes.messages.list,
+    collapsable: true,
+    children: [
+      {
+        id: "parent-management",
+        title: "Parent",
+        path: routes.user.parent,
+        collapsable: false,
+      },
+      {
+        id: "student-management",
+        title: "Student",
+        path: routes.user.student,
+        collapsable: false,
+      },
+      {
+        id: "teacher-management",
+        title: "Teacher",
+        path: routes.user.teacher,
+        collapsable: false,
+      },
+    ],
   },
 
   {

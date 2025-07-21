@@ -35,11 +35,11 @@ const HumanResource = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 
   const responsePayload = useFetchData(
-    [queryKeys.get_roles],
-    `${queryKeys.get_roles}`
+    [queryKeys.get_school_roles],
+    `${queryKeys.get_school_roles}`
   );
 
-  const rolesData: rolesProps[] = responsePayload?.data?.data;
+  const rolesData: rolesProps[] = responsePayload?.data?.data?.docs;
 
   //get the user data
   const usersPayload = useFetchData(
@@ -55,6 +55,8 @@ const HumanResource = () => {
     `${queryKeys.get_employees}?page=${currentPage}&limit=${pageSize}&search=${searchTerm}`
   );
   const usersData: EmployeeProps[] = usersPayload?.data?.data?.docs;
+
+  console.log("first", usersData);
 
   const handleSelectRow = (user_id: string) => {
     setSelectedRowKeys((prev) =>
@@ -113,7 +115,7 @@ const HumanResource = () => {
             variant="solid"
             color="primary"
             className="hover:bg-primary-dark text-secondary font-medium cursor-pointer gap-1 rounded-lg py-5"
-            onClick={() => router.push(routes.user.create)}
+            onClick={() => router.push(routes.human_resource.create)}
           >
             <SvgWrapper
               src="/icons/add-01.svg"
@@ -121,7 +123,7 @@ const HumanResource = () => {
               height="22px"
               color="#bbf451"
             />
-            Add Employee
+            Add Staff
           </Button>
         }
         staticComponent={
@@ -134,7 +136,7 @@ const HumanResource = () => {
             )}
 
             <TableSearch
-              title="All Employees"
+              title="All Staff"
               setDebouncedValue={(val) => {
                 setCurrentPage(1);
                 setSearchTerm(val);
@@ -189,9 +191,9 @@ const HumanResource = () => {
                 openModal({
                   view: (
                     <DeleteRecord
-                      key="delete employee"
-                      title="Delete Employee"
-                      description="Are you sure do you want to delete this employee"
+                      key="delete Staff"
+                      title="Delete Staff"
+                      description="Are you sure do you want to delete this Staff"
                       url={`${queryKeys.get_employees}/${user_id}`}
                       onRefresh={() =>
                         queryClient.invalidateQueries({

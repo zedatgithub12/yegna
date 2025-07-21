@@ -45,13 +45,20 @@ const UserDetailPanel: React.FC<UserDetailPanelProps> = ({
       <div>
         <h2 className="text-lg font-bold mb-2">Employee Information</h2>
         <div className="flex items-start gap-6 ">
-          <Image
-            src={profilePhoto}
-            alt="Profile"
-            width={300}
-            height={300}
-            className="w-32 h-32 rounded-lg object-cover bg-gray-200"
-          />
+          {profilePhoto ? (
+            <Image
+              src={profilePhoto}
+              alt="Profile"
+              width={300}
+              height={300}
+              className="w-32 h-32 rounded-lg object-cover bg-gray-200"
+            />
+          ) : (
+            <div className="w-32 h-32 rounded-lg bg-gray-200 flex items-center justify-center text-gray-400">
+              No Image
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <p className="font-normal text-gray-400">Name</p>

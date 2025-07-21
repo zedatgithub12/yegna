@@ -3,82 +3,82 @@
 import React from "react";
 import PageWrapper from "@/components/PagesWrapper";
 import { queryKeys } from "@/lib/api/query-keys";
-import { useFetchData } from "@/lib/api/use-fetch-data";
-import { createEmployeeValidationSchema } from "@/validations/employee.schema";
-import { Button } from "@yegna-systems/ui/button";
 import { Text, Title } from "@yegna-systems/ui/typography";
 import { Form, Formik } from "formik";
 import { useRouter } from "nextjs-toploader/app";
 import { toast } from "sonner";
 import useDynamicMutation from "@/lib/api/use-post-data";
-import FormikMultiSelect from "@yegna-systems/lib/forms/multi-select";
 import FormikInput from "@yegna-systems/lib/forms/input";
-import FileUploader from "@/components/FileUploader";
-import FormikPasswordInput from "@yegna-systems/lib/forms/password";
+import banks from "@/data/banks.json";
+import { Button } from "@yegna-systems/ui/button";
+import { createStaffValidationSchema } from "@/validations/staff.schema";
 
 const AddEmployee = () => {
   const router = useRouter();
-  const postMutation = useDynamicMutation({ type: "FormData" });
+  const postMutation = useDynamicMutation({ type: "Json" });
 
-  const responsePayload = useFetchData(
-    [queryKeys.get_roles],
-    `${queryKeys.get_roles}`
-  );
+  const rolesData = [
+    { id: "1", label: "Admin", value: "admin" },
+    { id: "2", label: "VehicleAssigner", value: "vehicleAssigner" },
+    { id: "3", label: "TutorManager", value: "tutorManager" },
+    { id: "4", label: "Staff", value: "staff" },
+  ];
 
-  const rolesData: rolesProps[] = responsePayload?.data?.data;
-
-  const initialValues: UserFormValues = {
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    phoneNumber: "",
+  const initialValues: Staff = {
+    first_name: "",
+    middle_name: "",
+    last_name: "",
+    phone_number: "",
     email: "",
-    role: [],
-    password: "",
-    confirm_password: "",
-    profileImage: null,
+    access_role: [],
+    // profileImage: null,
+    net_salary: 0,
+    department: "admin",
+    user_name: "",
+    gender: "male",
+    collection_account: 0,
+    bank: "",
   };
 
-  const handleFormSubmission = async (values: UserFormValues) => {
+  const handleFormSubmission = async (values: Staff) => {
     try {
-      const formData = new FormData();
-      const fullName = [values.firstName, values.middleName, values.lastName]
-        .filter(Boolean)
-        .join(" ");
+      const payload = {
+        first_name: values.first_name,
+        middle_name: values.middle_name,
+        last_name: values.last_name,
+        phone_number: values.phone_number,
+        email: values.email,
+        access_role: values.access_role,
+        net_salary: values.net_salary,
+        department: values.department,
+        gender: values.gender,
+        bank: values.bank,
+        user_name: values.user_name,
+        collection_account: values.collection_account,
+      };
 
-      formData.append("name", fullName);
-      formData.append("phone", values.phoneNumber);
-      formData.append("email", values.email);
-      if (values.password) {
-        formData.append("password", values.password);
-      }
-      values.role.forEach((roleId) => formData.append("roles[]", roleId));
-      if (values.profileImage) {
-        formData.append("profileImage", values.profileImage);
-      }
-
-      await postMutation.mutateAsync({
-        url: queryKeys.get_users,
+      const res = await postMutation.mutateAsync({
+        url: queryKeys.create_staff,
         method: "POST",
-        body: formData,
-
-        onSuccess: (res) => {
-          if (res.success) {
-            toast.success("Successfully added new user!");
-            router.back();
-          } else {
-            toast.error(res.message);
-          }
-        },
+        body: payload,
       });
+
+      if (res.success) {
+        toast.success("Successfully added new staff!");
+        router.back();
+      } else {
+        toast.error(res.message || "Failed to add new staff.");
+      }
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      toast.error("Something went wrong while adding staff.");
     }
   };
+
   return (
     <PageWrapper
       isLoading={false}
-      title="Create New Role"
+      title="Add Staff"
       back={true}
       search={false}
       breadcrumb={true}
@@ -86,7 +86,7 @@ const AddEmployee = () => {
     >
       <Formik
         initialValues={initialValues}
-        validationSchema={createEmployeeValidationSchema}
+        validationSchema={createStaffValidationSchema}
         onSubmit={handleFormSubmission}
       >
         {({ values, setFieldValue }) => (
@@ -110,12 +110,12 @@ const AddEmployee = () => {
                   </Title>
 
                   <FormikInput
-                    name="firstName"
+                    name="first_name"
                     variant="outline"
                     placeholder="Enter First Name"
-                    value={values.firstName}
+                    value={values.first_name}
                     onChange={(event) =>
-                      setFieldValue("firstName", event.target.value)
+                      setFieldValue("first_name", event.target.value)
                     }
                   />
                 </div>
@@ -126,12 +126,12 @@ const AddEmployee = () => {
                   </Title>
 
                   <FormikInput
-                    name="middleName"
+                    name="middle_name"
                     variant="outline"
                     placeholder="Enter First Name"
-                    value={values.middleName}
+                    value={values.middle_name}
                     onChange={(event) =>
-                      setFieldValue("middleName", event.target.value)
+                      setFieldValue("middle_name", event.target.value)
                     }
                   />
                 </div>
@@ -142,12 +142,12 @@ const AddEmployee = () => {
                   </Title>
 
                   <FormikInput
-                    name="lastName"
+                    name="last_name"
                     variant="outline"
                     placeholder="Enter Last Name"
-                    value={values.lastName}
+                    value={values.last_name}
                     onChange={(event) =>
-                      setFieldValue("lastName", event.target.value)
+                      setFieldValue("last_name", event.target.value)
                     }
                   />
                 </div>
@@ -159,14 +159,14 @@ const AddEmployee = () => {
                     </Title>
 
                     <FormikInput
-                      name="phoneNumber"
+                      name="phone_number"
                       variant="outline"
                       placeholder="Enter Phone Number"
-                      value={values.phoneNumber}
-                      pattern="number"
-                      maxLength={10}
+                      value={values.phone_number}
+                      // pattern="number"
+                      maxLength={13}
                       onChange={(event) =>
-                        setFieldValue("phoneNumber", event.target.value)
+                        setFieldValue("phone_number", event.target.value)
                       }
                     />
                   </div>
@@ -186,65 +186,134 @@ const AddEmployee = () => {
                     />
                   </div>
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                  <div>
+                    <Title as="h6" className="font-normal w-full mb-1">
+                      Access Role
+                    </Title>
+                    <select
+                      name="access_role"
+                      value={values.access_role[0] || ""}
+                      onChange={(e) =>
+                        setFieldValue(
+                          "access_role",
+                          e.target.value ? [e.target.value] : []
+                        )
+                      }
+                      className="bg-white border border-gray-300 rounded-md w-full p-2 text-sm"
+                    >
+                      <option value="">Select Access Role</option>
+                      {rolesData.map((role) => (
+                        <option key={role.id} value={role.value}>
+                          {role.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <Title as="h6" className="font-normal w-full">
+                      User Name
+                    </Title>
 
-                <div>
-                  <FormikMultiSelect
-                    options={
-                      rolesData
-                        ? rolesData?.map((item) => ({
-                            label: item.name,
-                            value: item.uuid,
-                          }))
-                        : []
-                    }
-                    searchable
-                    name="role"
-                    label="Role"
-                    placeholder="Select role"
-                    onChange={(selectedOptions: string[]) =>
-                      setFieldValue("role", selectedOptions)
-                    }
-                    value={values.role}
-                  />
+                    <FormikInput
+                      name="user_name"
+                      variant="outline"
+                      placeholder="Enter  user name"
+                      value={values.user_name}
+                      onChange={(event) =>
+                        setFieldValue("user_name", event.target.value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <Title as="h6" className="font-normal w-full mb-1">
+                      Gender
+                    </Title>
+                    <select
+                      name="gender"
+                      value={values.gender}
+                      onChange={(e) => setFieldValue("gender", e.target.value)}
+                      className="bg-white border border-gray-300 rounded-md w-full p-2 text-sm"
+                    >
+                      <option value="">Select gender</option>
+                      <option value="male">male</option>
+                      <option value="female">female</option>
+                    </select>
+                  </div>
+                  <div>
+                    <Title as="h6" className="font-normal w-full mb-1">
+                      Net Salary
+                    </Title>
+                    <FormikInput
+                      name="net_salary"
+                      placeholder="Enter Your net salary"
+                      value={values.net_salary}
+                      pattern="number"
+                      onChange={(e) =>
+                        setFieldValue("net_salary", e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             </div>
             <hr className="border my-6" />
+
             <div className="grid grid-cols-12 gap-4 p-2 justify-between w-full">
               <div className="col-span-12 md:col-span-4 ">
                 <Title as="h6" className="font-medium capitalize">
-                  Create Password.
+                  Payroll Information
                 </Title>
                 <Text
                   as="p"
                   className="text-gray-400 text-sm mt-0.5 font-normal capitalize"
                 >
-                  Add the user signin password
+                  Add user’s payroll information here.
                 </Text>
               </div>
 
               <div className="col-span-12 md:col-span-8 ">
-                <FormikPasswordInput
-                  label="New Password"
-                  name="password"
-                  placeholder="Enter Your Password"
-                  className="w-full mt-2"
-                  labelClassName="text-[16px] font-light text-black"
-                />
+                <div className="grid grid-cols-1 col-span-8 gap-4">
+                  <div>
+                    <Title as="h6" className="font-normal w-full mb-1">
+                      Bank
+                    </Title>
+                    <select
+                      name="bank"
+                      value={values.bank}
+                      onChange={(e) => setFieldValue("bank", e.target.value)}
+                      className="bg-white border border-gray-300 rounded-md w-full p-2 text-sm"
+                    >
+                      <option value="">Select Bank</option>
+                      {banks.map((bank, index) => (
+                        <option key={index} value={bank.name}>
+                          {bank.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                <FormikPasswordInput
-                  label="Confirm Password"
-                  name="confirm_password"
-                  placeholder="Enter Password Confirmation"
-                  className="w-full mt-4"
-                  labelClassName="text-[16px] font-light text-black"
-                />
+                  <div>
+                    <Title as="h6" className="font-normal w-full mb-1">
+                      Collection Account Number
+                    </Title>
+                    <FormikInput
+                      name="collection_account"
+                      placeholder="Enter Collection Account Number"
+                      value={values.collection_account}
+                      pattern="number"
+                      onChange={(e) =>
+                        setFieldValue("collection_account", e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
             <hr className="border my-6" />
-            <div className="grid grid-cols-12 gap-4 p-2 justify-between w-full">
-              <div className="col-span-12 md:col-span-4 ">
+            <div className="grid grid-cols-1 gap-4 p-2 justify-between w-full">
+              {/* <div className="col-span-12 md:col-span-4 ">
                 <Title as="h6" className="font-medium capitalize">
                   Upload Photo.
                 </Title>
@@ -254,17 +323,17 @@ const AddEmployee = () => {
                 >
                   Upload user photo here
                 </Text>
-              </div>
+              </div> */}
 
               <div className="col-span-12 md:col-span-8 ">
-                <FileUploader
+                {/* <FileUploader
                   title="Profile Image"
                   name="profileImage"
                   value={values.profileImage}
                   setSelectedFile={(profileImage) =>
                     setFieldValue("profileImage", profileImage)
                   }
-                />
+                /> */}
 
                 <div className=" py-4 flex items-center justify-end gap-4 w-full">
                   <Button

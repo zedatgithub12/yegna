@@ -17,7 +17,7 @@ const Roles = ({
       {rolesData.length > 0 &&
         rolesData.map((role, index) => (
           <div
-            key={role.uuid}
+            key={role._id}
             className="w-1/6"
             onClick={() =>
               openModal({
@@ -37,7 +37,7 @@ const Roles = ({
             }
           >
             <FolderCard
-              title={role?.name}
+              title={role?.role}
               users={role?.users_count}
               labelColor={index % 2 ? "orange" : "indigo"}
               avatars={role.three_users_profile_image}

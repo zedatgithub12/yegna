@@ -31,7 +31,7 @@ export const routes = {
 
   human_resource: {
     list: "/human-resource",
-    create: "/human-resource/add-user",
+    create: "/human-resource/add-staff",
     edit: (id: string) => `/human-resource/edit-user/${id}`,
     details: (id: string) => `/human-resource/details/${id}`,
   },
@@ -39,6 +39,9 @@ export const routes = {
   user: {
     list: "/user-management",
     create: "/user-management/add-user",
+    parent: "/user-management/parent",
+    student: "/user-management/student",
+    teacher: "/user-management/teacher",
     edit: (id: string) => `/user-management/edit-user/${id}`,
     details: (id: string) => `/user-management/details/${id}`,
   },

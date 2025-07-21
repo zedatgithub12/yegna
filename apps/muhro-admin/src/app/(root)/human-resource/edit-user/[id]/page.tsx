@@ -1,8 +1,8 @@
 import React from "react";
-import EditUser from "@/features/users/edit-user";
+import EditEmployee from "@/features/human-resource/edit-employee";
 
 const page = () => {
-  return <EditUser />;
+  return <EditEmployee />;
 };
 
 export default page;

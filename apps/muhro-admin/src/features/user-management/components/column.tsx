@@ -2,7 +2,6 @@
 
 import HeaderCell from "@/components/DataTable/header-cell";
 import EditPencil from "@/components/icons/edit-pencil";
-import { Switch } from "@/components/ui/switch";
 import { routes } from "@/lib/config/routes";
 import { formatDate } from "@/utils/lib/format-date-time";
 import { ActionIcon } from "@yegna-systems/ui/action-icon";
@@ -27,7 +26,6 @@ export const GetColumns = ({
   onSelectRow = () => {},
   onSelectAll = () => {},
   allRowKeys = [],
-  // onDeleteInstitution = () => {},
 }: Partial<RowSelectionProps> = {}) => {
   const router = useRouter();
 
@@ -63,9 +61,7 @@ export const GetColumns = ({
         ),
     },
     {
-      title: (
-        <HeaderCell title="Institution Name" className="whitespace-nowrap" />
-      ),
+      title: <HeaderCell title="Parents Name" className="whitespace-nowrap" />,
       dataIndex: "school_name",
       key: "name",
       width: 150,
@@ -85,9 +81,7 @@ export const GetColumns = ({
       ),
     },
     {
-      title: (
-        <HeaderCell title="Education Level" className="whitespace-nowrap" />
-      ),
+      title: <HeaderCell title="Phone Number" className="whitespace-nowrap" />,
       dataIndex: "education_level",
       key: "education_level",
       width: 100,
@@ -105,7 +99,7 @@ export const GetColumns = ({
       ),
     },
     {
-      title: <HeaderCell title="Location" className="whitespace-nowrap" />,
+      title: <HeaderCell title="Email" className="whitespace-nowrap" />,
       dataIndex: "location",
       key: "location",
       width: 150,
@@ -144,13 +138,6 @@ export const GetColumns = ({
         </Text>
       ),
     },
-    {
-      title: <HeaderCell title="Status" className="whitespace-nowrap" />,
-      dataIndex: "status",
-      key: "status",
-      width: 120,
-      render: () => <Switch />,
-    },
 
     {
       title: <HeaderCell title="Actions" className="whitespace-nowrap" />,
@@ -171,10 +158,6 @@ export const GetColumns = ({
           >
             <EditPencil className="w-4 h-4" />
           </ActionIcon>
-
-          {/* <ActionIcon variant="text" onClick={() => onDeleteInstitution(value)}>
-            <Switch />
-          </ActionIcon> */}
         </div>
       ),
     },

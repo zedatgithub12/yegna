@@ -5,6 +5,7 @@ import { useFormikContext } from "formik";
 import { Text, Title } from "@/components/ui/typography";
 import FormikInput from "@yegna-systems/lib/forms/input";
 import { BasicInformationValues } from "./BasicInformation";
+import banks from "@/data/banks.json";
 
 const SchoolFeeCollection = () => {
   const { values, setFieldValue } = useFormikContext<BasicInformationValues>();
@@ -35,8 +36,11 @@ const SchoolFeeCollection = () => {
             className="bg-white border border-gray-300 rounded-md w-full p-2 text-sm"
           >
             <option value="">Select Bank</option>
-            <option value="CBE">CBE</option>
-            <option value="Tele birr">Tele birr</option>
+            {banks.map((bank, index) => (
+              <option key={index} value={bank.name}>
+                {bank.name}
+              </option>
+            ))}
           </select>
         </div>
 

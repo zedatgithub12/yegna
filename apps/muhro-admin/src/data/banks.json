@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Commercial Bank of Ethiopia",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  {
+    "name": "Development Bank of Ethiopia",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  {
+    "name": "Awash International Bank",
+    "logo": "/public/icons/Awash International BankLogo.svg"
+  },
+  {
+    "name": "Bank of Abyssinia",
+    "logo": "/public/icons/Bank of Abyssinia Logo.svg"
+  },
+  { "name": "Dashen Bank", "logo": "/public/icons/Dashen Bank Logo.svg" },
+  {
+    "name": "Cooperative Bank of Oromia",
+    "logo": "/public/icons/Cooperative Bank of Oromia Logo.svg"
+  },
+  { "name": "Enat Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  {
+    "name": "Bunna International Bank",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  {
+    "name": "Berhan International Bank",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  { "name": "Global Bank Ethiopia", "logo": "/public/icons/CBE Birr Logo.svg" },
+  {
+    "name": "Addis International Bank",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  {
+    "name": "Nib International Bank",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  {
+    "name": "Lion International Bank",
+    "logo": "/public/icons/CBE Birr Logo.svg"
+  },
+  {
+    "name": "Oromia International Bank",
+    "logo": "/public/icons/Oromia International Bank Logo.svg"
+  },
+  { "name": "Hibret Bank", "logo": "/public/icons/Hibret Bank Logo.svg" },
+  { "name": "Wegagen Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Zemen Bank", "logo": "/public/icons/Zemen Bank Logo.svg" },
+  { "name": "ZamZam Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Hijra Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Siinqee Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Shabelle Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Ahadu Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Goh Betoch Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Tsedey Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Gadaa Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Sidama Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Omo Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Siket Bank", "logo": "/public/icons/CBE Birr Logo.svg" },
+  { "name": "Rammis Bank", "logo": "/public/icons/CBE Birr Logo.svg" }
+]

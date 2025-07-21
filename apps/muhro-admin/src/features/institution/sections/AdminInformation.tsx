@@ -1,12 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import { Title, Text } from "@/components/ui/typography";
 import FormikInput from "@yegna-systems/lib/forms/input";
+import { useFetchData } from "@/lib/api/use-fetch-data";
+import { queryKeys } from "@/lib/api/query-keys";
 
 const AdminInformation = () => {
   const { values, setFieldValue } = useFormikContext<institutionProps>();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const responsePayload = useFetchData(
+    [queryKeys.get_school_roles, currentPage],
+    `${queryKeys.get_school_roles}`
+  );
+
+  const roleUsers: SchoolRole[] = responsePayload?.data?.data?.docs;
 
   return (
     <div className="grid grid-cols-12 gap-4 p-2 justify-between w-full">
@@ -108,16 +118,27 @@ const AdminInformation = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <FormikInput
-            name="admin_info.access_role"
-            placeholder="Enter role"
-            value={values.admin_info.access_role}
-            onChange={(e) =>
-              setFieldValue("admin_info.access_role", e.target.value)
-            }
-            label="Access Role"
-            className="bg-white"
-          />
+          <div>
+            <Title as="h6" className="font-normal w-full mb-1">
+              Access Role
+            </Title>
+            <select
+              name="admin_info.access_role"
+              value={values.admin_info.access_role}
+              onChange={(e) =>
+                setFieldValue("admin_info.access_role", e.target.value)
+              }
+              className="bg-white border border-gray-300 rounded-md w-full p-2 text-sm"
+            >
+              <option value="">Select access role</option>
+              {roleUsers?.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.role}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <FormikInput
             name="admin_info.position"
             placeholder="Enter position"
